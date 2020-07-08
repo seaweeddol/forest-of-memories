@@ -14,7 +14,7 @@ public class SpawnTree : MonoBehaviour
     public GameObject tentativeTree;
     public GameObject neutralTree;
 
-    public void CreateTree(string tone) {
+    public void CreateTree(string tone, double score, string memory) {
         GameObject clone;
 
         switch (tone) {
@@ -44,7 +44,13 @@ public class SpawnTree : MonoBehaviour
                 break;
         }
 
+        // make clone a child of Trees
         clone.transform.SetParent(tree.transform);
+
+        // scale tree depending on score
+        float scaledScore = (float)score * 3;
+        clone.transform.localScale = new Vector3(scaledScore, scaledScore, scaledScore);
+        
         clone.SetActive(true);
     }
 }

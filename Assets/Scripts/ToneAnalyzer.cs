@@ -31,9 +31,10 @@ public class ToneAnalyzer : MonoBehaviour
     public GameObject toneScoreDisplay;
     public GameObject toneSentimentDisplay;
     public SpawnTree spawnTree;
+    public string userMemoryInput;
 
     private ToneResponse GetToneAnalysis() {
-        string userMemoryInput = inputField.text;
+        userMemoryInput = inputField.text;
 
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/fcea7060-3962-4a9b-b48f-054d1e6909e4/v3/tone?version=2017-09-21&sentences=false&text={0}", userMemoryInput));
 
@@ -84,9 +85,8 @@ public class ToneAnalyzer : MonoBehaviour
 
         inputField.text = "";
         
-        // TODO: intead of displaying text, the score and tone should be used to create a tree (CreateTree script?)
         toneScoreDisplay.GetComponent<Text>().text = $"Score: {score.ToString()}";
         toneSentimentDisplay.GetComponent<Text>().text = $"Sentiment: {tone}";
-        spawnTree.CreateTree(tone);
+        spawnTree.CreateTree(tone, score, userMemoryInput);
     }
 }
