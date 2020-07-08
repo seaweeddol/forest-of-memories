@@ -30,6 +30,7 @@ public class ToneAnalyzer : MonoBehaviour
     public InputField inputField;
     public GameObject toneScoreDisplay;
     public GameObject toneSentimentDisplay;
+    public SpawnTree spawnTree;
 
     private ToneResponse GetToneAnalysis() {
         string userMemoryInput = inputField.text;
@@ -86,5 +87,6 @@ public class ToneAnalyzer : MonoBehaviour
         // TODO: intead of displaying text, the score and tone should be used to create a tree (CreateTree script?)
         toneScoreDisplay.GetComponent<Text>().text = $"Score: {score.ToString()}";
         toneSentimentDisplay.GetComponent<Text>().text = $"Sentiment: {tone}";
+        spawnTree.CreateTree(tone);
     }
 }
