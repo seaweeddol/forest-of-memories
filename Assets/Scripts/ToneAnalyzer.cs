@@ -25,12 +25,12 @@ public class ToneAnalyzer : MonoBehaviour
     }
 
     public string API_KEY;
-    public GameObject inputField;
+    public InputField inputField;
     public GameObject toneScoreDisplay;
     public GameObject toneSentimentDisplay;
 
     private ToneResponse GetToneAnalysis() {
-        string userMemoryInput = inputField.GetComponent<Text>().text;
+        string userMemoryInput = inputField.text;
 
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/fcea7060-3962-4a9b-b48f-054d1e6909e4/v3/tone?version=2017-09-21&sentences=false&text={0}", userMemoryInput));
 
@@ -62,7 +62,7 @@ public class ToneAnalyzer : MonoBehaviour
         double score = toneAnalysis.tones[0].score;
         string tone = toneAnalysis.tones[0].tone_name;
 
-        // TODO: clear input field
+        inputField.text = "";
         
         // if there are multiple responses, get the highest scored one
 

@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   API_KEY: Xe0mQtI2kj_lizPqk2OhTy1IRsLFBmWMvy-c__hIaXx1
-  inputField: {fileID: 1518043573}
+  inputField: {fileID: 1447678501}
   toneScoreDisplay: {fileID: 579497911}
   toneSentimentDisplay: {fileID: 1650541675}
 --- !u!1 &963194225
@@ -777,6 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memoryUI: {fileID: 1847492333}
+  inputField: {fileID: 1447678501}
 --- !u!4 &1197446083
 Transform:
   m_ObjectHideFlags: 0

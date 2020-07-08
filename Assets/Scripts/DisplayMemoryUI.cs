@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DisplayMemoryUI : MonoBehaviour
 {
     public GameObject memoryUI;
+    public InputField inputField;
 
     bool m_MemoryUIVisible = false;
 
@@ -23,6 +24,7 @@ public class DisplayMemoryUI : MonoBehaviour
             if (m_MemoryUIVisible) {
                 m_MemoryUIVisible = false;
                 memoryUI.SetActive(false);
+                inputField.text = "";
                 return;
             }
         }
