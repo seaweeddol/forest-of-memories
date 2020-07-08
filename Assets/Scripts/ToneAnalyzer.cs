@@ -51,10 +51,18 @@ public class ToneAnalyzer : MonoBehaviour
         return toneResponse;
     }
 
+    public void CheckEnterPress() {
+        if(Input.GetKeyDown("return")){
+            DisplayToneResponse();
+        }
+    }
+
     public void DisplayToneResponse() {
         DocumentTone toneAnalysis = GetToneAnalysis().document_tone;
         double score = toneAnalysis.tones[0].score;
         string tone = toneAnalysis.tones[0].tone_name;
+
+        // TODO: clear input field
         
         // if there are multiple responses, get the highest scored one
 
