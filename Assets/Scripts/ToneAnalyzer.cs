@@ -6,10 +6,12 @@ using System.Net;
   using System;
   using System.IO;
 using Newtonsoft.Json;
+using System.Linq;
 
 public class ToneAnalyzer : MonoBehaviour
 {
     // https://json2csharp.com/json-to-csharp
+    // set up classes for JSON response from API
     public class Tone    {
         public double score { get; set; } 
         public string tone_id { get; set; } 
@@ -43,6 +45,7 @@ public class ToneAnalyzer : MonoBehaviour
         
         StreamReader reader = new StreamReader(response.GetResponseStream());
         string jsonResponse = reader.ReadToEnd();
+        Debug.Log(jsonResponse);
 
         // https://www.newtonsoft.com/json/help/html/DeserializeObject.htm
         ToneResponse toneResponse = JsonConvert.DeserializeObject<ToneResponse>(jsonResponse); 
@@ -51,6 +54,7 @@ public class ToneAnalyzer : MonoBehaviour
         return toneResponse;
     }
 
+    // if user presses enter while in the input field, call DisplayToneResponse()
     public void CheckEnterPress() {
         if(Input.GetKeyDown("return")){
             DisplayToneResponse();
@@ -59,14 +63,27 @@ public class ToneAnalyzer : MonoBehaviour
 
     public void DisplayToneResponse() {
         DocumentTone toneAnalysis = GetToneAnalysis().document_tone;
-        double score = toneAnalysis.tones[0].score;
-        string tone = toneAnalysis.tones[0].tone_name;
+        double score;
+        string tone;
+
+        if (toneAnalysis.tones.Count == 0) {
+            // no overt tones detected - neutral
+            score = 0;
+            tone = "Neutral";
+        } else if (toneAnalysis.tones.Count == 1) {
+            // one tone detected
+            score = toneAnalysis.tones[0].score;
+            tone = toneAnalysis.tones[0].tone_name;
+        } else {
+            // multiple tones detected, grab highest scoring one
+            Tone highestScore = toneAnalysis.tones.OrderByDescending(p => p.score).FirstOrDefault();
+            score = highestScore.score;
+            tone = highestScore.tone_name;
+        }
 
         inputField.text = "";
         
-        // if there are multiple responses, get the highest scored one
-
-        // intead of displaying text, the score and tone should be used to create a tree (create a CreateTree script?)
+        // TODO: intead of displaying text, the score and tone should be used to create a tree (CreateTree script?)
         toneScoreDisplay.GetComponent<Text>().text = $"Score: {score.ToString()}";
         toneSentimentDisplay.GetComponent<Text>().text = $"Sentiment: {tone}";
     }
