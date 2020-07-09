@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate ()
     {
         // TODO: if memory UI is visible, player should not be able to walk
-        
+
         float horizontal = Input.GetAxis ("Horizontal");
         float vertical = Input.GetAxis ("Vertical");
         
@@ -31,6 +31,16 @@ public class PlayerMovement : MonoBehaviour
         bool hasVerticalInput = !Mathf.Approximately (vertical, 0f);
         bool isWalking = hasHorizontalInput || hasVerticalInput;
         m_Animator.SetBool ("isWalking", isWalking);
+
+        // play footstep sounds if player is walking
+        bool footsteps = GetComponent<AudioSource>().isPlaying;
+        if (isWalking) {
+            if (!footsteps) {
+                GetComponent<AudioSource>().Play();
+            }
+        } else {
+            GetComponent<AudioSource>().Pause();
+        }
 
         Vector3 desiredForward = Vector3.RotateTowards (transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
         m_Rotation = Quaternion.LookRotation (desiredForward);
