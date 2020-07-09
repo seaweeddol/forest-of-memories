@@ -19,7 +19,7 @@ public class SpawnTree : MonoBehaviour
     private GameObject CloneTree(GameObject treeType) {
         Vector3 treePosition = player.transform.position;
 
-        return Instantiate(treeType, treePosition, Quaternion.identity);
+        return Instantiate(treeType, treePosition + new Vector3(0, 0, 5), Quaternion.identity);
     }
 
     public void CreateTree(string tone, double score, string memory) {
@@ -56,7 +56,7 @@ public class SpawnTree : MonoBehaviour
         clone.transform.SetParent(tree.transform);
 
         // scale tree depending on score
-        // if neutral, scale will be inherited from parent
+            // if neutral, scale will be inherited from parent since score is 0
         if(clone.tag != "neutral") {
             float scaledScore = (float)score * 3;
             clone.transform.localScale = new Vector3(scaledScore, scaledScore, scaledScore);
