@@ -12,6 +12,7 @@ TagManager:
   - fearful
   - neutral
   - analytical
+  - tree
   layers:
   - Default
   - TransparentFX
