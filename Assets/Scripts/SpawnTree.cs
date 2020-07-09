@@ -56,8 +56,11 @@ public class SpawnTree : MonoBehaviour
         clone.transform.SetParent(tree.transform);
 
         // scale tree depending on score
-        float scaledScore = (float)score * 3;
-        clone.transform.localScale = new Vector3(scaledScore, scaledScore, scaledScore);
+        // if neutral, scale will be inherited from parent
+        if(clone.tag != "neutral") {
+            float scaledScore = (float)score * 3;
+            clone.transform.localScale = new Vector3(scaledScore, scaledScore, scaledScore);
+        }
 
         // TODO: spawn tree at current mouse location
         // or - spawn tree at current player location + ~couple feet in front of them
