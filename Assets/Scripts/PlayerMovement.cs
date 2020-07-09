@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate ()
     {
+        // TODO: if memory UI is visible, player should not be able to walk
+        
         float horizontal = Input.GetAxis ("Horizontal");
         float vertical = Input.GetAxis ("Vertical");
         

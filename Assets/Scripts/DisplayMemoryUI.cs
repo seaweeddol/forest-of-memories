@@ -12,6 +12,7 @@ public class DisplayMemoryUI : MonoBehaviour
 
     // Update is called every frame
     void Update () {
+        // TODO: if memory UI is visible, player should not be able to walk
         if(Input.GetKeyDown("space")) {
             if (!m_MemoryUIVisible) {
                 m_MemoryUIVisible = true;

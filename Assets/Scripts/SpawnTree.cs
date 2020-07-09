@@ -19,7 +19,8 @@ public class SpawnTree : MonoBehaviour
 
         switch (tone) {
             case "Sadness":
-                clone = Instantiate(sadnessTree);
+                Vector3 treePosition = Input.mousePosition;
+                clone = Instantiate(sadnessTree, treePosition, Quaternion.identity);
                 break;
             case "Anger":
                 clone = Instantiate(angerTree);
@@ -50,7 +51,10 @@ public class SpawnTree : MonoBehaviour
         // scale tree depending on score
         float scaledScore = (float)score * 3;
         clone.transform.localScale = new Vector3(scaledScore, scaledScore, scaledScore);
-        
+
+        // TODO: spawn tree at current mouse location
+        // or - spawn tree at current player location + ~couple feet in front of them
+
         clone.SetActive(true);
     }
 }
