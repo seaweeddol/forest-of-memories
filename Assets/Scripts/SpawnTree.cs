@@ -13,35 +13,42 @@ public class SpawnTree : MonoBehaviour
     public GameObject confidentTree;
     public GameObject tentativeTree;
     public GameObject neutralTree;
+    public GameObject player;
+    
+
+    private GameObject CloneTree(GameObject treeType) {
+        Vector3 treePosition = player.transform.position;
+
+        return Instantiate(treeType, treePosition, Quaternion.identity);
+    }
 
     public void CreateTree(string tone, double score, string memory) {
         GameObject clone;
 
         switch (tone) {
             case "Sadness":
-                Vector3 treePosition = Input.mousePosition;
-                clone = Instantiate(sadnessTree, treePosition, Quaternion.identity);
+                clone = CloneTree(sadnessTree);
                 break;
             case "Anger":
-                clone = Instantiate(angerTree);
+                clone = CloneTree(angerTree);
                 break;
             case "Joy":
-                clone = Instantiate(joyTree);
+                clone = CloneTree(joyTree);
                 break;
             case "Fear":
-                clone = Instantiate(fearfulTree);
+                clone = CloneTree(fearfulTree);
                 break;
             case "Analytical":
-                clone = Instantiate(analyticalTree);
+                clone = CloneTree(analyticalTree);
                 break;
             case "Confident":
-                clone = Instantiate(confidentTree);
+                clone = CloneTree(confidentTree);
                 break;
             case "Tentative":
-                clone = Instantiate(tentativeTree);
+                clone = CloneTree(tentativeTree);
                 break;
             default:
-                clone = Instantiate(neutralTree);
+                clone = CloneTree(neutralTree);
                 break;
         }
 
