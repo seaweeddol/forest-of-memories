@@ -13,11 +13,14 @@ public class TreeInteraction : MonoBehaviour
     public string memory;
 
     void OnMouseOver(){
-        Debug.Log(memory);
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode); 
     }
 
     void OnMouseExit(){
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
+
+    void OnMouseDown(){
+        Debug.Log(memory);
     }
 }
