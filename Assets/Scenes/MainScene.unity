@@ -232,6 +232,7 @@ Transform:
   - {fileID: 596585523}
   - {fileID: 1197446083}
   - {fileID: 873760975}
+  - {fileID: 595949025}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -252,7 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 111494, guid: 62724a8cd2495b14f930b7129c3bc47b, type: 3}
       propertyPath: m_TagString
-      value: angry
+      value: joy
       objectReference: {fileID: 0}
     - target: {fileID: 459986, guid: 62724a8cd2495b14f930b7129c3bc47b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -482,6 +483,9 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: cc08ccd1cf04a3d43b8d437d087cfc02, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  score: 0
+  tone: 
+  memory: 
 --- !u!136 &439023195
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -513,7 +517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 142018, guid: d537224908c5f444f86c9e57e0c7234c, type: 3}
       propertyPath: m_TagString
-      value: angry
+      value: fearful
       objectReference: {fileID: 0}
     - target: {fileID: 423888, guid: d537224908c5f444f86c9e57e0c7234c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -737,6 +741,55 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -320.53}
   m_SizeDelta: {x: 500, y: 55.470352}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &595949024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 595949025}
+  - component: {fileID: 595949026}
+  m_Layer: 0
+  m_Name: TreeInteraction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &595949025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595949024}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.40457028, y: 2.503564, z: -0.057901323}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 48293195}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &595949026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595949024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82134a35e5cde43ab9343346179105a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: cc08ccd1cf04a3d43b8d437d087cfc02, type: 3}
+  cursorMode: 0
+  hotSpot: {x: 0, y: 0}
+  score: 0
+  tone: 
+  memory: 
 --- !u!1 &596585521
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +829,7 @@ MonoBehaviour:
   tentativeTree: {fileID: 1106396228}
   neutralTree: {fileID: 1911961358}
   player: {fileID: 1249167702}
+  treeInteraction: {fileID: 595949026}
 --- !u!4 &596585523
 Transform:
   m_ObjectHideFlags: 0
@@ -800,6 +854,22 @@ PrefabInstance:
     - target: {fileID: 1106770364064150, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
       propertyPath: m_Name
       value: 'Kira_A_noFace '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115674629121436, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143289213068768, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387498816956776, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787009526992330, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4695018362789466, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -971,6 +1041,9 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: cc08ccd1cf04a3d43b8d437d087cfc02, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  score: 0
+  tone: 
+  memory: 
 --- !u!1 &813541110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,11 +1281,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   API_KEY: Xe0mQtI2kj_lizPqk2OhTy1IRsLFBmWMvy-c__hIaXx1
+  memoryUI: {fileID: 1847492333}
   inputField: {fileID: 1447678501}
   toneScoreDisplay: {fileID: 579497911}
   toneSentimentDisplay: {fileID: 1650541675}
   spawnTree: {fileID: 596585522}
-  userMemoryInput: 
 --- !u!1 &939172148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,6 +1389,9 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: cc08ccd1cf04a3d43b8d437d087cfc02, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  score: 0
+  tone: 
+  memory: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1537,9 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: cc08ccd1cf04a3d43b8d437d087cfc02, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  score: 0
+  tone: 
+  memory: 
 --- !u!1 &1106396228 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 180214, guid: aec50823ac9be1b45b5778c3b6c0f51a,
@@ -1488,6 +1567,9 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: cc08ccd1cf04a3d43b8d437d087cfc02, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  score: 0
+  tone: 
+  memory: 
 --- !u!1 &1175611135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,6 +1673,9 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: cc08ccd1cf04a3d43b8d437d087cfc02, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  score: 0
+  tone: 
+  memory: 
 --- !u!1 &1197446081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,7 +1876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 127928, guid: eed418c5a3c80d448b4cdbe594ebe3c5, type: 3}
       propertyPath: m_TagString
-      value: angry
+      value: sadness
       objectReference: {fileID: 0}
     - target: {fileID: 488714, guid: eed418c5a3c80d448b4cdbe594ebe3c5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1868,7 +1953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 180214, guid: aec50823ac9be1b45b5778c3b6c0f51a, type: 3}
       propertyPath: m_TagString
-      value: angry
+      value: tentative
       objectReference: {fileID: 0}
     - target: {fileID: 449284, guid: aec50823ac9be1b45b5778c3b6c0f51a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2320,7 +2405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 112728, guid: 069e1e44b643edc4fb4a9d4311a78fb7, type: 3}
       propertyPath: m_TagString
-      value: angry
+      value: confident
       objectReference: {fileID: 0}
     - target: {fileID: 474106, guid: 069e1e44b643edc4fb4a9d4311a78fb7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2475,7 +2560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 151190, guid: a9cc5585b9634a9449920c03ec6bc243, type: 3}
       propertyPath: m_TagString
-      value: angry
+      value: neutral
       objectReference: {fileID: 0}
     - target: {fileID: 478606, guid: a9cc5585b9634a9449920c03ec6bc243, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2934,6 +3019,9 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: cc08ccd1cf04a3d43b8d437d087cfc02, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  score: 0
+  tone: 
+  memory: 
 --- !u!1001 &1941040973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2951,7 +3039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 138344, guid: 8a7cf5ac7b4145441a3dca86f869b09e, type: 3}
       propertyPath: m_TagString
-      value: angry
+      value: analytical
       objectReference: {fileID: 0}
     - target: {fileID: 448686, guid: 8a7cf5ac7b4145441a3dca86f869b09e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3038,6 +3126,9 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: cc08ccd1cf04a3d43b8d437d087cfc02, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  score: 0
+  tone: 
+  memory: 
 --- !u!1 &2108991001
 GameObject:
   m_ObjectHideFlags: 0
