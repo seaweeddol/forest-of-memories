@@ -14,12 +14,13 @@ public class SpawnTree : MonoBehaviour
     public GameObject tentativeTree;
     public GameObject neutralTree;
     public GameObject player;
+    public TreeInteraction treeInteraction;
     
-
     private GameObject CloneTree(GameObject treeType) {
-        Vector3 treePosition = player.transform.position;
+        // get players current position + 5 on Z axis
+        Vector3 treePosition = player.transform.position + new Vector3(0, 0, 5);
 
-        return Instantiate(treeType, treePosition + new Vector3(0, 0, 5), Quaternion.identity);
+        return Instantiate(treeType, treePosition, Quaternion.identity);
     }
 
     public void CreateTree(string tone, double score, string memory) {
@@ -62,9 +63,13 @@ public class SpawnTree : MonoBehaviour
             clone.transform.localScale = new Vector3(scaledScore, scaledScore, scaledScore);
         }
 
-        // TODO: spawn tree at current mouse location
-        // or - spawn tree at current player location + ~couple feet in front of them
+        // assign sentiment analysis and user input to tree
+        TreeInteraction treeInteraction = clone.GetComponent<TreeInteraction>();
+        treeInteraction.score = score;
+        treeInteraction.tone = tone;
+        treeInteraction.memory = memory;
 
+        // make tree visible
         clone.SetActive(true);
     }
 }

@@ -8,13 +8,16 @@ public class TreeInteraction : MonoBehaviour
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
+    public double score;
+    public string tone;
+    public string memory;
+
     void OnMouseOver(){
-        Debug.Log("it's angry");
+        Debug.Log(memory);
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode); 
     }
 
     void OnMouseExit(){
-        Debug.Log("it's not angry");
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 }
