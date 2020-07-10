@@ -14,7 +14,8 @@ public class SpawnTree : MonoBehaviour
     public GameObject tentativeTree;
     public GameObject neutralTree;
     public GameObject player;
-    public TreeInteraction treeInteraction;
+    // public TreeInteraction treeInteraction;
+    public TreeInfo treeInfo;
     
     private GameObject CloneTree(GameObject treeType) {
         // get players current position + 5 on Z axis
@@ -64,10 +65,10 @@ public class SpawnTree : MonoBehaviour
         }
 
         // assign sentiment analysis and user input to tree
-        TreeInteraction treeInteraction = clone.GetComponent<TreeInteraction>();
-        treeInteraction.score = score;
-        treeInteraction.tone = tone;
-        treeInteraction.memory = memory;
+        TreeInfo treeInfo = clone.GetComponent<TreeInfo>();
+        treeInfo.score = score;
+        treeInfo.sentiment = tone;
+        treeInfo.memory = memory;
 
         // make tree visible
         clone.SetActive(true);

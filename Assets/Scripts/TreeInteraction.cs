@@ -10,10 +10,7 @@ public class TreeInteraction : MonoBehaviour
     public Vector2 hotSpot = Vector2.zero;
     public GameObject memoryTextContainer;
     public GameObject memoryText;
-
-    public double score;
-    public string tone;
-    public string memory;
+    public TreeInfo treeInfo;
 
     void OnMouseOver(){
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode); 
@@ -27,7 +24,7 @@ public class TreeInteraction : MonoBehaviour
         // TODO: show text in front of tree
         // hide text on click or after a certain distance
         TextMeshProUGUI textMeshPro = memoryText.GetComponent<TextMeshProUGUI>();
-        textMeshPro.SetText(memory);
+        textMeshPro.SetText(treeInfo.memory);
         memoryTextContainer.SetActive(true);
     }
 }
