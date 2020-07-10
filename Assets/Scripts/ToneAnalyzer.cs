@@ -27,11 +27,12 @@ public class ToneAnalyzer : MonoBehaviour
     }
 
     public string API_KEY;
+    public GameObject memoryUI;
     public InputField inputField;
     public GameObject toneScoreDisplay;
     public GameObject toneSentimentDisplay;
     public SpawnTree spawnTree;
-    public string userMemoryInput;
+    string userMemoryInput;
 
     private ToneResponse GetToneAnalysis() {
         userMemoryInput = inputField.text;
@@ -84,14 +85,11 @@ public class ToneAnalyzer : MonoBehaviour
         }
 
         inputField.text = "";
-        // TODO: deactivate memory UI
+        memoryUI.SetActive(false);
         
-        toneScoreDisplay.GetComponent<Text>().text = $"Score: {score.ToString()}";
-        toneSentimentDisplay.GetComponent<Text>().text = $"Sentiment: {tone}";
+        // toneScoreDisplay.GetComponent<Text>().text = $"Score: {score.ToString()}";
+        // toneSentimentDisplay.GetComponent<Text>().text = $"Sentiment: {tone}";
 
-        // TODO: add score and memory to the tree object
-        // after submission, allow user to walk around and choose where to put the tree?
-        // UI appears - "press enter to plant tree at this location"
         spawnTree.CreateTree(tone, score, userMemoryInput);
     }
 }
