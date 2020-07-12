@@ -7,14 +7,14 @@ using TMPro;
 public class MemoryTextPosition : MonoBehaviour
 {
     public Transform player;
-    // public GameObject memoryContainer;
     public GameObject memory;
     public Collider collider;
     public TreeInfo treeInfo;
-    bool m_IsTextVisible = false;
+
+    bool m_IsTextVisible;
     bool m_IsPlayerInRange;
-    // public float alpha;
-    float waitTime = 2.0f;
+    
+    float waitTime = 1.0f;
     float timer = 0.0f;
 
     void Start() {
@@ -26,7 +26,7 @@ public class MemoryTextPosition : MonoBehaviour
         if (m_IsPlayerInRange && !m_IsTextVisible) {
             timer += Time.deltaTime;
             if (timer < waitTime) {
-                memory.GetComponent<TextMeshProUGUI>().alpha = timer / 2;
+                memory.GetComponent<TextMeshProUGUI>().alpha = timer;
                 Debug.Log("current alpha: " + memory.GetComponent<TextMeshProUGUI>().alpha);
             } else {
                 m_IsTextVisible = true;
@@ -35,11 +35,13 @@ public class MemoryTextPosition : MonoBehaviour
         } else if (!m_IsPlayerInRange && m_IsTextVisible) {
             timer += Time.deltaTime;
             if (timer < waitTime) {
-                memory.GetComponent<TextMeshProUGUI>().alpha -= timer / 2;
+                memory.GetComponent<TextMeshProUGUI>().alpha = (1 - timer);
                 Debug.Log("current alpha: " + memory.GetComponent<TextMeshProUGUI>().alpha);
+            } else {
+                m_IsTextVisible = false;
+                timer = 0.0f;
             }
         }
-        // show memory if user is within range of tree
     }
 
     void OnTriggerEnter (Collider other) {
@@ -53,40 +55,5 @@ public class MemoryTextPosition : MonoBehaviour
             m_IsPlayerInRange = false;
             // FadeOutText();
         }
-    }
-
-    void FadeOutText(){
-        // fade from opaque to transparent
-        // loop over 1 second backwards
-        
-        Debug.Log("fade out");
-        for (float i = 5; i >= 0; i -= Time.deltaTime) {
-            // set color with i as alpha
-            Debug.Log(i);
-            memory.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, i);
-        }
-        m_IsTextVisible = false;
-    }
-
-    void FadeInText(){
-        // fade from transparent to opaque
-        // loop over 1 second
-        float waitTime = 10.0f;
-        float timer = 0.0f;
-
-        while (timer < waitTime)
-        {
-            timer += Time.deltaTime;
-            Debug.Log("current time: " + timer);
-
-            memory.GetComponent<TextMeshProUGUI>().alpha = timer;
-        }
-
-        // for (float i = 0; i <= 5; i += Time.deltaTime){
-        //     // set color with i as alpha
-        //     Debug.Log(i);
-        //     memory.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, i);
-        // }
-        m_IsTextVisible = true;
     }
 }
