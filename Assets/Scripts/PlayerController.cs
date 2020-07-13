@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
      public bool controllable = false;
  
      public float speed = 4.0f;
-     public float gravity = 20.0f;
  
      private Vector3 moveDirection = Vector3.zero;
      private CharacterController controller;
@@ -22,19 +21,18 @@ public class PlayerController : MonoBehaviour
      // Update is called once per frame
      void Update()
      {
-        // Cursor.lockState = CursorLockMode.Locked;
-
          if (controller.isGrounded && controllable)
          {
              moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
              moveDirection = transform.TransformDirection(moveDirection);
              moveDirection *= speed;
             
+            // can use this if block for running
             //  if (Input.GetButton("Jump"))
             //      moveDirection.y = jumpSpeed;
  
          }
-             moveDirection.y -= gravity * Time.deltaTime;
+             moveDirection.y -= Time.deltaTime;
              controller.Move(moveDirection * Time.deltaTime);
      }
  }
