@@ -61,8 +61,11 @@ public class SpawnTree : MonoBehaviour
             // if neutral, scale will be inherited from parent since score is 0
         if(clone.tag != "neutral") {
             // TODO: multiply scaledScore times current scale
+
             float scaledScore = (float)score * 3;
-            clone.transform.localScale = new Vector3(scaledScore, scaledScore, scaledScore);
+
+            Vector3 currentScale = clone.transform.localScale;
+            clone.transform.localScale = new Vector3(currentScale.x * scaledScore, currentScale.y * scaledScore, currentScale.z * scaledScore);
         }
 
         // assign sentiment analysis and user input to tree
