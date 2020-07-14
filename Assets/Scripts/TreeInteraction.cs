@@ -15,8 +15,10 @@ public class TreeInteraction : MonoBehaviour
     public GameObject cursor;
 
     void OnMouseOver(){
-        // Cursor.SetCursor(cursorTexture, hotSpot, cursorMode); 
-        cursor.SetActive(true);
+        // Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        if (memoryText.GetComponent<TextMeshProUGUI>().alpha > 0.1){
+            cursor.SetActive(true);
+        }
     }
 
     void OnMouseExit(){
@@ -25,11 +27,8 @@ public class TreeInteraction : MonoBehaviour
     }
 
     void OnMouseDown(){
-        // TODO: show text in front of tree
+        // TODO: on click, show entire memory text & date
         // hide text on click or after a certain distance
-        // TextMeshProUGUI textMeshPro = memoryText.GetComponent<TextMeshProUGUI>();
-        // textMeshPro.SetText(treeInfo.memory);
-        // memoryTextContainer.SetActive(true);
 
         // set position of text in front of player at eye level
         Vector3 playerPos = player.position;
