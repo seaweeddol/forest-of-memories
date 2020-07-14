@@ -548,6 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229920103}
   - component: {fileID: 229920104}
+  - component: {fileID: 229920105}
   m_Layer: 0
   m_Name: PlayerInRange
   m_TagString: Untagged
@@ -579,10 +580,26 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2.5
+  m_Radius: 3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &229920105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229920102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846b492e1ac9d4eb1891b7bd2990367b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1249167705}
+  memory: {fileID: 791183643}
+  collider: {fileID: 229920104}
+  tree: {fileID: 439023190}
 --- !u!1001 &257686890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -934,26 +951,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 3
+  m_Radius: 0.7
   m_Height: 5.717171
   m_Direction: 1
   m_Center: {x: 0, y: 2.5, z: 0}
---- !u!114 &439023196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 439023190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 846b492e1ac9d4eb1891b7bd2990367b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1249167705}
-  memory: {fileID: 791183643}
-  collider: {fileID: 439023195}
-  treeInfo: {fileID: 439023192}
 --- !u!114 &439023197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,7 +969,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   memoryTextContainer: {fileID: 57780758}
   memoryText: {fileID: 791183643}
-  treeInfo: {fileID: 439023192}
   player: {fileID: 1249167705}
   cursor: {fileID: 1366628755}
 --- !u!1 &466375364
@@ -1245,7 +1245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   memoryTextContainer: {fileID: 0}
   memoryText: {fileID: 0}
-  treeInfo: {fileID: 0}
   player: {fileID: 0}
   cursor: {fileID: 0}
 --- !u!1 &596585521
@@ -1711,7 +1710,7 @@ MonoBehaviour:
   player: {fileID: 1249167705}
   memory: {fileID: 1795445439}
   collider: {fileID: 729701096}
-  treeInfo: {fileID: 729701098}
+  tree: {fileID: 0}
 --- !u!114 &729701098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2407,7 +2406,7 @@ MonoBehaviour:
   player: {fileID: 1249167705}
   memory: {fileID: 766884907}
   collider: {fileID: 951518466}
-  treeInfo: {fileID: 951518468}
+  tree: {fileID: 0}
 --- !u!114 &951518468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2712,7 +2711,7 @@ MonoBehaviour:
   player: {fileID: 1249167705}
   memory: {fileID: 366222900}
   collider: {fileID: 1053238347}
-  treeInfo: {fileID: 1053238349}
+  tree: {fileID: 0}
 --- !u!114 &1053238349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2769,7 +2768,7 @@ MonoBehaviour:
   player: {fileID: 1249167705}
   memory: {fileID: 2110802021}
   collider: {fileID: 1106396230}
-  treeInfo: {fileID: 1106396232}
+  tree: {fileID: 0}
 --- !u!114 &1106396232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,7 +2901,7 @@ MonoBehaviour:
   player: {fileID: 1249167705}
   memory: {fileID: 257686891}
   collider: {fileID: 1187281911}
-  treeInfo: {fileID: 1187281913}
+  tree: {fileID: 0}
 --- !u!114 &1187281913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3950,7 +3949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474106, guid: 069e1e44b643edc4fb4a9d4311a78fb7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 474106, guid: 069e1e44b643edc4fb4a9d4311a78fb7, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4932,7 +4931,7 @@ MonoBehaviour:
   player: {fileID: 1249167705}
   memory: {fileID: 124205972}
   collider: {fileID: 1911961359}
-  treeInfo: {fileID: 1911961362}
+  tree: {fileID: 0}
 --- !u!4 &1911961361 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 478606, guid: a9cc5585b9634a9449920c03ec6bc243,
@@ -5072,7 +5071,7 @@ MonoBehaviour:
   player: {fileID: 1249167705}
   memory: {fileID: 952449572}
   collider: {fileID: 1993261344}
-  treeInfo: {fileID: 1993261346}
+  tree: {fileID: 0}
 --- !u!114 &1993261346
 MonoBehaviour:
   m_ObjectHideFlags: 0
