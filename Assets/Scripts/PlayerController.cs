@@ -14,12 +14,14 @@ public class PlayerController : MonoBehaviour
     private Animator m_Animator;
 
     void Start(){
+        Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
         m_Animator = GetComponent<Animator> ();
         // Cursor.lockState = CursorLockMode.Locked;
     }
  
     void Update(){
+        Cursor.lockState = CursorLockMode.Locked;
         // if memoryUI is active, disable mouse look, movement, footstep audio, & walking animation
         if (m_MemoryUI.isActiveAndEnabled) {
             disableMouseLook();
