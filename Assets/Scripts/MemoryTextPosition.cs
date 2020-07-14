@@ -59,6 +59,7 @@ public class MemoryTextPosition : MonoBehaviour
         }
     }
 
+    // set position of text in front of player at eye level
     void memoryPosition(){
         Vector3 playerPos = player.position;
         Vector3 playerDirection = player.forward;
