@@ -8,8 +8,9 @@ public class MemoryTextPosition : MonoBehaviour
 {
     public Transform player;
     public GameObject memory;
-    public Collider collider;
-    public TreeInfo treeInfo;
+    public GameObject tree;
+    
+    private TreeInfo treeInfo;
 
     bool m_IsTextVisible;
     bool m_IsPlayerInRange;
@@ -19,6 +20,7 @@ public class MemoryTextPosition : MonoBehaviour
     float timer = 0.0f;
 
     void Start() {
+        treeInfo = tree.GetComponent<TreeInfo>();
         memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
     }
 
@@ -61,15 +63,13 @@ public class MemoryTextPosition : MonoBehaviour
 
     // set position of text in front of player at eye level
     void memoryPosition(){
-        Vector3 playerPos = player.position;
         Vector3 playerDirection = player.forward;
         Quaternion playerRotation = player.rotation;
-        float memoryDistance = 1.5f;
+        float memoryDistance = tree.transform.localScale.x * -1f;
 
-        Vector3 memoryPos = playerPos + playerDirection * memoryDistance;
+        Vector3 memoryPos = tree.transform.position + playerDirection * memoryDistance;
 
-        memory.transform.position = memoryPos;
-        memory.transform.position += new Vector3(0f, 1.5f, 0f);
+        memory.transform.position = memoryPos + new Vector3(0f, 1.7f, 0f);
         memory.transform.rotation = playerRotation;
     }
 }
