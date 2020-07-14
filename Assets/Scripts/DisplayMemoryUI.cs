@@ -12,6 +12,7 @@ public class DisplayMemoryUI : MonoBehaviour
     void Update () {
         if(Input.GetKeyDown("space")) {
             memoryUI.SetActive(true);
+            inputField.Select();
         }
 
         if(Input.GetKeyDown("escape")) {
