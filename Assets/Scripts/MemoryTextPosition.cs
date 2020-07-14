@@ -13,6 +13,7 @@ public class MemoryTextPosition : MonoBehaviour
 
     bool m_IsTextVisible;
     bool m_IsPlayerInRange;
+    bool m_IsTextPositioned;
     
     float waitTime = 1.0f;
     float timer = 0.0f;
@@ -22,12 +23,14 @@ public class MemoryTextPosition : MonoBehaviour
     }
 
     void Update (){
-        // TODO: make text move with camera aim
         if (m_IsPlayerInRange && !m_IsTextVisible) {
+            if(!m_IsTextPositioned){
+                memoryPosition();
+                m_IsTextPositioned = true;
+            }
             timer += Time.deltaTime;
             if (timer < waitTime) {
                 memory.GetComponent<TextMeshProUGUI>().alpha = timer;
-                Debug.Log("current alpha: " + memory.GetComponent<TextMeshProUGUI>().alpha);
             } else {
                 m_IsTextVisible = true;
                 timer = 0.0f;
@@ -36,9 +39,9 @@ public class MemoryTextPosition : MonoBehaviour
             timer += Time.deltaTime;
             if (timer < waitTime) {
                 memory.GetComponent<TextMeshProUGUI>().alpha = (1 - timer);
-                Debug.Log("current alpha: " + memory.GetComponent<TextMeshProUGUI>().alpha);
             } else {
                 m_IsTextVisible = false;
+                m_IsTextPositioned = false;
                 timer = 0.0f;
             }
         }
@@ -53,7 +56,19 @@ public class MemoryTextPosition : MonoBehaviour
     void OnTriggerExit (Collider other) {
         if(other.transform == player) {
             m_IsPlayerInRange = false;
-            // FadeOutText();
         }
+    }
+
+    void memoryPosition(){
+        Vector3 playerPos = player.position;
+        Vector3 playerDirection = player.forward;
+        Quaternion playerRotation = player.rotation;
+        float memoryDistance = 1.5f;
+
+        Vector3 memoryPos = playerPos + playerDirection * memoryDistance;
+
+        memory.transform.position = memoryPos;
+        memory.transform.position += new Vector3(0f, 1.5f, 0f);
+        memory.transform.rotation = playerRotation;
     }
 }
