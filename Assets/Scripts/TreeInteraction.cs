@@ -10,7 +10,6 @@ public class TreeInteraction : MonoBehaviour
     // public Vector2 hotSpot = Vector2.zero;
     public GameObject memoryTextContainer;
     public GameObject memoryText;
-    public TreeInfo treeInfo;
     public Transform player;
 
     public GameObject cursor;
