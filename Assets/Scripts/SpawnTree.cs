@@ -24,13 +24,14 @@ public class SpawnTree : MonoBehaviour
         Quaternion playerRotation = player.transform.rotation;
         float spawnDistance = 10;
 
-        Vector3 spawnPos = playerPos + playerDirection*spawnDistance;   
+        Vector3 spawnPos = playerPos + playerDirection*spawnDistance; 
+        spawnPos += new Vector3(0, 10, 0); // move spawnPos up in case of upward slope
         GameObject newTree = Instantiate(treeType, spawnPos, playerRotation);
 
         RaycastHit hit;
         var ray = new Ray(newTree.transform.position, Vector3.down);
+        
         // make tree spawn attached to terrain on slopes
-        // TODO: make tree spawn on terrain when looking up a slope
         foreach(Transform child in terrain) {
             if (child.GetComponent<Collider>().Raycast(ray, out hit, 1000)) {
                 Vector3 hitPoint = hit.point;
