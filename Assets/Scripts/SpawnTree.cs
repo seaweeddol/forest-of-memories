@@ -70,7 +70,7 @@ public class SpawnTree : MonoBehaviour
         Transform tree = clone.transform.GetChild(0);
         if(clone.tag != "neutral") {
             float scaledScore = (float)score * 2.5f;
-            Vector3 currentScale = clone.transform.localScale;
+            Vector3 currentScale = tree.transform.localScale;
             tree.transform.localScale = new Vector3(currentScale.x * scaledScore, currentScale.y * scaledScore, currentScale.z * scaledScore);
         }
 
