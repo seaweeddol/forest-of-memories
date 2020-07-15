@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     float speed = 3.0f;
 
     public Canvas m_MemoryUI;
+    public Canvas m_MemoryJournal;
     public GameObject m_Camera;
     public AudioSource walkAudio;
     public AudioSource runAudio;
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
     void Update(){
         Cursor.lockState = CursorLockMode.Locked;
         // if memoryUI is active, disable mouse look, movement, footstep audio, & walking animation
-        if (m_MemoryUI.isActiveAndEnabled) {
+        if (m_MemoryUI.isActiveAndEnabled || m_MemoryJournal.isActiveAndEnabled) {
             disableMouseLook();
             controller.Move(new Vector3(0, 0, 0));
             m_Animator.SetBool ("isWalking", false);
