@@ -42,6 +42,7 @@ public class TreeInteraction : MonoBehaviour
         if(!fullMemoryBook.activeInHierarchy) {
             // TODO: player cannot move or look around when memory journal is open
             fullMemoryBook.SetActive(true);
+            fullMemoryBook.GetComponent<AudioSource>().Play();
             entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #1";
             date.GetComponent<TextMeshProUGUI>().text = "Date: " + treeInfo.dateTime;
             sentiment.GetComponent<TextMeshProUGUI>().text = "Sentiment: " + treeInfo.sentiment;
