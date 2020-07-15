@@ -8,7 +8,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326162313797376350}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.7
   m_Height: 5.717171
@@ -70,10 +70,6 @@ MonoBehaviour:
   memoryText: {fileID: 3456800472569508112}
   tree: {fileID: 326162313797376350}
   fullMemoryContainer: {fileID: 0}
-  entryNumber: {fileID: 0}
-  date: {fileID: 0}
-  sentiment: {fileID: 0}
-  memory: {fileID: 0}
   cursor: {fileID: 0}
 --- !u!1 &7390618223778896434
 GameObject:
