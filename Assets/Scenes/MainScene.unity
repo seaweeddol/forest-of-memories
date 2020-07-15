@@ -155,12 +155,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &57780758 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5593365589969480666, guid: 8de1dedc89f704f4cb1121aa7686b721,
-    type: 3}
-  m_PrefabInstance: {fileID: 5593365591307240465}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &64183265
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,12 +415,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &106255310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5593365589969480666, guid: 8de1dedc89f704f4cb1121aa7686b721,
-    type: 3}
-  m_PrefabInstance: {fileID: 766884906}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &124205971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -660,7 +648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160455479}
   m_LocalRotation: {x: -0.000000021855696, y: 2.42647e-24, z: 1.1102232e-16, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 759155034}
@@ -1613,7 +1601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82134a35e5cde43ab9343346179105a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryTextContainer: {fileID: 0}
   memoryText: {fileID: 0}
   tree: {fileID: 0}
   fullMemoryContainer: {fileID: 0}
@@ -1621,7 +1608,6 @@ MonoBehaviour:
   date: {fileID: 0}
   sentiment: {fileID: 0}
   memory: {fileID: 0}
-  player: {fileID: 0}
   cursor: {fileID: 0}
 --- !u!1 &596585521
 GameObject:
@@ -2268,7 +2254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82134a35e5cde43ab9343346179105a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryTextContainer: {fileID: 857935140}
   memoryText: {fileID: 1795445439}
   tree: {fileID: 0}
   fullMemoryContainer: {fileID: 0}
@@ -2276,7 +2261,6 @@ MonoBehaviour:
   date: {fileID: 0}
   sentiment: {fileID: 0}
   memory: {fileID: 0}
-  player: {fileID: 1249167705}
   cursor: {fileID: 1366628755}
 --- !u!114 &729701098
 MonoBehaviour:
@@ -2531,7 +2515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82134a35e5cde43ab9343346179105a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryTextContainer: {fileID: 57780758}
   memoryText: {fileID: 791183643}
   tree: {fileID: 439023190}
   fullMemoryContainer: {fileID: 94083921}
@@ -2539,7 +2522,6 @@ MonoBehaviour:
   date: {fileID: 1938549738}
   sentiment: {fileID: 1727908622}
   memory: {fileID: 1702696595}
-  player: {fileID: 1249167705}
   cursor: {fileID: 1366628755}
 --- !u!61 &791183648
 BoxCollider2D:
@@ -2780,12 +2762,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!1 &830466078 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5593365589969480666, guid: 8de1dedc89f704f4cb1121aa7686b721,
-    type: 3}
-  m_PrefabInstance: {fileID: 257686890}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &846141217
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,12 +2840,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846141217}
   m_CullTransparentMesh: 0
---- !u!1 &857935140 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5593365589969480666, guid: 8de1dedc89f704f4cb1121aa7686b721,
-    type: 3}
-  m_PrefabInstance: {fileID: 1795445438}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &863942243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3114,7 +3084,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82134a35e5cde43ab9343346179105a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryTextContainer: {fileID: 106255310}
   memoryText: {fileID: 766884907}
   tree: {fileID: 0}
   fullMemoryContainer: {fileID: 0}
@@ -3122,7 +3091,6 @@ MonoBehaviour:
   date: {fileID: 0}
   sentiment: {fileID: 0}
   memory: {fileID: 0}
-  player: {fileID: 1249167705}
   cursor: {fileID: 1366628755}
 --- !u!114 &951518468
 MonoBehaviour:
@@ -3347,7 +3315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
-  m_LocalPosition: {x: -150.81804, y: 2.5374622, z: 4.104444}
+  m_LocalPosition: {x: -10, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3425,7 +3393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82134a35e5cde43ab9343346179105a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryTextContainer: {fileID: 2116987949}
   memoryText: {fileID: 366222900}
   tree: {fileID: 0}
   fullMemoryContainer: {fileID: 0}
@@ -3433,7 +3400,6 @@ MonoBehaviour:
   date: {fileID: 0}
   sentiment: {fileID: 0}
   memory: {fileID: 0}
-  player: {fileID: 1249167705}
   cursor: {fileID: 1366628755}
 --- !u!114 &1053238349
 MonoBehaviour:
@@ -3450,12 +3416,6 @@ MonoBehaviour:
   score: 0
   sentiment: 
   memory: 
---- !u!1 &1093977081 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5593365589969480666, guid: 8de1dedc89f704f4cb1121aa7686b721,
-    type: 3}
-  m_PrefabInstance: {fileID: 2110802020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1106396228 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 180214, guid: aec50823ac9be1b45b5778c3b6c0f51a,
@@ -3494,7 +3454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82134a35e5cde43ab9343346179105a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryTextContainer: {fileID: 1093977081}
   memoryText: {fileID: 2110802021}
   tree: {fileID: 0}
   fullMemoryContainer: {fileID: 0}
@@ -3502,7 +3461,6 @@ MonoBehaviour:
   date: {fileID: 0}
   sentiment: {fileID: 0}
   memory: {fileID: 0}
-  player: {fileID: 1249167705}
   cursor: {fileID: 1366628755}
 --- !u!114 &1106396232
 MonoBehaviour:
@@ -3633,7 +3591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82134a35e5cde43ab9343346179105a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryTextContainer: {fileID: 830466078}
   memoryText: {fileID: 257686891}
   tree: {fileID: 0}
   fullMemoryContainer: {fileID: 0}
@@ -3641,7 +3598,6 @@ MonoBehaviour:
   date: {fileID: 0}
   sentiment: {fileID: 0}
   memory: {fileID: 0}
-  player: {fileID: 1249167705}
   cursor: {fileID: 1366628755}
 --- !u!114 &1187281913
 MonoBehaviour:
@@ -3709,6 +3665,102 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 669151789}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1249167703
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249167702}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f4503cdaac346c849ba0cdfb2f039f77, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1249167705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4695018362789466, guid: 5fd9224290486cd47ac2ce7398a463a0,
@@ -3857,7 +3909,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MemoryUI: {fileID: 1847492336}
+  m_MemoryJournal: {fileID: 94083924}
   m_Camera: {fileID: 160455479}
+  walkAudio: {fileID: 1249167703}
+  runAudio: {fileID: 1249167706}
 --- !u!143 &1249167711
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4851,12 +4906,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518043573}
   m_CullTransparentMesh: 0
---- !u!1 &1541951906 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5593365589969480666, guid: 8de1dedc89f704f4cb1121aa7686b721,
-    type: 3}
-  m_PrefabInstance: {fileID: 124205971}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1587232596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6179,7 +6228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82134a35e5cde43ab9343346179105a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryTextContainer: {fileID: 1541951906}
   memoryText: {fileID: 124205972}
   tree: {fileID: 0}
   fullMemoryContainer: {fileID: 0}
@@ -6187,7 +6235,6 @@ MonoBehaviour:
   date: {fileID: 0}
   sentiment: {fileID: 0}
   memory: {fileID: 0}
-  player: {fileID: 1249167705}
   cursor: {fileID: 1366628755}
 --- !u!4 &1911961361 stripped
 Transform:
@@ -6482,7 +6529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82134a35e5cde43ab9343346179105a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryTextContainer: {fileID: 559463911}
   memoryText: {fileID: 952449572}
   tree: {fileID: 0}
   fullMemoryContainer: {fileID: 0}
@@ -6490,7 +6536,6 @@ MonoBehaviour:
   date: {fileID: 0}
   sentiment: {fileID: 0}
   memory: {fileID: 0}
-  player: {fileID: 1249167705}
   cursor: {fileID: 1366628755}
 --- !u!114 &1993261346
 MonoBehaviour:
@@ -6865,12 +6910,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116318723}
   m_CullTransparentMesh: 0
---- !u!1 &2116987949 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5593365589969480666, guid: 8de1dedc89f704f4cb1121aa7686b721,
-    type: 3}
-  m_PrefabInstance: {fileID: 366222899}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5593365591307240465
 PrefabInstance:
   m_ObjectHideFlags: 0
