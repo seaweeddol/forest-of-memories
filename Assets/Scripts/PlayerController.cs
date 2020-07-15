@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public Canvas m_MemoryUI;
     public GameObject m_Camera;
+    public AudioSource walkAudio;
+    public AudioSource runAudio;
  
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController controller;
@@ -27,17 +29,25 @@ public class PlayerController : MonoBehaviour
             disableMouseLook();
             controller.Move(new Vector3(0, 0, 0));
             m_Animator.SetBool ("isWalking", false);
-            GetComponent<AudioSource>().Pause();
+            m_Animator.SetBool ("isRunning", false);
+            walkAudio.Pause();
+            runAudio.Pause();
         } else { 
             // TODO: add run
+            if (Input.GetKey("left shift")) {
+                speed = 6.0f;
+            } else {
+                speed = 2.5f;
+            }
+
             enableMouseLook();
 
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
 
-            bool isWalking = checkIsWalking();
-            footstepAudio(isWalking);
+            bool isMoving = checkIsMoving(speed);
+            footstepAudio(isMoving);
 
             moveDirection.y -= Time.deltaTime;
             controller.Move(moveDirection * Time.deltaTime);
@@ -54,23 +64,39 @@ public class PlayerController : MonoBehaviour
         m_Camera.GetComponent<MouseLook>().enabled = false;
     }
 
-    bool checkIsWalking(){
+    bool checkIsMoving(float speed){
         bool hasHorizontalInput = !Mathf.Approximately (Input.GetAxis("Horizontal"), 0f);
         bool hasVerticalInput = !Mathf.Approximately (Input.GetAxis("Vertical"), 0f);
-        bool isWalking = hasHorizontalInput || hasVerticalInput;
-        m_Animator.SetBool ("isWalking", isWalking);
-        return isWalking;
+        bool isMoving = hasHorizontalInput || hasVerticalInput;
+        if(speed == 6.0f) {
+            m_Animator.SetBool ("isRunning", isMoving);
+            m_Animator.SetBool ("isWalking", false);
+        } else {
+            m_Animator.SetBool ("isWalking", isMoving);
+            m_Animator.SetBool ("isRunning", false);
+        }
+        return isMoving;
     }
 
-    void footstepAudio(bool isWalking) {
-        // play footstep sounds if player is walking
-        bool footsteps = GetComponent<AudioSource>().isPlaying;
-        if (isWalking) {
-            if (!footsteps) {
-                GetComponent<AudioSource>().Play();
+    void footstepAudio(bool isMoving) {
+        // play footstep sounds if player is moving
+        bool walkFootsteps = walkAudio.isPlaying;
+        bool runFootsteps = runAudio.isPlaying;
+        if (isMoving) {
+            if(speed == 2.5f) {
+                if (!walkFootsteps) {
+                    walkAudio.Play();
+                    runAudio.Pause();
+                } 
+            } else {
+                if (!runFootsteps) {
+                    runAudio.Play();
+                    walkAudio.Pause();
+                }
             }
         } else {
-            GetComponent<AudioSource>().Pause();
+            walkAudio.Pause();
+            runAudio.Pause();
         }
     }
  }

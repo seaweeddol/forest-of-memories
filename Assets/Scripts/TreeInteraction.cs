@@ -8,7 +8,7 @@ public class TreeInteraction : MonoBehaviour
     // public Texture2D cursorTexture;
     // public CursorMode cursorMode = CursorMode.Auto;
     // public Vector2 hotSpot = Vector2.zero;
-    public GameObject memoryTextContainer;
+    // public GameObject memoryTextContainer;
     public GameObject memoryText;
     public GameObject tree;
     TreeInfo treeInfo;
@@ -19,7 +19,7 @@ public class TreeInteraction : MonoBehaviour
     public GameObject sentiment;
     public GameObject memory;
 
-    public Transform player;
+    // public Transform player;
     public GameObject cursor;
 
     void Start(){
