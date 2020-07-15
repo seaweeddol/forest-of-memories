@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SpawnTree : MonoBehaviour
 {
-    public GameObject tree;
+    public GameObject player;
+    public GameObject ParentTree;
     public GameObject angerTree;
     public GameObject joyTree;
     public GameObject sadnessTree;
@@ -13,10 +14,8 @@ public class SpawnTree : MonoBehaviour
     public GameObject confidentTree;
     public GameObject tentativeTree;
     public GameObject neutralTree;
-    public GameObject player;
-    // public TreeInteraction treeInteraction;
-    public TreeInfo treeInfo;
     
+    // clone tree in front of current player position
     private GameObject CloneTree(GameObject treeType) {
         Vector3 playerPos = player.transform.position;
         Vector3 playerDirection = player.transform.forward;
@@ -30,6 +29,7 @@ public class SpawnTree : MonoBehaviour
     public void CreateTree(string tone, double score, string memory) {
         GameObject clone;
 
+        // determine type of tree based on tone
         switch (tone) {
             case "Sadness":
                 clone = CloneTree(sadnessTree);
@@ -58,18 +58,28 @@ public class SpawnTree : MonoBehaviour
         }
 
         // make clone a child of Trees
-        clone.transform.SetParent(tree.transform);
+        clone.transform.SetParent(ParentTree.transform);
 
-        // scale tree depending on score
-        // if neutral, scale will be inherited from parent since score is 0
-        if(clone.tag != "neutral") {
-            float scaledScore = (float)score * 3;
-            Vector3 currentScale = clone.transform.localScale;
-            clone.transform.localScale = new Vector3(currentScale.x * scaledScore, currentScale.y * scaledScore, currentScale.z * scaledScore);
+        // set position of children to parent position
+        int children = clone.transform.childCount;
+        for (int i = 0; i < children; ++i) {
+            clone.transform.GetChild(i).transform.position = clone.transform.position;
         }
 
+        // scale tree depending on score (neutral tree scale will be inherited from parent since score is 0)
+        Transform tree = clone.transform.GetChild(0);
+        if(clone.tag != "neutral") {
+            float scaledScore = (float)score * 2.5f;
+            Vector3 currentScale = clone.transform.localScale;
+            tree.transform.localScale = new Vector3(currentScale.x * scaledScore, currentScale.y * scaledScore, currentScale.z * scaledScore);
+        }
+
+        // update collider radius based on tree scale
+        Transform playerInRange = clone.transform.GetChild(2);
+        playerInRange.GetComponent<CapsuleCollider>().radius += tree.transform.localScale.x;
+
         // assign sentiment analysis and user input to tree
-        TreeInfo treeInfo = clone.GetComponent<TreeInfo>();
+        TreeInfo treeInfo = tree.transform.GetComponent<TreeInfo>();
         treeInfo.score = score;
         treeInfo.sentiment = tone;
         treeInfo.memory = memory;

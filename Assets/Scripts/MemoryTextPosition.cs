@@ -7,10 +7,11 @@ using TMPro;
 public class MemoryTextPosition : MonoBehaviour
 {
     public Transform player;
-    public GameObject memory;
+    public GameObject memoryContainer;
     public GameObject tree;
     
     private TreeInfo treeInfo;
+    private Transform memory;
 
     bool m_IsTextVisible;
     bool m_IsPlayerInRange;
@@ -21,6 +22,7 @@ public class MemoryTextPosition : MonoBehaviour
 
     void Start() {
         treeInfo = tree.GetComponent<TreeInfo>();
+        memory = memoryContainer.transform.GetChild(0);
         memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
     }
 
@@ -69,7 +71,7 @@ public class MemoryTextPosition : MonoBehaviour
 
         Vector3 memoryPos = tree.transform.position + playerDirection * memoryDistance;
 
-        memory.transform.position = memoryPos + new Vector3(0f, 1.7f, 0f);
-        memory.transform.rotation = playerRotation;
+        memoryContainer.transform.position = memoryPos + new Vector3(0f, 1.8f, 0f);
+        memoryContainer.transform.rotation = playerRotation;
     }
 }
