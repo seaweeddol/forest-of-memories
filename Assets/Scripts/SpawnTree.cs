@@ -27,6 +27,8 @@ public class SpawnTree : MonoBehaviour
         Vector3 spawnPos = playerPos + playerDirection*spawnDistance; 
         spawnPos += new Vector3(0, 10, 0); // move spawnPos up in case of upward slope
         GameObject newTree = Instantiate(treeType, spawnPos, playerRotation);
+        Vector3 currentScale = newTree.transform.localScale;
+        newTree.transform.localScale = new Vector3(0, 0, 0);
 
         RaycastHit hit;
         var ray = new Ray(newTree.transform.position, Vector3.down);
@@ -40,26 +42,27 @@ public class SpawnTree : MonoBehaviour
             }
         }
 
-        StartCoroutine(GrowTree(newTree, 1f));
+        StartCoroutine(GrowTree(newTree, currentScale, 1f));
 
         return newTree;
     }
 
-    private IEnumerator GrowTree(GameObject tree, double score){
+    private IEnumerator GrowTree(GameObject tree, Vector3 currentScale, double score){
         yield return new WaitForSeconds(.5f);
         Vector3 newScale = tree.transform.localScale;
 
         if(tree.tag != "neutral") {
             float scaledScore = (float)score * 2.5f;
-            Vector3 currentScale = tree.transform.localScale;
+            // Vector3 currentScale = tree.transform.localScale;
             newScale = new Vector3(currentScale.x * scaledScore, currentScale.y * scaledScore, currentScale.z * scaledScore);
         }
 
         tree.transform.localScale = new Vector3(0, 0, 0);
 
         float ratio = 0f;
+
         while (ratio/1f < 1f) {
-            tree.transform.localScale += new Vector3(ratio, ratio, ratio);
+            tree.transform.localScale = new Vector3((newScale.x * ratio), (newScale.y * ratio), (newScale.z * ratio));
             ratio += Time.deltaTime;
             yield return null;
         }
@@ -108,11 +111,11 @@ public class SpawnTree : MonoBehaviour
 
         // scale tree depending on score (neutral tree scale will be inherited from parent since score is 0)
         Transform tree = clone.transform.GetChild(0);
-        if(clone.tag != "neutral") {
-            float scaledScore = (float)score * 2.5f;
-            Vector3 currentScale = tree.transform.localScale;
-            tree.transform.localScale = new Vector3(currentScale.x * scaledScore, currentScale.y * scaledScore, currentScale.z * scaledScore);
-        }
+        // if(clone.tag != "neutral") {
+        //     float scaledScore = (float)score * 2.5f;
+        //     Vector3 currentScale = tree.transform.localScale;
+        //     tree.transform.localScale = new Vector3(currentScale.x * scaledScore, currentScale.y * scaledScore, currentScale.z * scaledScore);
+        // }
 
         // update collider radius based on tree scale
         Transform playerInRange = clone.transform.GetChild(2);
