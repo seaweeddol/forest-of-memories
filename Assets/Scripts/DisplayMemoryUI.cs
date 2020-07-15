@@ -11,8 +11,8 @@ public class DisplayMemoryUI : MonoBehaviour
     // Update is called every frame
     void Update () {
         if(Input.GetKeyDown("space")) {
-            inputField.Select();
             memoryUI.SetActive(true);
+            inputField.ActivateInputField();
         }
 
         if(Input.GetKeyDown("escape")) {
