@@ -1181,6 +1181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1249167702}
+  terrain: {fileID: 813541111}
   ParentTree: {fileID: 1800591664}
   angerTree: {fileID: 1737297862}
   joyTree: {fileID: 9881100}
@@ -4738,7 +4739,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 103.6, y: -2}
+  m_AnchoredPosition: {x: 103.6001, y: -2}
   m_SizeDelta: {x: -619.16284, y: -68.45999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2116318725
