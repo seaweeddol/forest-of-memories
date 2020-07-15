@@ -6,10 +6,10 @@ using TMPro;
 
 public class MemoryTextPosition : MonoBehaviour
 {
-    public Transform player;
     public GameObject memoryContainer;
     public GameObject tree;
     
+    private Transform player;
     private TreeInfo treeInfo;
     private Transform memory;
 
@@ -24,6 +24,7 @@ public class MemoryTextPosition : MonoBehaviour
         treeInfo = tree.GetComponent<TreeInfo>();
         memory = memoryContainer.transform.GetChild(0);
         memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
+        player = GameObject.Find("Player").transform;
     }
 
     void Update (){

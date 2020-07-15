@@ -5,25 +5,27 @@ using TMPro;
 
 public class TreeInteraction : MonoBehaviour
 {
-    // public Texture2D cursorTexture;
-    // public CursorMode cursorMode = CursorMode.Auto;
-    // public Vector2 hotSpot = Vector2.zero;
-    // public GameObject memoryTextContainer;
     public GameObject memoryText;
     public GameObject tree;
+    public GameObject fullMemoryContainer;
+    public GameObject cursor;
     TreeInfo treeInfo;
 
-    public GameObject fullMemoryContainer;
-    public GameObject entryNumber;
-    public GameObject date;
-    public GameObject sentiment;
-    public GameObject memory;
+    private GameObject fullMemoryBook;
+    private Transform entryNumber;
+    private Transform date;
+    private Transform sentiment;
+    private Transform memory;
 
     // public Transform player;
-    public GameObject cursor;
 
     void Start(){
         treeInfo = tree.GetComponent<TreeInfo>();
+        fullMemoryBook = fullMemoryContainer.transform.GetChild(0).gameObject;
+        entryNumber = fullMemoryBook.transform.Find("EntryNumber");
+        date = fullMemoryBook.transform.Find("Date");
+        sentiment = fullMemoryBook.transform.Find("Sentiment");
+        memory = fullMemoryBook.transform.Find("Panel/Memory");
     }
 
     // TODO: instead of mouseover, do a range? show icon or text when in range "Press E to view this memory"
@@ -42,16 +44,16 @@ public class TreeInteraction : MonoBehaviour
 
     void OnMouseDown(){
         // hide text on click or after a certain distance
-        if(!fullMemoryContainer.activeInHierarchy) {
+        if(!fullMemoryBook.activeInHierarchy) {
             // TODO: player cannot move or look around when memory journal is open
-            fullMemoryContainer.SetActive(true);
+            fullMemoryBook.SetActive(true);
             entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #1";
             date.GetComponent<TextMeshProUGUI>().text = "Date: " + treeInfo.dateTime;
             sentiment.GetComponent<TextMeshProUGUI>().text = "Sentiment: " + treeInfo.sentiment;
             memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
         } else {
             // TODO: instead of click, use escape to exit memory
-            fullMemoryContainer.SetActive(false);
+            fullMemoryBook.SetActive(false);
         }
     }
 }
