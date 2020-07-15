@@ -40,7 +40,30 @@ public class SpawnTree : MonoBehaviour
             }
         }
 
+        StartCoroutine(GrowTree(newTree, 1f));
+
         return newTree;
+    }
+
+    private IEnumerator GrowTree(GameObject tree, double score){
+        yield return new WaitForSeconds(.5f);
+        Vector3 newScale = tree.transform.localScale;
+
+        if(tree.tag != "neutral") {
+            float scaledScore = (float)score * 2.5f;
+            Vector3 currentScale = tree.transform.localScale;
+            newScale = new Vector3(currentScale.x * scaledScore, currentScale.y * scaledScore, currentScale.z * scaledScore);
+        }
+
+        tree.transform.localScale = new Vector3(0, 0, 0);
+
+        float ratio = 0f;
+        while (ratio/1f < 1f) {
+            tree.transform.localScale += new Vector3(ratio, ratio, ratio);
+            ratio += Time.deltaTime;
+            yield return null;
+        }
+        tree.transform.localScale = newScale;
     }
 
     public void CreateTree(string tone, double score, string memory) {
@@ -100,6 +123,8 @@ public class SpawnTree : MonoBehaviour
         treeInfo.score = score;
         treeInfo.sentiment = tone;
         treeInfo.memory = memory;
+
+        // GrowTree(tree, treeInfo.score);
 
         // make tree visible
         clone.SetActive(true);
