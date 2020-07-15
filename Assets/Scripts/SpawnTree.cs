@@ -5,7 +5,9 @@ using UnityEngine;
 public class SpawnTree : MonoBehaviour
 {
     public GameObject player;
+    public Transform terrain;
     public GameObject ParentTree;
+    // TODO: make trees private, assign using child of ParentTree
     public GameObject angerTree;
     public GameObject joyTree;
     public GameObject sadnessTree;
@@ -22,8 +24,22 @@ public class SpawnTree : MonoBehaviour
         Quaternion playerRotation = player.transform.rotation;
         float spawnDistance = 10;
 
-        Vector3 spawnPos = playerPos + playerDirection*spawnDistance;        
-        return Instantiate(treeType, spawnPos, playerRotation);
+        Vector3 spawnPos = playerPos + playerDirection*spawnDistance;   
+        GameObject newTree = Instantiate(treeType, spawnPos, playerRotation);
+
+        RaycastHit hit;
+        var ray = new Ray(newTree.transform.position, Vector3.down);
+        // make tree spawn attached to terrain on slopes
+        // TODO: make tree spawn on terrain when looking up a slope
+        foreach(Transform child in terrain) {
+            if (child.GetComponent<Collider>().Raycast(ray, out hit, 1000)) {
+                Vector3 hitPoint = hit.point;
+                newTree.transform.rotation = Quaternion.FromToRotation(newTree.transform.up, hit.normal)*newTree.transform.rotation; // adjust for slopes
+                newTree.transform.position = hitPoint;
+            }
+        }
+
+        return newTree;
     }
 
     public void CreateTree(string tone, double score, string memory) {
