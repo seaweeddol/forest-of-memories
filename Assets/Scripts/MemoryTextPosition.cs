@@ -17,9 +17,6 @@ public class MemoryTextPosition : MonoBehaviour
     bool m_IsPlayerInRange;
     bool m_IsTextPositioned;
     
-    float waitTime = 1.0f;
-    float timer = 0.0f;
-
     void Start() {
         treeInfo = tree.GetComponent<TreeInfo>();
         memory = memoryContainer.transform.GetChild(0);
@@ -28,39 +25,39 @@ public class MemoryTextPosition : MonoBehaviour
     }
 
     void Update (){
-        if (m_IsPlayerInRange && !m_IsTextVisible) {
-            if(!m_IsTextPositioned){
-                memoryPosition();
-                m_IsTextPositioned = true;
-            }
-            timer += Time.deltaTime;
-            if (timer < waitTime) {
-                memory.GetComponent<TextMeshProUGUI>().alpha = timer;
-            } else {
-                m_IsTextVisible = true;
-                timer = 0.0f;
-            }
-        } else if (!m_IsPlayerInRange && m_IsTextVisible) {
-            timer += Time.deltaTime;
-            if (timer < waitTime) {
-                memory.GetComponent<TextMeshProUGUI>().alpha = (1 - timer);
-            } else {
-                m_IsTextVisible = false;
-                m_IsTextPositioned = false;
-                timer = 0.0f;
-            }
-        }
+        // if (m_IsPlayerInRange && !m_IsTextVisible) {
+        //     if(!m_IsTextPositioned){
+        //         memoryPosition();
+        //         m_IsTextPositioned = true;
+        //     }
+        //     timer += Time.deltaTime;
+        //     if (timer < waitTime) {
+        //         memory.GetComponent<TextMeshProUGUI>().alpha = timer;
+        //     } else {
+        //         m_IsTextVisible = true;
+        //         timer = 0.0f;
+        //     }
+        // } else if (!m_IsPlayerInRange && m_IsTextVisible) {
+        //     timer += Time.deltaTime;
+        //     if (timer < waitTime) {
+        //         memory.GetComponent<TextMeshProUGUI>().alpha = (1 - timer);
+        //     } else {
+        //         m_IsTextVisible = false;
+        //         m_IsTextPositioned = false;
+        //         timer = 0.0f;
+        //     }
+        // }
     }
 
     void OnTriggerEnter (Collider other) {
         if(other.transform == player) {
-            m_IsPlayerInRange = true;
+            StartCoroutine(FadeInText());
         }
     }
 
     void OnTriggerExit (Collider other) {
         if(other.transform == player) {
-            m_IsPlayerInRange = false;
+            StartCoroutine(FadeOutText());
         }
     }
 
@@ -74,5 +71,31 @@ public class MemoryTextPosition : MonoBehaviour
 
         memoryContainer.transform.position = memoryPos + new Vector3(0f, 1.8f, 0f);
         memoryContainer.transform.rotation = playerRotation;
+    }
+
+    private IEnumerator FadeInText(){
+        memoryPosition();
+
+        // while time passed is less than 1sec, update text alpha
+        float ratio = 0f;
+        while (ratio/1f < 1f) {
+            memory.GetComponent<TextMeshProUGUI>().alpha = ratio;
+            ratio += Time.deltaTime;
+            yield return null;
+        }
+
+        memory.GetComponent<TextMeshProUGUI>().alpha = 1;
+    }
+
+    private IEnumerator FadeOutText(){
+        // while time passed is less than 1sec, update text alpha
+        float ratio = 0f;
+        while (ratio/1f < 1f) {
+            memory.GetComponent<TextMeshProUGUI>().alpha = (1 - ratio);
+            ratio += Time.deltaTime;
+            yield return null;
+        }
+
+        memory.GetComponent<TextMeshProUGUI>().alpha = 0;
     }
 }
