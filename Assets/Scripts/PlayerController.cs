@@ -54,28 +54,18 @@ public class PlayerController : MonoBehaviour
             // GameObject tree = treesInRange[0];
             // check if any trees are in range
             if(treesInRange.Count > 0) {
-                // if(treesInRange.Count == 1) {
-                    GameObject tree = treesInRange[0];
-                //     // TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
-
-                //     // get current forward direction and tree position
-                //     Vector3 forward = transform.TransformDirection(Vector3.forward);
-                //     Vector3 toTree = tree.transform.position - transform.position;
-
-                //     // float dot = Vector3.Dot(forward, toTree);
-                //     // determine angle between tree and direction player is facing
-                //     angle = Vector3.Angle(toTree, forward);
-                // } else {
+                // get minimum angle to compare against
+                GameObject tree = treesInRange[0];
                 Vector3 forward = transform.TransformDirection(Vector3.forward);
                 Vector3 toTree = tree.transform.position - transform.position;
                 float minAngle = Vector3.Angle(toTree, forward);
 
+                // check each tree angle against minAngle
                 foreach(GameObject currentTree in treesInRange) {
                     forward = transform.TransformDirection(Vector3.forward);
                     toTree = currentTree.transform.position - transform.position;
 
                     // float dot = Vector3.Dot(forward, toTree);
-                    // determine angle between tree and direction player is facing
                     float angle = Vector3.Angle(toTree, forward);
                     if(angle < minAngle) {
                         minAngle = angle;
@@ -88,11 +78,10 @@ public class PlayerController : MonoBehaviour
                     m_InteractionUI.SetActive(true);
 
                     if(Input.GetKeyDown("e")) {
-                        // TODO: instead of grabbing first tree, grab closest tree to player/grab tree player is looking most at
-                            TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
+                        TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
 
-                            // activate memoryJournal if not already active
-                            if(!m_MemoryJournal.activeInHierarchy) {
+                        // activate memoryJournal if not already active
+                        if(!m_MemoryJournal.activeInHierarchy) {
                             m_MemoryJournal.SetActive(true);
                             m_MemoryJournal.GetComponent<AudioSource>().Play();
                             entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #1";
@@ -104,16 +93,9 @@ public class PlayerController : MonoBehaviour
                 } else {
                     m_InteractionUI.SetActive(false);
                 }    
-
-            // } else {
-            //     m_InteractionUI.SetActive(false);
             }
 
-            if (Input.GetKey("left shift")) {
-                speed = 6.0f;
-            } else {
-                speed = 2.5f;
-            }
+            speed = Input.GetKey("left shift") ? 6.0f : 2.5f;
 
             enableMouseLook();
 
