@@ -51,61 +51,59 @@ public class PlayerController : MonoBehaviour
                 m_MemoryJournal.SetActive(false);
             }
         } else { 
+            // GameObject tree = treesInRange[0];
             // check if any trees are in range
             if(treesInRange.Count > 0) {
-                if(treesInRange.Count == 1) {
+                // if(treesInRange.Count == 1) {
                     GameObject tree = treesInRange[0];
-                    TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
+                //     // TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
 
-                    // get current forward direction and tree position
-                    Vector3 forward = transform.TransformDirection(Vector3.forward);
-                    Vector3 toTree = tree.transform.position - transform.position;
+                //     // get current forward direction and tree position
+                //     Vector3 forward = transform.TransformDirection(Vector3.forward);
+                //     Vector3 toTree = tree.transform.position - transform.position;
+
+                //     // float dot = Vector3.Dot(forward, toTree);
+                //     // determine angle between tree and direction player is facing
+                //     angle = Vector3.Angle(toTree, forward);
+                // } else {
+                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                Vector3 toTree = tree.transform.position - transform.position;
+                float minAngle = Vector3.Angle(toTree, forward);
+
+                foreach(GameObject currentTree in treesInRange) {
+                    forward = transform.TransformDirection(Vector3.forward);
+                    toTree = currentTree.transform.position - transform.position;
 
                     // float dot = Vector3.Dot(forward, toTree);
                     // determine angle between tree and direction player is facing
                     float angle = Vector3.Angle(toTree, forward);
+                    if(angle < minAngle) {
+                        minAngle = angle;
+                        tree = currentTree;
+                    }
+                }
 
-                    // activate InteractionUI & listen for "e" key press if tree is in player view
-                    if (angle <= 30) {
-                        m_InteractionUI.SetActive(true);
+                // activate InteractionUI & listen for "e" key press if tree is in player view
+                if (minAngle <= 30) {
+                    m_InteractionUI.SetActive(true);
 
-                        if(Input.GetKeyDown("e")) {
-                            // TODO: instead of grabbing first tree, grab closest tree to player/grab tree player is looking most at
+                    if(Input.GetKeyDown("e")) {
+                        // TODO: instead of grabbing first tree, grab closest tree to player/grab tree player is looking most at
+                            TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
 
-                                // activate memoryJournal if not already active
-                                if(!m_MemoryJournal.activeInHierarchy) {
-                                m_MemoryJournal.SetActive(true);
-                                m_MemoryJournal.GetComponent<AudioSource>().Play();
-                                entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #1";
-                                date.GetComponent<TextMeshProUGUI>().text = "Date: " + treeInfo.dateTime;
-                                sentiment.GetComponent<TextMeshProUGUI>().text = "Sentiment: " + treeInfo.sentiment;
-                                memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
-                            }
+                            // activate memoryJournal if not already active
+                            if(!m_MemoryJournal.activeInHierarchy) {
+                            m_MemoryJournal.SetActive(true);
+                            m_MemoryJournal.GetComponent<AudioSource>().Play();
+                            entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #1";
+                            date.GetComponent<TextMeshProUGUI>().text = "Date: " + treeInfo.dateTime;
+                            sentiment.GetComponent<TextMeshProUGUI>().text = "Sentiment: " + treeInfo.sentiment;
+                            memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
                         }
-                    } else {
-                        m_InteractionUI.SetActive(false);
                     }
                 } else {
-                    float minAngle = 30f;
-                    GameObject selectedTree = treesInRange[0];
-
-                    foreach(GameObject tree in treesInRange) {
-                        Vector3 forward = transform.TransformDirection(Vector3.forward);
-                        Vector3 toTree = tree.transform.position - transform.position;
-
-                        // float dot = Vector3.Dot(forward, toTree);
-                        // determine angle between tree and direction player is facing
-                        float angle = Vector3.Angle(toTree, forward);
-                        if(angle < minAngle) {
-                            minAngle = angle;
-                            selectedTree = tree;
-                        }
-                    }
-
-                    TreeInfo treeInfo = selectedTree.GetComponent<TreeInfo>();
-
-                    Debug.Log("chosen tree is: " + treeInfo.memory + " at " + minAngle);
-                }
+                    m_InteractionUI.SetActive(false);
+                }    
 
             // } else {
             //     m_InteractionUI.SetActive(false);
