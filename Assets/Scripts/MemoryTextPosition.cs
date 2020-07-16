@@ -24,42 +24,17 @@ public class MemoryTextPosition : MonoBehaviour
         player = GameObject.Find("Player").transform;
     }
 
-    void Update (){
-        // if (m_IsPlayerInRange && !m_IsTextVisible) {
-        //     if(!m_IsTextPositioned){
-        //         memoryPosition();
-        //         m_IsTextPositioned = true;
-        //     }
-        //     timer += Time.deltaTime;
-        //     if (timer < waitTime) {
-        //         memory.GetComponent<TextMeshProUGUI>().alpha = timer;
-        //     } else {
-        //         m_IsTextVisible = true;
-        //         timer = 0.0f;
-        //     }
-        // } else if (!m_IsPlayerInRange && m_IsTextVisible) {
-        //     timer += Time.deltaTime;
-        //     if (timer < waitTime) {
-        //         memory.GetComponent<TextMeshProUGUI>().alpha = (1 - timer);
-        //     } else {
-        //         m_IsTextVisible = false;
-        //         m_IsTextPositioned = false;
-        //         timer = 0.0f;
-        //     }
-        // }
-    }
-
     void OnTriggerEnter (Collider other) {
         if(other.transform == player) {
             StartCoroutine(FadeInText());
-            // TODO: StartCoroutine which will check if player has pressed E, until player leaves tree range
+            player.GetComponent<PlayerController>().treesInRange.Add(tree);
         }
     }
 
     void OnTriggerExit (Collider other) {
         if(other.transform == player) {
             StartCoroutine(FadeOutText());
-            // TODO: stop coroutine that checks for player input
+            player.GetComponent<PlayerController>().treesInRange.Remove(tree);
         }
     }
 

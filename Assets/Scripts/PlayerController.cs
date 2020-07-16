@@ -1,40 +1,75 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    float speed = 3.0f;
-
     public Canvas m_MemoryUI;
-    public Canvas m_MemoryJournal;
+    public GameObject m_MemoryJournal;
+    public GameObject m_InteractionUI;
     public GameObject m_Camera;
     public AudioSource walkAudio;
     public AudioSource runAudio;
+    // TODO: should this be 'text' in range? check facing player?
+    public List<GameObject> treesInRange;
  
+    private float speed;
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController controller;
     private Animator m_Animator;
+    private Transform entryNumber;
+    private Transform date;
+    private Transform sentiment;
+    private Transform memory;
 
     void Start(){
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
         m_Animator = GetComponent<Animator> ();
-        // Cursor.lockState = CursorLockMode.Locked;
+        // fullMemoryBook = fullMemoryContainer.transform.GetChild(0).gameObject;
+        entryNumber = m_MemoryJournal.transform.Find("EntryNumber");
+        date = m_MemoryJournal.transform.Find("Date");
+        sentiment = m_MemoryJournal.transform.Find("Sentiment");
+        memory = m_MemoryJournal.transform.Find("Panel/Memory");
     }
  
     void Update(){
         Cursor.lockState = CursorLockMode.Locked;
-        // if memoryUI is active, disable mouse look, movement, footstep audio, & walking animation
-        if (m_MemoryUI.isActiveAndEnabled || m_MemoryJournal.isActiveAndEnabled) {
+        // if memory input UI or memory journal is active, disable mouse look, movement, footstep audio, & walking animation
+        if (m_MemoryUI.isActiveAndEnabled || m_MemoryJournal.activeInHierarchy) {
             disableMouseLook();
             controller.Move(new Vector3(0, 0, 0));
             m_Animator.SetBool ("isWalking", false);
             m_Animator.SetBool ("isRunning", false);
             walkAudio.Pause();
             runAudio.Pause();
+            m_InteractionUI.SetActive(false);
+
+            if (m_MemoryJournal.activeInHierarchy && Input.GetKeyDown("e")) {
+                m_MemoryJournal.SetActive(false);
+            }
         } else { 
-            // TODO: add run
+            if(treesInRange.Count > 0) {
+                m_InteractionUI.SetActive(true);
+            } else {
+                m_InteractionUI.SetActive(false);
+            }
+            if(Input.GetKeyDown("e")) {
+                if(treesInRange.Count > 0) {
+                    // TODO: instead of grabbing first tree, grab tree player is looking at
+                    TreeInfo treeInfo = treesInRange[0].GetComponent<TreeInfo>();
+                    if(!m_MemoryJournal.activeInHierarchy) {
+                        m_MemoryJournal.SetActive(true);
+                        m_MemoryJournal.GetComponent<AudioSource>().Play();
+                        entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #1";
+                        date.GetComponent<TextMeshProUGUI>().text = "Date: " + treeInfo.dateTime;
+                        sentiment.GetComponent<TextMeshProUGUI>().text = "Sentiment: " + treeInfo.sentiment;
+                        memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
+                    }
+                }
+            }
+
             if (Input.GetKey("left shift")) {
                 speed = 6.0f;
             } else {
