@@ -1531,7 +1531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &699964592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2919,10 +2919,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MemoryUI: {fileID: 1847492336}
-  m_MemoryJournal: {fileID: 881316393}
+  m_MemoryJournal: {fileID: 881316389}
+  m_InteractionUI: {fileID: 699964591}
   m_Camera: {fileID: 160455479}
   walkAudio: {fileID: 1249167703}
   runAudio: {fileID: 1249167706}
+  treesInRange: []
 --- !u!143 &1249167711
 CharacterController:
   m_ObjectHideFlags: 0
