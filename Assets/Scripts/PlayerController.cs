@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         m_Camera.GetComponent<MouseLook>().enabled = false;
     }
 
+    // check if player is moving and set animations
     bool checkIsMoving(float speed){
         bool hasHorizontalInput = !Mathf.Approximately (Input.GetAxis("Horizontal"), 0f);
         bool hasVerticalInput = !Mathf.Approximately (Input.GetAxis("Vertical"), 0f);
@@ -79,8 +80,8 @@ public class PlayerController : MonoBehaviour
         return isMoving;
     }
 
+    // determine if audio should play, and what type of audio
     void footstepAudio(bool isMoving) {
-        // play footstep sounds if player is moving
         bool walkFootsteps = walkAudio.isPlaying;
         bool runFootsteps = runAudio.isPlaying;
         if (isMoving) {

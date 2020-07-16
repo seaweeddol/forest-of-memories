@@ -26,7 +26,7 @@ public class TreeInteraction : MonoBehaviour
         memory = fullMemoryBook.transform.Find("Panel/Memory");
     }
 
-    // TODO: instead of mouseover, do a range? show icon or text when in range "Press E to view this memory"
+    // TODO: instead of mouseover & mouse click, player can press E when in range
 
     void OnMouseOver(){
         if (memoryText.GetComponent<TextMeshProUGUI>().alpha > 0.1){
@@ -40,7 +40,6 @@ public class TreeInteraction : MonoBehaviour
 
     void OnMouseDown(){
         if(!fullMemoryBook.activeInHierarchy) {
-            // TODO: player cannot move or look around when memory journal is open
             fullMemoryBook.SetActive(true);
             fullMemoryBook.GetComponent<AudioSource>().Play();
             entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #1";

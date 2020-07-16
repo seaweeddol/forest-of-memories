@@ -52,12 +52,14 @@ public class MemoryTextPosition : MonoBehaviour
     void OnTriggerEnter (Collider other) {
         if(other.transform == player) {
             StartCoroutine(FadeInText());
+            // TODO: StartCoroutine which will check if player has pressed E, until player leaves tree range
         }
     }
 
     void OnTriggerExit (Collider other) {
         if(other.transform == player) {
             StartCoroutine(FadeOutText());
+            // TODO: stop coroutine that checks for player input
         }
     }
 
