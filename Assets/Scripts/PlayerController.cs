@@ -56,25 +56,26 @@ public class PlayerController : MonoBehaviour
             if(treesInRange.Count > 0) {
                 // get minimum angle to compare against
                 GameObject tree = treesInRange[0];
-                Vector3 forward = transform.TransformDirection(Vector3.forward);
-                Vector3 toTree = tree.transform.position - transform.position;
-                float minAngle = Vector3.Angle(toTree, forward);
+                Vector3 forward = (transform.TransformDirection(Vector3.forward)).normalized;
+                Vector3 toTree = (tree.transform.position - transform.position).normalized;
+                float minAngle = Vector3.Dot(toTree, forward);
 
                 // check each tree angle against minAngle
                 foreach(GameObject currentTree in treesInRange) {
-                    forward = transform.TransformDirection(Vector3.forward);
-                    toTree = currentTree.transform.position - transform.position;
+                    forward = (transform.TransformDirection(Vector3.forward)).normalized;
+                    toTree = (currentTree.transform.position - transform.position).normalized;
 
                     // float dot = Vector3.Dot(forward, toTree);
-                    float angle = Vector3.Angle(toTree, forward);
-                    if(angle < minAngle) {
+                    float angle = Vector3.Dot(toTree, forward);
+                    if(angle > minAngle) {
                         minAngle = angle;
                         tree = currentTree;
                     }
                 }
 
                 // activate InteractionUI & listen for "e" key press if tree is in player view
-                if (minAngle <= 30) {
+                Debug.Log(minAngle);
+                if (minAngle >= 0.8) {
                     m_InteractionUI.SetActive(true);
 
                     if(Input.GetKeyDown("e")) {
