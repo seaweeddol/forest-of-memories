@@ -52,6 +52,10 @@ public class PlayerController : MonoBehaviour
                 m_InputField.text = "";
             }
 
+            if(m_MemoryJournal.activeInHierarchy) {
+                Cursor.lockState = CursorLockMode.None;
+            }
+
             if (m_MemoryJournal.activeInHierarchy && Input.GetKeyDown("e")) {
                 m_MemoryJournal.SetActive(false);
             }
