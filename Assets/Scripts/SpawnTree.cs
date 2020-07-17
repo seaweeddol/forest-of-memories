@@ -7,15 +7,26 @@ public class SpawnTree : MonoBehaviour
     public GameObject player;
     public Transform terrain;
     public GameObject ParentTree;
-    // TODO: make trees private, assign using child of ParentTree
-    public GameObject angerTree;
-    public GameObject joyTree;
-    public GameObject sadnessTree;
-    public GameObject fearfulTree;
-    public GameObject analyticalTree;
-    public GameObject confidentTree;
-    public GameObject tentativeTree;
-    public GameObject neutralTree;
+
+    private GameObject angerTree;
+    private GameObject joyTree;
+    private GameObject sadnessTree;
+    private GameObject fearfulTree;
+    private GameObject analyticalTree;
+    private GameObject confidentTree;
+    private GameObject tentativeTree;
+    private GameObject neutralTree;
+
+    void Start(){
+        angerTree = ParentTree.transform.Find("AngryTree").gameObject;
+        joyTree = ParentTree.transform.Find("JoyTree").gameObject;
+        sadnessTree = ParentTree.transform.Find("SadnessTree").gameObject;
+        fearfulTree = ParentTree.transform.Find("FearfulTree").gameObject;
+        analyticalTree = ParentTree.transform.Find("AnalyticalTree").gameObject;
+        confidentTree = ParentTree.transform.Find("ConfidentTree").gameObject;
+        tentativeTree = ParentTree.transform.Find("TentativeTree").gameObject;
+        neutralTree = ParentTree.transform.Find("NeutralTree").gameObject;
+    }
     
     // clone tree in front of current player position
     private GameObject CloneTree(GameObject treeType) {
@@ -40,11 +51,12 @@ public class SpawnTree : MonoBehaviour
         
         // make tree spawn attached to terrain on slopes
         foreach(Transform child in terrain) {
-            // if ray hits something, set position and rotation to that hit point
+            // if ray hits something, set position and rotation to that hit point & break out of loop
             if (child.GetComponent<Collider>().Raycast(ray, out hit, 1000)) {
                 Vector3 hitPoint = hit.point;
                 newTree.transform.rotation = Quaternion.FromToRotation(newTree.transform.up, hit.normal)*newTree.transform.rotation; // adjust for slopes
                 newTree.transform.position = hitPoint;
+                break;
             }
         }
 
@@ -58,7 +70,7 @@ public class SpawnTree : MonoBehaviour
         yield return new WaitForSeconds(.5f); // wait .5 sec before starting
         Vector3 newScale = currentScale;
 
-        // set max scale to grow to (neutral trees will keep original scale)
+        // determine max scale to grow to (neutral trees will keep original scale)
         if(tree.tag != "neutral") {
             float scaledScore = (float)score * 2.5f;
             newScale = new Vector3(currentScale.x * scaledScore, currentScale.y * scaledScore, currentScale.z * scaledScore);

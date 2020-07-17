@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public GameObject m_Camera;
     public AudioSource walkAudio;
     public AudioSource runAudio;
-    // TODO: should this be 'text' in range? check facing player?
     public List<GameObject> treesInRange;
  
     private float speed;
@@ -30,7 +29,6 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
         m_Animator = GetComponent<Animator> ();
-        // fullMemoryBook = fullMemoryContainer.transform.GetChild(0).gameObject;
         entryNumber = m_MemoryJournal.transform.Find("EntryNumber");
         date = m_MemoryJournal.transform.Find("Date");
         sentiment = m_MemoryJournal.transform.Find("Sentiment");
@@ -40,15 +38,9 @@ public class PlayerController : MonoBehaviour
     void Update(){
         Cursor.lockState = CursorLockMode.Locked;
 
-        // if any UI is active, disable mouse look, movement, footstep audio, & walking animation and listen for ESC
+        // if any UI is active, disable mouse look, movement, audio, & animation, and listen for ESC
         if (m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy) {
-            disableMouseLook();
-            controller.Move(new Vector3(0, 0, 0));
-            m_Animator.SetBool ("isWalking", false);
-            m_Animator.SetBool ("isRunning", false);
-            walkAudio.Pause();
-            runAudio.Pause();
-            m_InteractionUI.SetActive(false);
+            disableMovement();
 
             if(Input.GetKeyDown("escape")) {
                 m_ControlsUI.SetActive(false);
@@ -70,53 +62,9 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-            // GameObject tree = treesInRange[0];
-            // check if any trees are in range
-            if(treesInRange.Count > 0) {
-                // get minimum angle to compare against
-                GameObject tree = treesInRange[0];
-                Vector3 forward = (transform.TransformDirection(Vector3.forward)).normalized;
-                Vector3 toTree = (tree.transform.position - transform.position).normalized;
-                float minAngle = Vector3.Dot(toTree, forward);
+            checkTreesInRange();
 
-                // check each tree angle against minAngle
-                foreach(GameObject currentTree in treesInRange) {
-                    currentTree.GetComponent<Renderer>().material.color = Color.white;
-                    forward = (transform.TransformDirection(Vector3.forward)).normalized;
-                    toTree = (currentTree.transform.position - transform.position).normalized;
-
-                    // float dot = Vector3.Dot(forward, toTree);
-                    float angle = Vector3.Dot(toTree, forward);
-                    if(angle > minAngle) {
-                        minAngle = angle;
-                        tree = currentTree;
-                    }
-                }
-
-                // activate InteractionUI & listen for "e" key press if tree is in player view
-                if (minAngle >= 0.8) {
-                    m_InteractionUI.SetActive(true);
-                    tree.GetComponent<Renderer>().material.color = new Color(0.97f, 0.71f, 0.36f);
-
-                    if(Input.GetKeyDown("e")) {
-                        TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
-
-                        // activate memoryJournal if not already active
-                        if(!m_MemoryJournal.activeInHierarchy) {
-                            m_MemoryJournal.SetActive(true);
-                            m_MemoryJournal.GetComponent<AudioSource>().Play();
-                            entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #1";
-                            date.GetComponent<TextMeshProUGUI>().text = "Date: " + treeInfo.dateTime;
-                            sentiment.GetComponent<TextMeshProUGUI>().text = "Sentiment: " + treeInfo.sentiment;
-                            memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
-                        }
-                    }
-                } else {
-                    m_InteractionUI.SetActive(false);
-                    tree.GetComponent<Renderer>().material.color = Color.white;
-                }    
-            }
-
+            // set speed depending on if player is holding down shift
             speed = Input.GetKey("left shift") ? 6.0f : 2.5f;
 
             enableMouseLook();
@@ -141,6 +89,63 @@ public class PlayerController : MonoBehaviour
     void disableMouseLook() {
         GetComponent<MouseLook>().enabled = false;
         m_Camera.GetComponent<MouseLook>().enabled = false;
+    }
+
+    void disableMovement() {
+        disableMouseLook();
+        controller.Move(new Vector3(0, 0, 0));
+        m_Animator.SetBool ("isWalking", false);
+        m_Animator.SetBool ("isRunning", false);
+        walkAudio.Pause();
+        runAudio.Pause();
+        m_InteractionUI.SetActive(false);
+    }
+
+    void checkTreesInRange() {
+        // check if any trees are in range
+        if(treesInRange.Count > 0) {
+            // get minimum angle to compare against
+            GameObject tree = treesInRange[0];
+            Vector3 forward = (transform.TransformDirection(Vector3.forward)).normalized;
+            Vector3 toTree = (tree.transform.position - transform.position).normalized;
+            float minAngle = Vector3.Dot(toTree, forward);
+
+            // check each tree angle against minAngle
+            foreach(GameObject currentTree in treesInRange) {
+                currentTree.GetComponent<Renderer>().material.color = Color.white;
+                forward = (transform.TransformDirection(Vector3.forward)).normalized;
+                toTree = (currentTree.transform.position - transform.position).normalized;
+
+                float angle = Vector3.Dot(toTree, forward);
+                if(angle > minAngle) {
+                    minAngle = angle;
+                    tree = currentTree;
+                }
+            }
+
+            // activate InteractionUI & listen for "e" key press if tree is in player view
+            if (minAngle >= 0.8) {
+                m_InteractionUI.SetActive(true);
+                tree.GetComponent<Renderer>().material.color = new Color(0.97f, 0.71f, 0.36f);
+
+                if(Input.GetKeyDown("e")) {
+                    displayMemoryJournal(tree);
+                }
+            } else {
+                m_InteractionUI.SetActive(false);
+                tree.GetComponent<Renderer>().material.color = Color.white;
+            }    
+        }
+    }
+
+    void displayMemoryJournal(GameObject tree) {
+        TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
+        m_MemoryJournal.SetActive(true);
+        m_MemoryJournal.GetComponent<AudioSource>().Play();
+        entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #1";
+        date.GetComponent<TextMeshProUGUI>().text = "Date: " + treeInfo.dateTime;
+        sentiment.GetComponent<TextMeshProUGUI>().text = "Sentiment: " + treeInfo.sentiment;
+        memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
     }
 
     // check if player is moving and set animations

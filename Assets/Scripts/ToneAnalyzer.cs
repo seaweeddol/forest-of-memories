@@ -29,8 +29,6 @@ public class ToneAnalyzer : MonoBehaviour
     public string API_KEY;
     public GameObject memoryUI;
     public InputField inputField;
-    public GameObject toneScoreDisplay;
-    public GameObject toneSentimentDisplay;
     public SpawnTree spawnTree;
     string userMemoryInput;
 
@@ -69,6 +67,8 @@ public class ToneAnalyzer : MonoBehaviour
         double score;
         string tone;
 
+        // TODO: send back full list of tones
+
         if (toneAnalysis.tones.Count == 0) {
             // no overt tones detected - neutral
             score = 0;
@@ -86,10 +86,6 @@ public class ToneAnalyzer : MonoBehaviour
 
         inputField.text = "";
         memoryUI.SetActive(false);
-        
-        // toneScoreDisplay.GetComponent<Text>().text = $"Score: {score.ToString()}";
-        // toneSentimentDisplay.GetComponent<Text>().text = $"Sentiment: {tone}";
-
         spawnTree.CreateTree(tone, score, userMemoryInput);
     }
 }

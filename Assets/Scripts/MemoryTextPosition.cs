@@ -13,9 +13,9 @@ public class MemoryTextPosition : MonoBehaviour
     private TreeInfo treeInfo;
     private Transform memory;
 
-    bool m_IsTextVisible;
-    bool m_IsPlayerInRange;
-    bool m_IsTextPositioned;
+    private bool m_IsTextVisible;
+    private bool m_IsPlayerInRange;
+    private bool m_IsTextPositioned;
     
     void Start() {
         treeInfo = tree.GetComponent<TreeInfo>();
