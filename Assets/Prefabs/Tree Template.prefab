@@ -457,6 +457,11 @@ PrefabInstance:
       propertyPath: m_textAlignment
       value: 514
       objectReference: {fileID: 0}
+    - target: {fileID: 5593365592098358540, guid: 8de1dedc89f704f4cb1121aa7686b721,
+        type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8de1dedc89f704f4cb1121aa7686b721, type: 3}
 --- !u!1 &3456800474601365440 stripped
