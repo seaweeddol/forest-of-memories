@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public GameObject m_MemoryJournal;
     public GameObject m_InteractionUI;
     public GameObject m_ControlsUI;
-    public GameObject m_Camera;
     public AudioSource walkAudio;
     public AudioSource runAudio;
     public List<GameObject> treesInRange;
@@ -19,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private float speed;
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController controller;
+    private GameObject m_Camera;
     private Animator m_Animator;
     private Transform entryNumber;
     private Transform date;
@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     void Start(){
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
+        m_Camera = transform.Find("Kira/Camera").gameObject;
         m_Animator = GetComponent<Animator> ();
         entryNumber = m_MemoryJournal.transform.Find("EntryNumber");
         date = m_MemoryJournal.transform.Find("Date");
