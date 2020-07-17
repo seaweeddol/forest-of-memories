@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public Canvas m_MemoryUI;
+    public GameObject m_MemoryUI;
+    public InputField m_InputField;
     public GameObject m_MemoryJournal;
     public GameObject m_InteractionUI;
+    public GameObject m_ControlsUI;
     public GameObject m_Camera;
     public AudioSource walkAudio;
     public AudioSource runAudio;
@@ -37,8 +40,8 @@ public class PlayerController : MonoBehaviour
     void Update(){
         Cursor.lockState = CursorLockMode.Locked;
 
-        // if memory input UI or memory journal is active, disable mouse look, movement, footstep audio, & walking animation
-        if (m_MemoryUI.isActiveAndEnabled || m_MemoryJournal.activeInHierarchy) {
+        // if any UI is active, disable mouse look, movement, footstep audio, & walking animation and listen for ESC
+        if (m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy) {
             disableMouseLook();
             controller.Move(new Vector3(0, 0, 0));
             m_Animator.SetBool ("isWalking", false);
@@ -47,10 +50,26 @@ public class PlayerController : MonoBehaviour
             runAudio.Pause();
             m_InteractionUI.SetActive(false);
 
+            if(Input.GetKeyDown("escape")) {
+                m_ControlsUI.SetActive(false);
+                m_MemoryUI.SetActive(false);
+                m_MemoryJournal.SetActive(false);
+                m_InputField.text = "";
+            }
+
             if (m_MemoryJournal.activeInHierarchy && Input.GetKeyDown("e")) {
                 m_MemoryJournal.SetActive(false);
             }
         } else { 
+            if(Input.GetKeyDown("escape")) {
+                m_ControlsUI.SetActive(true);
+                return;
+            } else if(Input.GetKeyDown("space")) {
+                m_MemoryUI.SetActive(true);
+                m_InputField.ActivateInputField();
+                return;
+            }
+
             // GameObject tree = treesInRange[0];
             // check if any trees are in range
             if(treesInRange.Count > 0) {
@@ -77,7 +96,7 @@ public class PlayerController : MonoBehaviour
                 // activate InteractionUI & listen for "e" key press if tree is in player view
                 if (minAngle >= 0.8) {
                     m_InteractionUI.SetActive(true);
-                    tree.GetComponent<Renderer>().material.color = Color.red;
+                    tree.GetComponent<Renderer>().material.color = new Color(0.97f, 0.71f, 0.36f);
 
                     if(Input.GetKeyDown("e")) {
                         TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
