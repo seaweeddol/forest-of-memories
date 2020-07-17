@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 
                 // check each tree angle against minAngle
                 foreach(GameObject currentTree in treesInRange) {
+                    currentTree.GetComponent<Renderer>().material.color = Color.white;
                     forward = (transform.TransformDirection(Vector3.forward)).normalized;
                     toTree = (currentTree.transform.position - transform.position).normalized;
 
@@ -74,9 +75,9 @@ public class PlayerController : MonoBehaviour
                 }
 
                 // activate InteractionUI & listen for "e" key press if tree is in player view
-                Debug.Log(minAngle);
                 if (minAngle >= 0.8) {
                     m_InteractionUI.SetActive(true);
+                    tree.GetComponent<Renderer>().material.color = Color.red;
 
                     if(Input.GetKeyDown("e")) {
                         TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
@@ -93,6 +94,7 @@ public class PlayerController : MonoBehaviour
                     }
                 } else {
                     m_InteractionUI.SetActive(false);
+                    tree.GetComponent<Renderer>().material.color = Color.white;
                 }    
             }
 
