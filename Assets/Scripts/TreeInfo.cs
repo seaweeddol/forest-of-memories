@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TreeInfo : MonoBehaviour
 {
+    public int entryNum;
     public double score;
     public string sentiment;
     public string memory;

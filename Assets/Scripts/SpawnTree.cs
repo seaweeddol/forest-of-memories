@@ -8,6 +8,7 @@ public class SpawnTree : MonoBehaviour
     public Transform terrain;
     public GameObject ParentTree;
 
+    private int entries = 0;
     private GameObject angerTree;
     private GameObject joyTree;
     private GameObject sadnessTree;
@@ -134,8 +135,11 @@ public class SpawnTree : MonoBehaviour
         Transform playerInRange = clone.transform.GetChild(2);
         playerInRange.GetComponent<CapsuleCollider>().radius += tree.transform.localScale.x;
 
+        entries += 1;
+
         // assign sentiment analysis and user input to tree
         TreeInfo treeInfo = tree.transform.GetComponent<TreeInfo>();
+        treeInfo.entryNum = entries;
         treeInfo.score = score;
         treeInfo.sentiment = tone;
         treeInfo.memory = memory;

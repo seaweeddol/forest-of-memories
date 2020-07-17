@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
             Vector3 toTree = (tree.transform.position - transform.position).normalized;
             float minAngle = Vector3.Dot(toTree, forward);
 
-            // check each tree angle against minAngle
+            // find tree most within player's view
             foreach(GameObject currentTree in treesInRange) {
                 currentTree.GetComponent<Renderer>().material = treeMaterial;
                 forward = (transform.TransformDirection(Vector3.forward)).normalized;
@@ -126,10 +126,9 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            // activate InteractionUI & listen for "e" key press if tree is in player view
+            // activate InteractionUI & tree glow, and listen for "e" key press if tree is in player view
             if (minAngle >= 0.8) {
                 m_InteractionUI.SetActive(true);
-                // tree.GetComponent<Renderer>().material.color = new Color(0.97f, 0.71f, 0.36f);
                 tree.GetComponent<Renderer>().material = glowMaterial;
 
                 if(Input.GetKeyDown("e")) {
@@ -142,22 +141,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // IEnumerator ChangeMaterial(GameObject tree, Material material1, Material material2) {
-    //     float ratio = 0f;
-    //     while (ratio/1f < 1f) {
-    //         tree.GetComponent<Renderer>().material.Lerp(material1, material2, ratio);
-    //         ratio += Time.deltaTime;
-    //         yield return null;
-    //     }
-
-    //     tree.GetComponent<Renderer>().material = material2;
-    // }
-
+    // display memory journal with info from the selected tree
     void displayMemoryJournal(GameObject tree) {
         TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
         m_MemoryJournal.SetActive(true);
         m_MemoryJournal.GetComponent<AudioSource>().Play();
-        entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #1";
+        entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #" + treeInfo.entryNum;
         date.GetComponent<TextMeshProUGUI>().text = "Date: " + treeInfo.dateTime;
         sentiment.GetComponent<TextMeshProUGUI>().text = "Sentiment: " + treeInfo.sentiment;
         memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
