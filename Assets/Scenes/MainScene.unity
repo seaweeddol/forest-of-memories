@@ -2030,7 +2030,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.8
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -5393,7 +5393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 91.01001, y: -1.1199951}
+  m_AnchoredPosition: {x: 91.009766, y: -1.1201172}
   m_SizeDelta: {x: -628.7497, y: -44.21907}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2116318725
@@ -5530,7 +5530,7 @@ PrefabInstance:
     - target: {fileID: 7390618223778896434, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7859566747142308554, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
