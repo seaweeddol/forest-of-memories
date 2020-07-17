@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
     private Animator m_Animator;
     private Transform entryNumber;
     private Transform date;
-    private Transform sentiment;
+    private Transform strongestTone;
+    private Transform allTones;
     private Transform memory;
 
     void Start(){
@@ -34,7 +35,8 @@ public class PlayerController : MonoBehaviour
         m_Animator = GetComponent<Animator> ();
         entryNumber = m_MemoryJournal.transform.Find("EntryNumber");
         date = m_MemoryJournal.transform.Find("Date");
-        sentiment = m_MemoryJournal.transform.Find("Sentiment");
+        strongestTone = m_MemoryJournal.transform.Find("StrongestTone");
+        allTones = m_MemoryJournal.transform.Find("AllTones");
         memory = m_MemoryJournal.transform.Find("Panel/Memory");
     }
  
@@ -152,7 +154,8 @@ public class PlayerController : MonoBehaviour
         m_MemoryJournal.GetComponent<AudioSource>().Play();
         entryNumber.GetComponent<TextMeshProUGUI>().text = "Entry #" + treeInfo.entryNum;
         date.GetComponent<TextMeshProUGUI>().text = "Date: " + treeInfo.dateTime;
-        sentiment.GetComponent<TextMeshProUGUI>().text = "Sentiment: " + treeInfo.sentiment;
+        strongestTone.GetComponent<TextMeshProUGUI>().text = "Strongest Sentiment: " + treeInfo.strongestTone;
+        allTones.GetComponent<TextMeshProUGUI>().text = "All Sentiments: " + string.Join(", ", treeInfo.allTones);
         memory.GetComponent<TextMeshProUGUI>().text = treeInfo.memory;
     }
 

@@ -65,27 +65,34 @@ public class ToneAnalyzer : MonoBehaviour
     public void DisplayToneResponse() {
         DocumentTone toneAnalysis = GetToneAnalysis().document_tone;
         double score;
-        string tone;
+        string strongestTone;
+        List<string> allTones = new List<string>(); 
 
         // TODO: send back full list of tones
 
+        // determine strongest tone
         if (toneAnalysis.tones.Count == 0) {
             // no overt tones detected - neutral
+            allTones.Add("Neutral");
             score = 0;
-            tone = "Neutral";
+            strongestTone = "Neutral";
         } else if (toneAnalysis.tones.Count == 1) {
             // one tone detected
+            allTones.Add("Neutral");
             score = toneAnalysis.tones[0].score;
-            tone = toneAnalysis.tones[0].tone_name;
+            strongestTone = toneAnalysis.tones[0].tone_name;
         } else {
             // multiple tones detected, grab highest scoring one
+            foreach(Tone tone in toneAnalysis.tones) {
+                allTones.Add(tone.tone_name);
+            }
             Tone highestScore = toneAnalysis.tones.OrderByDescending(p => p.score).FirstOrDefault();
             score = highestScore.score;
-            tone = highestScore.tone_name;
+            strongestTone = highestScore.tone_name;
         }
 
         inputField.text = "";
         memoryUI.SetActive(false);
-        spawnTree.CreateTree(tone, score, userMemoryInput);
+        spawnTree.CreateTree(strongestTone, score, userMemoryInput, allTones);
     }
 }

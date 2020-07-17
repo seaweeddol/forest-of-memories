@@ -89,7 +89,7 @@ public class SpawnTree : MonoBehaviour
         tree.transform.localScale = newScale;
     }
 
-    public void CreateTree(string tone, double score, string memory) {
+    public void CreateTree(string tone, double score, string memory, List<string> allTones) {
         GameObject clone;
 
         // determine type of tree based on tone
@@ -139,9 +139,10 @@ public class SpawnTree : MonoBehaviour
 
         // assign sentiment analysis and user input to tree
         TreeInfo treeInfo = tree.transform.GetComponent<TreeInfo>();
+        treeInfo.allTones = allTones;
         treeInfo.entryNum = entries;
         treeInfo.score = score;
-        treeInfo.sentiment = tone;
+        treeInfo.strongestTone = tone;
         treeInfo.memory = memory;
 
         // make tree visible
