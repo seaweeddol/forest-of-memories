@@ -42,7 +42,7 @@ public class MemoryTextPosition : MonoBehaviour
     void memoryPosition(){
         Vector3 playerDirection = player.forward;
         Quaternion playerRotation = player.rotation;
-        float memoryDistance = tree.transform.localScale.x * -1.5f;
+        float memoryDistance = tree.transform.localScale.x * -1.25f;
 
         Vector3 memoryPos = tree.transform.position + playerDirection * memoryDistance;
 
