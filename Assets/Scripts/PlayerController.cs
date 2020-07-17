@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource walkAudio;
     public AudioSource runAudio;
     public List<GameObject> treesInRange;
+    public Material glowMaterial;
+    public Material treeMaterial;
  
     private float speed;
     private Vector3 moveDirection = Vector3.zero;
@@ -113,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
             // check each tree angle against minAngle
             foreach(GameObject currentTree in treesInRange) {
-                currentTree.GetComponent<Renderer>().material.color = Color.white;
+                currentTree.GetComponent<Renderer>().material = treeMaterial;
                 forward = (transform.TransformDirection(Vector3.forward)).normalized;
                 toTree = (currentTree.transform.position - transform.position).normalized;
 
@@ -127,17 +129,29 @@ public class PlayerController : MonoBehaviour
             // activate InteractionUI & listen for "e" key press if tree is in player view
             if (minAngle >= 0.8) {
                 m_InteractionUI.SetActive(true);
-                tree.GetComponent<Renderer>().material.color = new Color(0.97f, 0.71f, 0.36f);
+                // tree.GetComponent<Renderer>().material.color = new Color(0.97f, 0.71f, 0.36f);
+                tree.GetComponent<Renderer>().material = glowMaterial;
 
                 if(Input.GetKeyDown("e")) {
                     displayMemoryJournal(tree);
                 }
             } else {
                 m_InteractionUI.SetActive(false);
-                tree.GetComponent<Renderer>().material.color = Color.white;
+                tree.GetComponent<Renderer>().material = treeMaterial;
             }    
         }
     }
+
+    // IEnumerator ChangeMaterial(GameObject tree, Material material1, Material material2) {
+    //     float ratio = 0f;
+    //     while (ratio/1f < 1f) {
+    //         tree.GetComponent<Renderer>().material.Lerp(material1, material2, ratio);
+    //         ratio += Time.deltaTime;
+    //         yield return null;
+    //     }
+
+    //     tree.GetComponent<Renderer>().material = material2;
+    // }
 
     void displayMemoryJournal(GameObject tree) {
         TreeInfo treeInfo = tree.GetComponent<TreeInfo>();
