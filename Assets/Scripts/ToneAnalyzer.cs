@@ -78,7 +78,7 @@ public class ToneAnalyzer : MonoBehaviour
             strongestTone = "Neutral";
         } else if (toneAnalysis.tones.Count == 1) {
             // one tone detected
-            allTones.Add("Neutral");
+            allTones.Add(toneAnalysis.tones[0].tone_name);
             score = toneAnalysis.tones[0].score;
             strongestTone = toneAnalysis.tones[0].tone_name;
         } else {
