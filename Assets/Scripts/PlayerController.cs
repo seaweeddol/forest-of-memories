@@ -46,16 +46,13 @@ public class PlayerController : MonoBehaviour
         // if any UI is active, disable mouse look, movement, audio, & animation, and listen for ESC
         if (m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy) {
             disableMovement();
+            Cursor.lockState = CursorLockMode.None;
 
             if(Input.GetKeyDown("escape")) {
                 m_ControlsUI.SetActive(false);
                 m_MemoryUI.SetActive(false);
                 m_MemoryJournal.SetActive(false);
                 m_InputField.text = "";
-            }
-
-            if(m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy) {
-                Cursor.lockState = CursorLockMode.None;
             }
 
             if (m_MemoryJournal.activeInHierarchy && Input.GetKeyDown("e")) {
