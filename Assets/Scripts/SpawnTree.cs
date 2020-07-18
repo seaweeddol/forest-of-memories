@@ -7,6 +7,7 @@ public class SpawnTree : MonoBehaviour
     public GameObject player;
     public Transform terrain;
     public GameObject ParentTree;
+    public GameObject game;
 
     private int entries = 0;
     private GameObject angerTree;
@@ -151,5 +152,8 @@ public class SpawnTree : MonoBehaviour
 
         // make tree visible
         clone.SetActive(true);
+
+        // add tree to list of trees in game
+        game.GetComponent<Game>().trees.Add(clone);
     }
 }

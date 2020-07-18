@@ -9,7 +9,10 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] trees;
+    public List<GameObject> trees = new List<GameObject>();
+
+    void Start() {
+    }
 
     public void SaveGame()
     {
