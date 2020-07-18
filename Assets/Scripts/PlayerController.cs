@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
                 m_InputField.text = "";
             }
 
-            if(m_MemoryJournal.activeInHierarchy) {
+            if(m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy) {
                 Cursor.lockState = CursorLockMode.None;
             }
 
