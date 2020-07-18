@@ -31,6 +31,10 @@ public class SpawnTree : MonoBehaviour
     
     // clone tree in front of current player position
     private GameObject CloneTree(GameObject treeType) {
+        // TODO: for saves, add a parameter for transform?
+        // pass save data, and then just instantiate and set scale
+
+
         // get player coords
         Vector3 playerPos = player.transform.position;
         Vector3 playerDirection = player.transform.forward;
