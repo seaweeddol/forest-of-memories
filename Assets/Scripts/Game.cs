@@ -79,6 +79,7 @@ public class Game : MonoBehaviour
     private Save CreateSaveGameObject()
     {
         Save save = new Save();
+        SerializableVector3 serializableVector3 = new SerializableVector3();
         // int i = 0; seems unnecessary but will keep for now
         foreach (GameObject treeGameObject in trees)
         {
