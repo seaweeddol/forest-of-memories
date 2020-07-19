@@ -25,7 +25,7 @@ public class Game : MonoBehaviour
         bf.Serialize(file, save);
         file.Close();
 
-        Debug.Log("Game Saved");
+        Debug.Log("Game Saved" + file);
     }
 
     // public void LoadGame()
@@ -73,13 +73,15 @@ public class Game : MonoBehaviour
         Save save = CreateSaveGameObject();
         string json = JsonUtility.ToJson(save);
 
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/SaveData.json", json);
+
+        Debug.Log(Application.persistentDataPath);
         Debug.Log("Saving as JSON: " + json);
     }
 
     private Save CreateSaveGameObject()
     {
         Save save = new Save();
-        SerializableVector3 serializableVector3 = new SerializableVector3();
         // int i = 0; seems unnecessary but will keep for now
         foreach (GameObject treeGameObject in trees)
         {
