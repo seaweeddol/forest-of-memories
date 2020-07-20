@@ -34,8 +34,11 @@ public class Game : MonoBehaviour
     {
         Save save = CreateSaveGameObject();
 
+        // TODO: add input field for user to enter save file name
+        // TODO: change the company name in player settings
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+
         bf.Serialize(file, save);
         file.Close();
 
@@ -44,6 +47,7 @@ public class Game : MonoBehaviour
 
     public void LoadGame()
     { 
+        // TODO: loop(?) through game save folder to show all game saves to choose from 
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -86,7 +90,7 @@ public class Game : MonoBehaviour
             // save all the data
             save.treePositions.Add(tree.transform.position);
             save.treeRotations.Add(tree.transform.rotation);
-            save.treeScales.Add(tree.transform.localScale);
+            save.treeScales.Add(tree.transform.lossyScale);
 
             save.treeStrongestTones.Add(tree.GetComponent<TreeInfo>().strongestTone);
             save.treeScores.Add(tree.GetComponent<TreeInfo>().score);

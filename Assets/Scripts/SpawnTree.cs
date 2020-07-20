@@ -71,6 +71,7 @@ public class SpawnTree : MonoBehaviour
     private GameObject CloneTree(GameObject treeType, Vector3 position, Quaternion rotation, Vector3 scale) {
         GameObject newTree = Instantiate(treeType, position, rotation);
 
+        // TODO: determine if this is working correctly
         newTree.transform.localScale = scale;
         
         return newTree;
