@@ -66,6 +66,7 @@ public class Game : MonoBehaviour
     public void LoadGame()
     { 
         // TODO: loop(?) through game save folder to show all game saves to choose from 
+        // TODO: start player at position they were at (will need to save player position)
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -77,6 +78,8 @@ public class Game : MonoBehaviour
             {
                 spawnTreeScript.CreateTree(save.treePositions[i], save.treeRotations[i], save.treeScales[i], save.treeStrongestTones[i], save.treeScores[i], save.treeMemories[i], save.treeTones[i].allTones, save.treeTimeStamps[i]);
             }
+
+            StartCoroutine(FadeOutMainMenu());
 
             Debug.Log(save.treePositions.Count + " trees loaded");
         }
