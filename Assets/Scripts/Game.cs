@@ -109,6 +109,7 @@ public class Game : MonoBehaviour
             }
 
             StartCoroutine(FadeOutMainMenu());
+            m_NewGameUI.SetActive(false);
 
             Debug.Log(save.treePositions.Count + " trees loaded");
         }
