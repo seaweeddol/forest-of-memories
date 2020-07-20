@@ -78,7 +78,6 @@ public class Game : MonoBehaviour
     private Save CreateSaveGameObject()
     {
         Save save = new Save();
-        // int i = 0; seems unnecessary but will keep for now
         foreach (GameObject treeGameObject in trees)
         {
             // get the tree
@@ -96,7 +95,6 @@ public class Game : MonoBehaviour
             Save.AllTonesContainer allTonesContainer = new Save.AllTonesContainer();
             allTonesContainer.allTones = tree.GetComponent<TreeInfo>().allTones;
             save.treeTones.Add(allTonesContainer);
-            // i++; why is this here? doesn't seem to be doing anything
         }
 
         return save;

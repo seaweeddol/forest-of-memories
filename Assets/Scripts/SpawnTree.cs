@@ -32,10 +32,6 @@ public class SpawnTree : MonoBehaviour
     
     // clone tree in front of current player position
     private GameObject CloneTree(GameObject treeType) {
-        // TODO: for saves, add a parameter for transform?
-        // pass save data, and then just instantiate and set scale
-
-
         // get player coords
         Vector3 playerPos = player.transform.position;
         Vector3 playerDirection = player.transform.forward;
@@ -70,6 +66,16 @@ public class SpawnTree : MonoBehaviour
 
         return newTree;
     }
+
+    // CloneTree method for save data
+    private GameObject CloneTree(GameObject treeType, Vector3 position, Quaternion rotation, Vector3 scale) {
+        GameObject newTree = Instantiate(treeType, position, rotation);
+
+        newTree.transform.localScale = scale;
+        
+        return newTree;
+    }
+
 
     // make tree grow over set amount of time
     private IEnumerator GrowTree(GameObject tree, Vector3 currentScale, double score){
@@ -125,38 +131,10 @@ public class SpawnTree : MonoBehaviour
                 break;
         }
 
-        // make clone a child of Trees
-        clone.transform.SetParent(ParentTree.transform);
-
-        // set position of children to parent position
-        int children = clone.transform.childCount;
-        for (int i = 0; i < children; ++i) {
-            clone.transform.GetChild(i).transform.position = clone.transform.position;
-        }
-
-        Transform tree = clone.transform.GetChild(0);
-
-        // update collider radius based on tree scale
-        Transform playerInRange = clone.transform.GetChild(2);
-        playerInRange.GetComponent<CapsuleCollider>().radius += tree.transform.localScale.x;
-
-        entries += 1;
-
-        // assign sentiment analysis and user input to tree
-        TreeInfo treeInfo = tree.transform.GetComponent<TreeInfo>();
-        treeInfo.allTones = allTones;
-        treeInfo.entryNum = entries;
-        treeInfo.score = score;
-        treeInfo.strongestTone = tone;
-        treeInfo.memory = memory;
-
-        // make tree visible
-        clone.SetActive(true);
-
-        // add tree to list of trees in game
-        game.GetComponent<Game>().trees.Add(clone);
+        SetTreeData(clone, tone, score, memory, allTones);
     }
 
+    // CreateTree method for save data
     public void CreateTree(Vector3 position, Quaternion rotation, Vector3 scale, string tone, double score, string memory, List<string> allTones) {
         GameObject clone;
 
@@ -188,6 +166,10 @@ public class SpawnTree : MonoBehaviour
                 break;
         }
 
+        SetTreeData(clone, tone, score, memory, allTones);
+    }
+
+    public void SetTreeData(GameObject clone, string tone, double score, string memory, List<string> allTones){
         // make clone a child of Trees
         clone.transform.SetParent(ParentTree.transform);
 
@@ -218,13 +200,5 @@ public class SpawnTree : MonoBehaviour
 
         // add tree to list of trees in game
         game.GetComponent<Game>().trees.Add(clone);
-    }
-
-    private GameObject CloneTree(GameObject treeType, Vector3 position, Quaternion rotation, Vector3 scale) {
-        GameObject newTree = Instantiate(treeType, position, rotation);
-
-        newTree.transform.localScale = scale;
-        
-        return newTree;
     }
 }
