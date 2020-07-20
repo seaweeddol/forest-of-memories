@@ -11,11 +11,23 @@ public class Game : MonoBehaviour
     [SerializeField]
     public List<GameObject> trees = new List<GameObject>();
     public GameObject spawnTree;
+    public GameObject m_ControlsUI;
+    public GameObject m_GameOptionsUI;
 
     private SpawnTree spawnTreeScript;
 
     void Start() {
         spawnTreeScript = spawnTree.GetComponent<SpawnTree>();
+    }
+
+    public void ShowControlsUI(){
+        m_ControlsUI.SetActive(true);
+        m_GameOptionsUI.SetActive(false);
+    }
+
+    public void ShowGameOptionsUI(){
+        m_GameOptionsUI.SetActive(true);
+        m_ControlsUI.SetActive(false);
     }
 
     public void SaveGame()

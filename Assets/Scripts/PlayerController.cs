@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject m_MemoryJournal;
     public GameObject m_InteractionUI;
     public GameObject m_ControlsUI;
+    public GameObject m_GameOptionsUI;
     public AudioSource walkAudio;
     public AudioSource runAudio;
     public List<GameObject> treesInRange;
@@ -44,11 +45,12 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         // if any UI is active, disable mouse look, movement, audio, & animation, and listen for ESC
-        if (m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy) {
+        if (m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy || m_GameOptionsUI.activeInHierarchy) {
             disableMovement();
             Cursor.lockState = CursorLockMode.None;
 
             if(Input.GetKeyDown("escape")) {
+                m_GameOptionsUI.SetActive(false);
                 m_ControlsUI.SetActive(false);
                 m_MemoryUI.SetActive(false);
                 m_MemoryJournal.SetActive(false);
@@ -60,7 +62,7 @@ public class PlayerController : MonoBehaviour
             }
         } else { 
             if(Input.GetKeyDown("escape")) {
-                m_ControlsUI.SetActive(true);
+                m_GameOptionsUI.SetActive(true);
                 return;
             } else if(Input.GetKeyDown("space")) {
                 m_MemoryUI.SetActive(true);
