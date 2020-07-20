@@ -68,8 +68,6 @@ public class ToneAnalyzer : MonoBehaviour
         string strongestTone;
         List<string> allTones = new List<string>(); 
 
-        // TODO: send back full list of tones
-
         // determine strongest tone
         if (toneAnalysis.tones.Count == 0) {
             // no overt tones detected - neutral

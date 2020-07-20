@@ -96,7 +96,10 @@ public class Game : MonoBehaviour
             save.treeStrongestTones.Add(tree.GetComponent<TreeInfo>().strongestTone);
             save.treeScores.Add(tree.GetComponent<TreeInfo>().score);
             save.treeMemories.Add(tree.GetComponent<TreeInfo>().memory);
-            save.treeTones.Add(tree.GetComponent<TreeInfo>().allTones);
+
+            Save.AllTonesContainer allTonesContainer = new Save.AllTonesContainer();
+            allTonesContainer.allTones = tree.GetComponent<TreeInfo>().allTones;
+            save.treeTones.Add(allTonesContainer);
             // i++; why is this here? doesn't seem to be doing anything
         }
 

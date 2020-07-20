@@ -7,6 +7,7 @@ public class Save
 {
     public List<SerializableVector3> treePositions = new List<SerializableVector3>();
     public List<SerializableQuaternion> treeRotations = new List<SerializableQuaternion>();
+    // need to change this from local to actual scale
     public List<SerializableVector3> treeScales = new List<SerializableVector3>();
 
     public List<string> treeStrongestTones = new List<string>();
@@ -15,7 +16,13 @@ public class Save
 
     public List<string> treeMemories = new List<string>();
 
-    public List<List<string>> treeTones = new List<List<string>>();
+    public List<AllTonesContainer> treeTones = new List<AllTonesContainer>();
+
+    [System.Serializable]
+    public class AllTonesContainer
+    {
+        public List<string> allTones;
+    }
 
     // entry number can be found via loop iteration + 1?
     // things to save
