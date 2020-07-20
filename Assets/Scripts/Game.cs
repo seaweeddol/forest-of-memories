@@ -13,11 +13,29 @@ public class Game : MonoBehaviour
     public GameObject spawnTree;
     public GameObject m_ControlsUI;
     public GameObject m_GameOptionsUI;
+    public GameObject m_MainMenuUI;
 
     private SpawnTree spawnTreeScript;
 
     void Start() {
         spawnTreeScript = spawnTree.GetComponent<SpawnTree>();
+    }
+
+    public void NewGame(){
+        StartCoroutine(FadeOutMainMenu());
+    }
+
+    private IEnumerator FadeOutMainMenu(){
+        // while time passed is less than 1sec, update menu alpha
+        float ratio = 0f;
+        while (ratio/1f < 1f) {
+            m_MainMenuUI.GetComponent<CanvasGroup>().alpha = (1 - ratio);
+            ratio += Time.deltaTime;
+            yield return null;
+        }
+
+        m_MainMenuUI.GetComponent<CanvasGroup>().alpha = 0;
+        m_MainMenuUI.SetActive(false);
     }
 
     public void ShowControlsUI(){

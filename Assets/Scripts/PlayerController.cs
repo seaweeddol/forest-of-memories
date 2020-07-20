@@ -6,6 +6,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject m_MainMenuUI;
     public GameObject m_MemoryUI;
     public InputField m_InputField;
     public GameObject m_MemoryJournal;
@@ -45,7 +46,10 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         // if any UI is active, disable mouse look, movement, audio, & animation, and listen for ESC
-        if (m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy || m_GameOptionsUI.activeInHierarchy) {
+        if (m_MainMenuUI.activeInHierarchy) {
+            disableMovement();
+            Cursor.lockState = CursorLockMode.None;
+        } else if (m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy || m_GameOptionsUI.activeInHierarchy) {
             disableMovement();
             Cursor.lockState = CursorLockMode.None;
 
