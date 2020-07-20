@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExitGame : MonoBehaviour
 {
-    // TODO: 'exit game' on in game menu should go back to main menu, not quit application
+    // TODO: 'exit game' on in game menu should clear trees and go back to main menu, not quit application
     public void QuitGame(){
         Application.Quit();
     }

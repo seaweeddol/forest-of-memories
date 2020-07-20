@@ -14,6 +14,9 @@ public class Game : MonoBehaviour
     public GameObject m_ControlsUI;
     public GameObject m_GameOptionsUI;
     public GameObject m_MainMenuUI;
+    public GameObject m_NewGameUI;
+    public GameObject m_MemoryUI;
+    public InputField m_InputField;
 
     private SpawnTree spawnTreeScript;
 
@@ -23,6 +26,8 @@ public class Game : MonoBehaviour
 
     public void NewGame(){
         StartCoroutine(FadeOutMainMenu());
+        StartCoroutine(FadeInNewGameUI());
+        StartCoroutine(WaitForSpace());
     }
 
     private IEnumerator FadeOutMainMenu(){
@@ -36,6 +41,30 @@ public class Game : MonoBehaviour
 
         m_MainMenuUI.GetComponent<CanvasGroup>().alpha = 0;
         m_MainMenuUI.SetActive(false);
+    }
+
+    private IEnumerator FadeInNewGameUI(){
+        // while time passed is less than 1sec, update menu alpha
+        float ratio = 0f;
+        while (ratio/1f < 1f) {
+            m_NewGameUI.GetComponent<CanvasGroup>().alpha = ratio;
+            ratio += Time.deltaTime;
+            yield return null;
+        }
+
+        m_NewGameUI.GetComponent<CanvasGroup>().alpha = 1;
+    }
+
+    private IEnumerator WaitForSpace(){
+        while(!Input.GetKeyDown("space")) {
+            yield return null;
+        }
+
+        m_NewGameUI.SetActive(false);
+        m_NewGameUI.GetComponent<CanvasGroup>().alpha = 0;
+
+        m_MemoryUI.SetActive(true);
+        m_InputField.ActivateInputField();
     }
 
     public void ShowControlsUI(){
