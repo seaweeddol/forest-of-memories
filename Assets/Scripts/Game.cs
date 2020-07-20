@@ -53,7 +53,7 @@ public class Game : MonoBehaviour
 
             for (int i = 0; i < save.treePositions.Count; i++)
             {
-                spawnTreeScript.CreateTree(save.treePositions[i], save.treeRotations[i], save.treeScales[i], save.treeStrongestTones[i], save.treeScores[i], save.treeMemories[i], save.treeTones[i].allTones);
+                spawnTreeScript.CreateTree(save.treePositions[i], save.treeRotations[i], save.treeScales[i], save.treeStrongestTones[i], save.treeScores[i], save.treeMemories[i], save.treeTones[i].allTones, save.treeTimeStamps[i]);
             }
 
             Debug.Log(save.treePositions.Count + " trees loaded");
@@ -91,6 +91,7 @@ public class Game : MonoBehaviour
             save.treeStrongestTones.Add(tree.GetComponent<TreeInfo>().strongestTone);
             save.treeScores.Add(tree.GetComponent<TreeInfo>().score);
             save.treeMemories.Add(tree.GetComponent<TreeInfo>().memory);
+            save.treeTimeStamps.Add(tree.GetComponent<TreeInfo>().dateTime);
 
             Save.AllTonesContainer allTonesContainer = new Save.AllTonesContainer();
             allTonesContainer.allTones = tree.GetComponent<TreeInfo>().allTones;

@@ -9,5 +9,5 @@ public class TreeInfo : MonoBehaviour
     public double score;
     public string strongestTone;
     public string memory;
-    public System.DateTime dateTime = System.DateTime.Now;
+    public System.DateTime dateTime;
 }

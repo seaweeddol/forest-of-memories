@@ -135,7 +135,7 @@ public class SpawnTree : MonoBehaviour
     }
 
     // CreateTree method for save data
-    public void CreateTree(Vector3 position, Quaternion rotation, Vector3 scale, string tone, double score, string memory, List<string> allTones) {
+    public void CreateTree(Vector3 position, Quaternion rotation, Vector3 scale, string tone, double score, string memory, List<string> allTones, System.DateTime dateTime) {
         GameObject clone;
 
         // determine type of tree based on tone
@@ -166,10 +166,10 @@ public class SpawnTree : MonoBehaviour
                 break;
         }
 
-        SetTreeData(clone, tone, score, memory, allTones);
+        SetTreeData(clone, tone, score, memory, allTones, dateTime);
     }
 
-    public void SetTreeData(GameObject clone, string tone, double score, string memory, List<string> allTones){
+    public void SetTreeData(GameObject clone, string tone, double score, string memory, List<string> allTones, System.DateTime? dateTime = null){
         // make clone a child of Trees
         clone.transform.SetParent(ParentTree.transform);
 
@@ -194,6 +194,11 @@ public class SpawnTree : MonoBehaviour
         treeInfo.score = score;
         treeInfo.strongestTone = tone;
         treeInfo.memory = memory;
+        if(dateTime.HasValue) {
+            treeInfo.dateTime = dateTime.Value;
+        } else {
+            treeInfo.dateTime = System.DateTime.Now;
+        }
 
         // make tree visible
         clone.SetActive(true);
