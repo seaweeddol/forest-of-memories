@@ -10,16 +10,18 @@ public class Game : MonoBehaviour
 {
     [SerializeField]
     public List<GameObject> trees = new List<GameObject>();
+    public GameObject spawnTree;
+
+    private SpawnTree spawnTreeScript;
 
     void Start() {
+        spawnTreeScript = spawnTree.GetComponent<SpawnTree>();
     }
 
     public void SaveGame()
     {
-        // 1
         Save save = CreateSaveGameObject();
 
-        // 2
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
         bf.Serialize(file, save);
@@ -28,45 +30,27 @@ public class Game : MonoBehaviour
         Debug.Log("Game Saved" + file);
     }
 
-    // public void LoadGame()
-    // { 
-    //     // 1
-    //     if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
-    //     {
-    //         ClearBullets();
-    //         ClearRobots();
-    //         RefreshRobots();
+    public void LoadGame()
+    { 
+        if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+            Save save = (Save)bf.Deserialize(file);
+            file.Close();
 
-    //         // 2
-    //         BinaryFormatter bf = new BinaryFormatter();
-    //         FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
-    //         Save save = (Save)bf.Deserialize(file);
-    //         file.Close();
+            for (int i = 0; i < save.treePositions.Count; i++)
+            {
+                spawnTreeScript.CreateTree(save.treePositions[i], save.treeRotations[i], save.treeScales[i], save.treeStrongestTones[i], save.treeScores[i], save.treeMemories[i], save.treeTones[i].allTones);
+            }
 
-    //         // 3
-    //         for (int i = 0; i < save.livingTargetPositions.Count; i++)
-    //         {
-    //         int position = save.livingTargetPositions[i];
-    //         Target target = targets[position].GetComponent<Target>();
-    //         target.ActivateRobot((RobotTypes)save.livingTargetsTypes[i]);
-    //         target.GetComponent<Target>().ResetDeathTimer();
-    //         }
-
-    //         // 4
-    //         shotsText.text = "Shots: " + save.shots;
-    //         hitsText.text = "Hits: " + save.hits;
-    //         shots = save.shots;
-    //         hits = save.hits;
-
-    //         Debug.Log("Game Loaded");
-
-    //         Unpause();
-    //     }
-    //     else
-    //     {
-    //         Debug.Log("No game saved!");
-    //     }
-    // }
+            Debug.Log(save.treePositions.Count + " trees loaded");
+        }
+        else
+        {
+            Debug.Log("No game saved!");
+        }
+    }
 
     public void SaveAsJSON()
     {

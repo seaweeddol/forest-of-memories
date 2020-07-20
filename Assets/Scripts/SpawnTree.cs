@@ -156,4 +156,75 @@ public class SpawnTree : MonoBehaviour
         // add tree to list of trees in game
         game.GetComponent<Game>().trees.Add(clone);
     }
+
+    public void CreateTree(Vector3 position, Quaternion rotation, Vector3 scale, string tone, double score, string memory, List<string> allTones) {
+        GameObject clone;
+
+        // determine type of tree based on tone
+        switch (tone) {
+            case "Sadness":
+                clone = CloneTree(sadnessTree, position, rotation, scale);
+                break;
+            case "Anger":
+                clone = CloneTree(angerTree, position, rotation, scale);
+                break;
+            case "Joy":
+                clone = CloneTree(joyTree, position, rotation, scale);
+                break;
+            case "Fear":
+                clone = CloneTree(fearfulTree, position, rotation, scale);
+                break;
+            case "Analytical":
+                clone = CloneTree(analyticalTree, position, rotation, scale);
+                break;
+            case "Confident":
+                clone = CloneTree(confidentTree, position, rotation, scale);
+                break;
+            case "Tentative":
+                clone = CloneTree(tentativeTree, position, rotation, scale);
+                break;
+            default:
+                clone = CloneTree(neutralTree, position, rotation, scale);
+                break;
+        }
+
+        // make clone a child of Trees
+        clone.transform.SetParent(ParentTree.transform);
+
+        // set position of children to parent position
+        int children = clone.transform.childCount;
+        for (int i = 0; i < children; ++i) {
+            clone.transform.GetChild(i).transform.position = clone.transform.position;
+        }
+
+        Transform tree = clone.transform.GetChild(0);
+
+        // update collider radius based on tree scale
+        Transform playerInRange = clone.transform.GetChild(2);
+        playerInRange.GetComponent<CapsuleCollider>().radius += tree.transform.localScale.x;
+
+        entries += 1;
+
+        // assign sentiment analysis and user input to tree
+        TreeInfo treeInfo = tree.transform.GetComponent<TreeInfo>();
+        treeInfo.allTones = allTones;
+        treeInfo.entryNum = entries;
+        treeInfo.score = score;
+        treeInfo.strongestTone = tone;
+        treeInfo.memory = memory;
+
+        // make tree visible
+        clone.SetActive(true);
+
+        // add tree to list of trees in game
+        game.GetComponent<Game>().trees.Add(clone);
+    }
+
+    private GameObject CloneTree(GameObject treeType, Vector3 position, Quaternion rotation, Vector3 scale) {
+        GameObject newTree = Instantiate(treeType, position, rotation);
+
+        newTree.transform.localScale = scale;
+        
+        return newTree;
+    }
 }
