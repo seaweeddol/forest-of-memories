@@ -21,10 +21,12 @@ public class UserInterface : MonoBehaviour
 
     private GameObject m_SaveFileDropdown;
     private GameObject m_LoadFileDropdown;
+    private string last;
 
     void Start(){
         m_LoadFileDropdown = m_LoadGameUI.transform.GetChild(4).gameObject;
         m_SaveFileDropdown = m_SaveGameUI.transform.GetChild(5).gameObject;
+        last = "main";
     }
 
     public void ResumeGame(){
@@ -32,6 +34,7 @@ public class UserInterface : MonoBehaviour
     }
 
     public void ShowMainMenu() {
+        last = "main";
         m_GameOptionsUI.SetActive(false);
         m_MainMenuUI.SetActive(true);
         m_MainMenuUI.GetComponent<CanvasGroup>().alpha = 1;
@@ -44,6 +47,7 @@ public class UserInterface : MonoBehaviour
     }
 
     public void ShowGameOptionsUI(){
+        last = "options";
         // TODO: maybe split this up into multiple functions
         m_ControlsUI.SetActive(false);
         m_SaveGameUI.SetActive(false);
@@ -68,9 +72,22 @@ public class UserInterface : MonoBehaviour
         }
     }
 
-    public void BackToMainFromLoad(){
+    public void BackFromControls(){
+        m_ControlsUI.SetActive(false);
+        if (last == "main") {
+            m_MainMenuUI.SetActive(true);
+        } else if(last == "options") {
+            m_GameOptionsUI.SetActive(true);
+        }
+    }
+
+    public void BackFromLoad(){
         m_LoadGameUI.SetActive(false);
-        m_MainMenuUI.SetActive(true);
+        if (last == "main") {
+            m_MainMenuUI.SetActive(true);
+        } else if(last == "options") {
+            m_GameOptionsUI.SetActive(true);
+        }
     }
 
     public void ShowLoadGameUI(){

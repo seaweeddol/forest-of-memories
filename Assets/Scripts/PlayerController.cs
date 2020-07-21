@@ -6,6 +6,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    public UserInterface m_UserInterface;
     public GameObject m_MainMenuUI;
     public GameObject m_NewGameUI;
     public GameObject m_SaveGameUI;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     void Start(){
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
+        m_UserInterface = m_UserInterface.transform.GetComponent<UserInterface>();
         m_Camera = transform.Find("Kira/Camera").gameObject;
         m_Animator = GetComponent<Animator> ();
         entryNumber = m_MemoryJournal.transform.Find("EntryNumber");
@@ -65,7 +67,8 @@ public class PlayerController : MonoBehaviour
             }
         } else { 
             if(Input.GetKeyDown("escape")) {
-                m_GameOptionsUI.SetActive(true);
+                // m_GameOptionsUI.SetActive(true);
+                m_UserInterface.ShowGameOptionsUI();
                 return;
             } else if(Input.GetKeyDown("space")) {
                 m_MemoryUI.SetActive(true);

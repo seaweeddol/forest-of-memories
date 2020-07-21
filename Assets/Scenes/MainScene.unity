@@ -986,8 +986,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 729944020}
-        m_MethodName: LoadGame
+      - m_Target: {fileID: 977007241}
+        m_MethodName: ShowLoadGameUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7034,7 +7034,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 977007241}
-        m_MethodName: ShowGameOptionsUI
+        m_MethodName: BackFromLoad
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7776,6 +7776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dec6b65337147e2ba254db8fceb1f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UserInterface: {fileID: 977007241}
   m_MainMenuUI: {fileID: 1677308998}
   m_NewGameUI: {fileID: 1524512933}
   m_SaveGameUI: {fileID: 839786870}
@@ -14145,7 +14146,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 977007241}
-        m_MethodName: ShowGameOptionsUI
+        m_MethodName: BackFromControls
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
