@@ -1200,6 +1200,7 @@ GameObject:
   - component: {fileID: 160455483}
   - component: {fileID: 160455481}
   - component: {fileID: 160455482}
+  - component: {fileID: 160455484}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -1234,6 +1235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 2
+  sensitivityX: 7
+  sensitivityY: 7
 --- !u!114 &160455482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1337,6 +1340,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &160455484
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160455479}
+  m_Enabled: 1
 --- !u!1 &165585583
 GameObject:
   m_ObjectHideFlags: 0
@@ -3889,23 +3900,47 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1026224196091980, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1048634334400270, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056815991711786, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1106770364064150, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1115674629121436, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1143289213068768, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1353802653932182, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1387498816956776, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1756927785753480, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1787009526992330, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800256790349450, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -4868,7 +4903,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &813541111
 Transform:
@@ -5887,7 +5922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7923,6 +7958,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
+  sensitivityX: 7
+  sensitivityY: 7
 --- !u!114 &1249167710
 MonoBehaviour:
   m_ObjectHideFlags: 0

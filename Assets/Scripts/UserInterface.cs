@@ -30,7 +30,7 @@ public class UserInterface : MonoBehaviour
     }
 
     public void ResumeGame(){
-        m_ControlsUI.SetActive(false);
+        m_GameOptionsUI.SetActive(false);
     }
 
     public void ShowMainMenu() {
