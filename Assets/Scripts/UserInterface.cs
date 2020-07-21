@@ -20,9 +20,11 @@ public class UserInterface : MonoBehaviour
     public GameObject m_InteractionUI;
 
     private GameObject m_SaveFileDropdown;
+    private GameObject m_LoadFileDropdown;
 
     void Start(){
-        m_SaveFileDropdown = m_LoadGameUI.transform.GetChild(4).gameObject;
+        m_LoadFileDropdown = m_LoadGameUI.transform.GetChild(4).gameObject;
+        m_SaveFileDropdown = m_SaveGameUI.transform.GetChild(5).gameObject;
     }
 
     public void ResumeGame(){
@@ -56,6 +58,18 @@ public class UserInterface : MonoBehaviour
         // m_ControlsUI.SetActive(false);
         DeactivateAll();
         m_SaveGameUI.SetActive(true);
+
+        // get all save files
+        DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath);
+        FileInfo[] saveFiles = dir.GetFiles("*.save*");
+
+        var dropdown = m_SaveFileDropdown.GetComponent<Dropdown>();
+        dropdown.options.Clear();
+        dropdown.options.Add(new Dropdown.OptionData("Select a file"));
+        foreach (FileInfo file in saveFiles)
+        {
+            dropdown.options.Add(new Dropdown.OptionData(Path.GetFileName(file.ToString())));
+        }
     }
 
     public void ShowLoadGameUI(){
@@ -66,8 +80,9 @@ public class UserInterface : MonoBehaviour
         DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath);
         FileInfo[] saveFiles = dir.GetFiles("*.save*");
 
-        var dropdown = m_SaveFileDropdown.GetComponent<Dropdown>();
+        var dropdown = m_LoadFileDropdown.GetComponent<Dropdown>();
         dropdown.options.Clear();
+        dropdown.options.Add(new Dropdown.OptionData("Select a file"));
         foreach (FileInfo file in saveFiles)
         {
             dropdown.options.Add(new Dropdown.OptionData(Path.GetFileName(file.ToString())));
