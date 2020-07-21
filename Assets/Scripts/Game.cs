@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class Game : MonoBehaviour
 {
@@ -15,8 +16,10 @@ public class Game : MonoBehaviour
     public GameObject m_GameOptionsUI;
     public GameObject m_MainMenuUI;
     public GameObject m_NewGameUI;
+    public GameObject m_SaveGameUI;
     public GameObject m_MemoryUI;
-    public InputField m_InputField;
+    public InputField m_MemoryInputField;
+    public InputField m_SaveFileInputField;
 
     private SpawnTree spawnTreeScript;
 
@@ -64,27 +67,42 @@ public class Game : MonoBehaviour
         m_NewGameUI.GetComponent<CanvasGroup>().alpha = 0;
 
         m_MemoryUI.SetActive(true);
-        m_InputField.ActivateInputField();
+        m_MemoryInputField.ActivateInputField();
+    }
+
+    public void ResumeGame(){
+        m_ControlsUI.SetActive(false);
     }
 
     public void ShowControlsUI(){
         m_ControlsUI.SetActive(true);
         m_GameOptionsUI.SetActive(false);
+        m_SaveGameUI.SetActive(false);
     }
 
     public void ShowGameOptionsUI(){
         m_GameOptionsUI.SetActive(true);
         m_ControlsUI.SetActive(false);
+        m_SaveGameUI.SetActive(false);
+    }
+
+    public void ShowSaveGameUI(){
+        m_GameOptionsUI.SetActive(false);
+        m_ControlsUI.SetActive(false);
+        m_SaveGameUI.SetActive(true);
     }
 
     public void SaveGame()
     {
         Save save = CreateSaveGameObject();
 
+        String fileName = m_SaveFileInputField.text;
+        fileName = Regex.Replace(fileName, @"[^a-zA-Z0-9 ]", "");
+
         // TODO: add input field for user to enter save file name
         // TODO: change the company name in player settings
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + fileName + ".save");
 
         bf.Serialize(file, save);
         file.Close();
