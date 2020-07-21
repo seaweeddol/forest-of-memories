@@ -13,11 +13,8 @@ public class Game : MonoBehaviour
     [SerializeField]
     public List<GameObject> trees = new List<GameObject>();
     public GameObject spawnTree;
-    public GameObject m_ControlsUI;
-    public GameObject m_GameOptionsUI;
     public GameObject m_MainMenuUI;
     public GameObject m_NewGameUI;
-    public GameObject m_SaveGameUI;
     public GameObject m_MemoryUI;
     public InputField m_MemoryInputField;
     public InputField m_SaveFileInputField;
@@ -119,6 +116,10 @@ public class Game : MonoBehaviour
         {
             Debug.Log("No game saved!");
         }
+    }
+
+    public void ExitGame(){
+        Application.Quit();
     }
 
     public void SaveAsJSON()

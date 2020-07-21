@@ -46,7 +46,6 @@ public class ToneAnalyzer : MonoBehaviour
         
         StreamReader reader = new StreamReader(response.GetResponseStream());
         string jsonResponse = reader.ReadToEnd();
-        Debug.Log(jsonResponse);
 
         // https://www.newtonsoft.com/json/help/html/DeserializeObject.htm
         ToneResponse toneResponse = JsonConvert.DeserializeObject<ToneResponse>(jsonResponse); 
