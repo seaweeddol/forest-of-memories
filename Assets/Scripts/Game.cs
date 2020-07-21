@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Game : MonoBehaviour
 {
@@ -18,8 +19,10 @@ public class Game : MonoBehaviour
     public GameObject m_MemoryUI;
     public InputField m_MemoryInputField;
     public InputField m_SaveFileInputField;
+    public GameObject m_SaveFileErrorMessage;
 
     private SpawnTree spawnTreeScript;
+    private int savedGames = 0;
 
     void Start() {
         spawnTreeScript = spawnTree.GetComponent<SpawnTree>();
@@ -76,19 +79,26 @@ public class Game : MonoBehaviour
     public void SaveGame()
     {
         Save save = CreateSaveGameObject();
+        FileStream file;
 
-        // String fileName = m_SaveFileInputField.text;
-        // fileName = Regex.Replace(fileName, @"[^a-zA-Z0-9 ]", "");
-
-        // TODO: add input field for user to enter save file name
-        // TODO: change the company name in player settings
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/Gamesave.save");
 
-        bf.Serialize(file, save);
-        file.Close();
+        // TODO: change the company name in player settings
+        if(m_SaveFileInputField.text != "") {
+            String fileName = m_SaveFileInputField.text;
+            fileName = Regex.Replace(fileName, @"[^a-zA-Z0-9 ]", "");
+            file = File.Create(Application.persistentDataPath + "/" + fileName + ".save");
+            
+            bf.Serialize(file, save);
+            file.Close();
 
-        Debug.Log("Game Saved" + file);
+            // TODO: if player overwrites existing save, counter should not tick up
+            savedGames += 1;
+            Debug.Log("Game Saved" + file);
+            m_SaveFileErrorMessage.SetActive(false);
+        } else {
+            m_SaveFileErrorMessage.SetActive(true);
+        }
     }
 
     public void LoadGame()

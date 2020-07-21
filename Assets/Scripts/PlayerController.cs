@@ -50,10 +50,8 @@ public class PlayerController : MonoBehaviour
         // if any UI is active, disable mouse look, movement, audio, & animation, and listen for ESC
         if (m_MainMenuUI.activeInHierarchy) {
             disableMovement();
-            Cursor.lockState = CursorLockMode.None;
         } else if (m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy || m_GameOptionsUI.activeInHierarchy || m_NewGameUI.activeInHierarchy || m_SaveGamesUI.activeInHierarchy) {
             disableMovement();
-            Cursor.lockState = CursorLockMode.None;
 
             if(Input.GetKeyDown("escape")) {
                 m_GameOptionsUI.SetActive(false);
@@ -107,7 +105,8 @@ public class PlayerController : MonoBehaviour
 
     void disableMovement() {
         disableMouseLook();
-        controller.Move(new Vector3(0, 0, 0));
+        Cursor.lockState = CursorLockMode.None;
+        controller.Move(new Vector3(0, 0, 0)); // TODO: see if this is causing movement
         m_Animator.SetBool ("isWalking", false);
         m_Animator.SetBool ("isRunning", false);
         walkAudio.Pause();
