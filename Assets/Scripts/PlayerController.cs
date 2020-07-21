@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject m_MainMenuUI;
     public GameObject m_NewGameUI;
+    public GameObject m_SaveGamesUI;
     public GameObject m_MemoryUI;
     public InputField m_InputField;
     public GameObject m_MemoryJournal;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
         if (m_MainMenuUI.activeInHierarchy) {
             disableMovement();
             Cursor.lockState = CursorLockMode.None;
-        } else if (m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy || m_GameOptionsUI.activeInHierarchy || m_NewGameUI.activeInHierarchy) {
+        } else if (m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy || m_GameOptionsUI.activeInHierarchy || m_NewGameUI.activeInHierarchy || m_SaveGamesUI.activeInHierarchy) {
             disableMovement();
             Cursor.lockState = CursorLockMode.None;
 

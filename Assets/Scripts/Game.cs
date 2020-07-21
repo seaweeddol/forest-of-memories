@@ -27,6 +27,10 @@ public class Game : MonoBehaviour
         spawnTreeScript = spawnTree.GetComponent<SpawnTree>();
     }
 
+    public void ResetTrees() {
+        trees = new List<GameObject>();
+    }
+
     public void NewGame(){
         StartCoroutine(FadeOutMainMenu());
         StartCoroutine(FadeInNewGameUI());
@@ -70,39 +74,17 @@ public class Game : MonoBehaviour
         m_MemoryInputField.ActivateInputField();
     }
 
-    public void ResumeGame(){
-        m_ControlsUI.SetActive(false);
-    }
-
-    public void ShowControlsUI(){
-        m_ControlsUI.SetActive(true);
-        m_GameOptionsUI.SetActive(false);
-        m_SaveGameUI.SetActive(false);
-    }
-
-    public void ShowGameOptionsUI(){
-        m_GameOptionsUI.SetActive(true);
-        m_ControlsUI.SetActive(false);
-        m_SaveGameUI.SetActive(false);
-    }
-
-    public void ShowSaveGameUI(){
-        m_GameOptionsUI.SetActive(false);
-        m_ControlsUI.SetActive(false);
-        m_SaveGameUI.SetActive(true);
-    }
-
     public void SaveGame()
     {
         Save save = CreateSaveGameObject();
 
-        String fileName = m_SaveFileInputField.text;
-        fileName = Regex.Replace(fileName, @"[^a-zA-Z0-9 ]", "");
+        // String fileName = m_SaveFileInputField.text;
+        // fileName = Regex.Replace(fileName, @"[^a-zA-Z0-9 ]", "");
 
         // TODO: add input field for user to enter save file name
         // TODO: change the company name in player settings
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/" + fileName + ".save");
+        FileStream file = File.Create(Application.persistentDataPath + "/Gamesave.save");
 
         bf.Serialize(file, save);
         file.Close();
