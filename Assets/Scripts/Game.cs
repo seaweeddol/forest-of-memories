@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -27,8 +28,9 @@ public class Game : MonoBehaviour
         spawnTreeScript = spawnTree.GetComponent<SpawnTree>();
     }
 
-    public void ResetTrees() {
+    public void ResetGame() {
         trees = new List<GameObject>();
+        SceneManager.LoadScene("MainScene");
     }
 
     public void NewGame(){
