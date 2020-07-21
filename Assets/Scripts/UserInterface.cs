@@ -21,6 +21,8 @@ public class UserInterface : MonoBehaviour
         m_ControlsUI.SetActive(false);
     }
 
+    // TODO: determine which screen to go 'back' to from LoadGameUI. if player is in a game, go back to m_GameOptionsUI. If player is coming from main menu, go back to m_MainMenuUI
+
     public void ShowMainMenu() {
         DeactivateAll();
         m_MainMenuUI.SetActive(true);

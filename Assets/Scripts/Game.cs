@@ -105,6 +105,8 @@ public class Game : MonoBehaviour
     { 
         // TODO: loop(?) through game save folder to show all game saves to choose from 
         // TODO: start player at position they were at (will need to save player position)
+
+        // TODO: get file that player has chosen
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
             BinaryFormatter bf = new BinaryFormatter();
