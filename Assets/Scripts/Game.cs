@@ -19,8 +19,10 @@ public class Game : MonoBehaviour
     public GameObject m_MemoryUI;
     public InputField m_MemoryInputField;
     public InputField m_SaveFileInputField;
-    public GameObject m_SaveFileErrorMessage;
     public GameObject m_SaveFileDropdown;
+    public GameObject m_SaveFileErrorMessage;
+    public GameObject m_LoadFileDropdown;
+    public GameObject m_LoadFileErrorMessage;
 
     private SpawnTree spawnTreeScript;
     private int savedGames = 0;
@@ -84,31 +86,37 @@ public class Game : MonoBehaviour
 
         BinaryFormatter bf = new BinaryFormatter();
 
-        // TODO: change the company name in player settings
-        if(m_SaveFileInputField.text != "") {
-            String fileName = m_SaveFileInputField.text;
-            fileName = Regex.Replace(fileName, @"[^a-zA-Z0-9 ]", "");
+        var dropdown = m_SaveFileDropdown.GetComponent<Dropdown>();
+        string fileName = dropdown.options[dropdown.value].text;
+
+        if(fileName == "Select a file" && m_SaveFileInputField.text == "") {
+            m_SaveFileErrorMessage.SetActive(true);
+        } else {
+            if (m_SaveFileInputField.text != "") {
+                savedGames += 1;
+                fileName = m_SaveFileInputField.text;
+                fileName = Regex.Replace(fileName, @"[^a-zA-Z0-9 ]", "");
+            }
+            
             file = File.Create(Application.persistentDataPath + "/" + fileName + ".save");
             
             bf.Serialize(file, save);
             file.Close();
 
             // TODO: if player overwrites existing save, counter should not tick up
-            savedGames += 1;
             Debug.Log("Game Saved" + file);
             m_SaveFileErrorMessage.SetActive(false);
-        } else {
-            m_SaveFileErrorMessage.SetActive(true);
         }
+
+        // TODO: change the company name in player settings
     }
 
     public void LoadGame()
     { 
         // TODO: start player at position they were at (will need to save player position)
-        var dropdown = m_SaveFileDropdown.GetComponent<Dropdown>();
+        var dropdown = m_LoadFileDropdown.GetComponent<Dropdown>();
         string fileName = dropdown.options[dropdown.value].text;
 
-        // TODO: get file that player has chosen
         if (File.Exists(Application.persistentDataPath + "/" + fileName))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -128,7 +136,7 @@ public class Game : MonoBehaviour
         }
         else
         {
-            Debug.Log("No game saved!");
+            m_LoadFileErrorMessage.SetActive(true);
         }
     }
 
