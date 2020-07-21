@@ -31,32 +31,28 @@ public class UserInterface : MonoBehaviour
         m_ControlsUI.SetActive(false);
     }
 
-    // TODO: determine which screen to go 'back' to from LoadGameUI. if player is in a game, go back to m_GameOptionsUI. If player is coming from main menu, go back to m_MainMenuUI
-
     public void ShowMainMenu() {
-        DeactivateAll();
+        m_GameOptionsUI.SetActive(false);
         m_MainMenuUI.SetActive(true);
         m_MainMenuUI.GetComponent<CanvasGroup>().alpha = 1;
     }
 
     public void ShowControlsUI(){
-        DeactivateAll();
+        m_MainMenuUI.SetActive(false);
+        m_GameOptionsUI.SetActive(false);
         m_ControlsUI.SetActive(true);
-        // m_GameOptionsUI.SetActive(false);
-        // m_SaveGameUI.SetActive(false);
     }
 
     public void ShowGameOptionsUI(){
-        DeactivateAll();
+        // TODO: maybe split this up into multiple functions
+        m_ControlsUI.SetActive(false);
+        m_SaveGameUI.SetActive(false);
+        m_LoadGameUI.SetActive(false);
         m_GameOptionsUI.SetActive(true);
-        // m_ControlsUI.SetActive(false);
-        // m_SaveGameUI.SetActive(false);
     }
 
     public void ShowSaveGameUI(){
-        // m_GameOptionsUI.SetActive(false);
-        // m_ControlsUI.SetActive(false);
-        DeactivateAll();
+        m_GameOptionsUI.SetActive(false);
         m_SaveGameUI.SetActive(true);
 
         // get all save files
@@ -72,8 +68,14 @@ public class UserInterface : MonoBehaviour
         }
     }
 
+    public void BackToMainFromLoad(){
+        m_LoadGameUI.SetActive(false);
+        m_MainMenuUI.SetActive(true);
+    }
+
     public void ShowLoadGameUI(){
-        DeactivateAll();
+        m_MainMenuUI.SetActive(false);
+        m_GameOptionsUI.SetActive(false);
         m_LoadGameUI.SetActive(true);
         
         // get all save files
@@ -90,21 +92,7 @@ public class UserInterface : MonoBehaviour
     }
 
     public void ShowMemoryInputUI(){
-        DeactivateAll();
         m_MemoryUI.SetActive(true);
         m_MemoryInputField.ActivateInputField();
-    }
-
-    public void DeactivateAll(){
-        m_MainMenuUI.SetActive(false);
-        m_NewGameUI.SetActive(false);
-        m_ControlsUI.SetActive(false);
-        m_GameOptionsUI.SetActive(false);
-        m_SaveGameUI.SetActive(false);
-        m_LoadGameUI.SetActive(false);
-        m_MemoryUI.SetActive(false);
-        m_MemoryJournal.SetActive(false);
-        m_InteractionUI.SetActive(false);
-        m_MemoryInputField.text = "";
     }
 }
