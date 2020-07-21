@@ -112,7 +112,7 @@ public class Game : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/" + fileName))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/" + fileName, FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
 
