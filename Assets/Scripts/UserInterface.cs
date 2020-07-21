@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,10 +13,17 @@ public class UserInterface : MonoBehaviour
     public GameObject m_GameOptionsUI;
     public GameObject m_SaveGameUI;
     public InputField m_SaveFileInputField;
+    public GameObject m_LoadGameUI;
     public GameObject m_MemoryUI;
     public InputField m_MemoryInputField;
     public GameObject m_MemoryJournal;
     public GameObject m_InteractionUI;
+
+    private GameObject m_SaveFileDropdown;
+
+    void Start(){
+        m_SaveFileDropdown = m_LoadGameUI.transform.GetChild(4).gameObject;
+    }
 
     public void ResumeGame(){
         m_ControlsUI.SetActive(false);
@@ -50,6 +58,22 @@ public class UserInterface : MonoBehaviour
         m_SaveGameUI.SetActive(true);
     }
 
+    public void ShowLoadGameUI(){
+        DeactivateAll();
+        m_LoadGameUI.SetActive(true);
+        
+        // get all save files
+        DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath);
+        FileInfo[] saveFiles = dir.GetFiles("*.save*");
+
+        var dropdown = m_SaveFileDropdown.GetComponent<Dropdown>();
+        dropdown.options.Clear();
+        foreach (FileInfo file in saveFiles)
+        {
+            dropdown.options.Add(new Dropdown.OptionData(Path.GetFileName(file.ToString())));
+        }
+    }
+
     public void ShowMemoryInputUI(){
         DeactivateAll();
         m_MemoryUI.SetActive(true);
@@ -62,6 +86,7 @@ public class UserInterface : MonoBehaviour
         m_ControlsUI.SetActive(false);
         m_GameOptionsUI.SetActive(false);
         m_SaveGameUI.SetActive(false);
+        m_LoadGameUI.SetActive(false);
         m_MemoryUI.SetActive(false);
         m_MemoryJournal.SetActive(false);
         m_InteractionUI.SetActive(false);

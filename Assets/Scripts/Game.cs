@@ -20,6 +20,7 @@ public class Game : MonoBehaviour
     public InputField m_MemoryInputField;
     public InputField m_SaveFileInputField;
     public GameObject m_SaveFileErrorMessage;
+    public GameObject m_SaveFileDropdown;
 
     private SpawnTree spawnTreeScript;
     private int savedGames = 0;
@@ -103,11 +104,12 @@ public class Game : MonoBehaviour
 
     public void LoadGame()
     { 
-        // TODO: loop(?) through game save folder to show all game saves to choose from 
         // TODO: start player at position they were at (will need to save player position)
+        var dropdown = m_SaveFileDropdown.GetComponent<Dropdown>();
+        string fileName = dropdown.options[dropdown.value].text;
 
         // TODO: get file that player has chosen
-        if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        if (File.Exists(Application.persistentDataPath + "/" + fileName))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
