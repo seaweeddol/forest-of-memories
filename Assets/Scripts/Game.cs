@@ -127,11 +127,11 @@ public class Game : MonoBehaviour
     }
 
     public void DestroyTrees(int treesCount){
+        Debug.Log(treesCount);
         player.treesInRange = new List<GameObject>();
         for (int i = 0; i < treesCount; i++) {
-            GameObject tree = trees[i];
-            trees.Remove(tree);
-            Destroy(tree);
+            Destroy(trees[0]);
+            trees.Remove(trees[0]);
         }
     }
 
