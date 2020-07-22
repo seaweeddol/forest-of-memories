@@ -69,7 +69,6 @@ GameObject:
   - component: {fileID: 7128878522295023007}
   - component: {fileID: 5762969528423755498}
   - component: {fileID: 4398347614861093225}
-  - component: {fileID: 3287231075007295814}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -147,25 +146,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 7312685887535535738}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &3287231075007295814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312685887535535738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69eb97271a09e455abfb2e533510ca9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  degreesPerSecond: 750
 --- !u!1 &7390618223778896434
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +378,11 @@ PrefabInstance:
       propertyPath: degreesPerSecond
       value: 720
       objectReference: {fileID: 0}
+    - target: {fileID: 5939425832898049293, guid: 579655f85e8fc45b1b5e311065218270,
+        type: 3}
+      propertyPath: rotator
+      value: 
+      objectReference: {fileID: 6304771793813488729}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 579655f85e8fc45b1b5e311065218270, type: 3}
 --- !u!4 &2147166877689104168 stripped

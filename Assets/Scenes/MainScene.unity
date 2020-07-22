@@ -1238,6 +1238,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1249167705}
+    - target: {fileID: 2147166877689104166, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: rotator
+      value: 
+      objectReference: {fileID: 671318473}
     - target: {fileID: 2147166877689104167, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_Radius
@@ -2611,6 +2616,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385223527}
   m_CullTransparentMesh: 0
+--- !u!4 &392044734 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6304771793813488729, guid: f11026aa4d27241909f236ff704f6496,
+    type: 3}
+  m_PrefabInstance: {fileID: 1633945493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &402958577
 GameObject:
   m_ObjectHideFlags: 0
@@ -3122,6 +3133,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424368218}
   m_CullTransparentMesh: 0
+--- !u!4 &433702968 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6304771793813488729, guid: f11026aa4d27241909f236ff704f6496,
+    type: 3}
+  m_PrefabInstance: {fileID: 1440819996}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &447330466 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5710361072706415554, guid: f11026aa4d27241909f236ff704f6496,
@@ -3397,6 +3414,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1249167705}
+    - target: {fileID: 2147166877689104166, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: rotator
+      value: 
+      objectReference: {fileID: 908116003}
     - target: {fileID: 3287231075007295814, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: degreesPerSecond
@@ -3899,6 +3921,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1249167705}
+    - target: {fileID: 2147166877689104166, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: rotator
+      value: 
+      objectReference: {fileID: 1531115514}
     - target: {fileID: 2147166877689104167, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_Radius
@@ -4281,6 +4308,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fd9224290486cd47ac2ce7398a463a0, type: 3}
+--- !u!4 &671318473 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6304771793813488729, guid: f11026aa4d27241909f236ff704f6496,
+    type: 3}
+  m_PrefabInstance: {fileID: 113264119}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &686906741
 GameObject:
   m_ObjectHideFlags: 0
@@ -5673,6 +5706,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &908116003 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6304771793813488729, guid: f11026aa4d27241909f236ff704f6496,
+    type: 3}
+  m_PrefabInstance: {fileID: 495116985}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &928846967
 GameObject:
   m_ObjectHideFlags: 0
@@ -5938,6 +5977,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1249167705}
+    - target: {fileID: 2147166877689104166, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: rotator
+      value: 
+      objectReference: {fileID: 1277901501}
     - target: {fileID: 2147166877689104167, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_Radius
@@ -6615,6 +6659,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1249167705}
+    - target: {fileID: 2147166877689104166, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: rotator
+      value: 
+      objectReference: {fileID: 1432335333}
     - target: {fileID: 2147166877689104167, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_Radius
@@ -8395,6 +8444,12 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!4 &1277901501 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6304771793813488729, guid: f11026aa4d27241909f236ff704f6496,
+    type: 3}
+  m_PrefabInstance: {fileID: 950127512}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1283446622
 GameObject:
   m_ObjectHideFlags: 0
@@ -9108,6 +9163,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432051876}
   m_CullTransparentMesh: 0
+--- !u!4 &1432335333 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6304771793813488729, guid: f11026aa4d27241909f236ff704f6496,
+    type: 3}
+  m_PrefabInstance: {fileID: 1008749101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1440819996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9145,6 +9206,11 @@ PrefabInstance:
       propertyPath: degreesPerSecond
       value: 720
       objectReference: {fileID: 0}
+    - target: {fileID: 2147166877689104166, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: rotator
+      value: 
+      objectReference: {fileID: 433702968}
     - target: {fileID: 2147166877689104167, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_Radius
@@ -10450,6 +10516,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1531115514 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6304771793813488729, guid: f11026aa4d27241909f236ff704f6496,
+    type: 3}
+  m_PrefabInstance: {fileID: 618459025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1537697606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5710361072706415554, guid: f11026aa4d27241909f236ff704f6496,
@@ -10882,6 +10954,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1249167705}
+    - target: {fileID: 2147166877689104166, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: rotator
+      value: 
+      objectReference: {fileID: 392044734}
     - target: {fileID: 2147166877689104167, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_Radius
@@ -11234,6 +11311,12 @@ CanvasRenderer:
 --- !u!1 &1671139903 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7312685887535535738, guid: f11026aa4d27241909f236ff704f6496,
+    type: 3}
+  m_PrefabInstance: {fileID: 2957176924051467184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1671139904 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6304771793813488729, guid: f11026aa4d27241909f236ff704f6496,
     type: 3}
   m_PrefabInstance: {fileID: 2957176924051467184}
   m_PrefabAsset: {fileID: 0}
@@ -15967,6 +16050,11 @@ PrefabInstance:
       propertyPath: degreesPerSecond
       value: 720
       objectReference: {fileID: 0}
+    - target: {fileID: 2147166877689104166, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: rotator
+      value: 
+      objectReference: {fileID: 1671139904}
     - target: {fileID: 2796931037516685974, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: memory
