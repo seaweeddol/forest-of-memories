@@ -20,12 +20,18 @@ public class UserInterface : MonoBehaviour
     public GameObject m_InteractionUI;
 
     private GameObject m_SaveFileDropdown;
+    private GameObject m_SaveFileErrorMessage;
+    private GameObject m_SaveSuccessfulMessage;
+    private GameObject m_LoadFileErrorMessage;
     private GameObject m_LoadFileDropdown;
     private string last;
 
     void Start(){
         m_LoadFileDropdown = m_LoadGameUI.transform.GetChild(4).gameObject;
         m_SaveFileDropdown = m_SaveGameUI.transform.GetChild(5).gameObject;
+        m_SaveFileErrorMessage = m_SaveGameUI.transform.GetChild(6).gameObject;
+        m_SaveSuccessfulMessage = m_SaveGameUI.transform.GetChild(7).gameObject;
+        m_LoadFileErrorMessage = m_LoadGameUI.transform.GetChild(6).gameObject;
         last = "main";
     }
 
@@ -56,6 +62,8 @@ public class UserInterface : MonoBehaviour
     }
 
     public void ShowSaveGameUI(){
+        m_SaveFileErrorMessage.SetActive(false);
+        m_SaveSuccessfulMessage.SetActive(false);
         m_GameOptionsUI.SetActive(false);
         m_SaveGameUI.SetActive(true);
 
@@ -93,8 +101,10 @@ public class UserInterface : MonoBehaviour
     }
 
     public void ShowLoadGameUI(){
+        m_LoadFileErrorMessage.SetActive(false);
         m_MainMenuUI.SetActive(false);
         m_GameOptionsUI.SetActive(false);
+        m_LoadGameUI.GetComponent<CanvasGroup>().alpha = 1;
         m_LoadGameUI.SetActive(true);
         
         // get all save files

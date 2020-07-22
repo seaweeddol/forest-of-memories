@@ -16,11 +16,13 @@ public class Game : MonoBehaviour
     public GameObject spawnTree;
     public GameObject m_MainMenuUI;
     public GameObject m_NewGameUI;
+    public GameObject m_LoadGameUI;
     public GameObject m_MemoryUI;
     public InputField m_MemoryInputField;
     public InputField m_SaveFileInputField;
     public GameObject m_SaveFileDropdown;
     public GameObject m_SaveFileErrorMessage;
+    public GameObject m_SaveSuccessfulMessage;
     public GameObject m_LoadFileDropdown;
     public GameObject m_LoadFileErrorMessage;
 
@@ -79,6 +81,19 @@ public class Game : MonoBehaviour
         m_MemoryInputField.ActivateInputField();
     }
 
+    private IEnumerator FadeOutLoadMenu(){
+        // while time passed is less than 1sec, update menu alpha
+        float ratio = 0f;
+        while (ratio/1f < 1f) {
+            m_LoadGameUI.GetComponent<CanvasGroup>().alpha = (1 - ratio);
+            ratio += Time.deltaTime;
+            yield return null;
+        }
+
+        m_LoadGameUI.GetComponent<CanvasGroup>().alpha = 0;
+        m_LoadGameUI.SetActive(false);
+    }
+
     public void SaveGame()
     {
         Save save = CreateSaveGameObject();
@@ -103,8 +118,8 @@ public class Game : MonoBehaviour
             bf.Serialize(file, save);
             file.Close();
 
-            Debug.Log("Game Saved" + file);
             m_SaveFileErrorMessage.SetActive(false);
+            m_SaveSuccessfulMessage.SetActive(true);
         }
 
         // TODO: change the company name in player settings
@@ -129,10 +144,11 @@ public class Game : MonoBehaviour
                 spawnTreeScript.CreateTree(save.treePositions[i], save.treeRotations[i], save.treeScales[i], save.treeStrongestTones[i], save.treeScores[i], save.treeMemories[i], save.treeTones[i].allTones, save.treeTimeStamps[i]);
             }
 
-            StartCoroutine(FadeOutMainMenu());
+            m_MainMenuUI.GetComponent<CanvasGroup>().alpha = 0;
+            m_MainMenuUI.SetActive(false);
             m_NewGameUI.SetActive(false);
 
-            Debug.Log(save.treePositions.Count + " trees loaded");
+            StartCoroutine(FadeOutLoadMenu());
         }
         else
         {
