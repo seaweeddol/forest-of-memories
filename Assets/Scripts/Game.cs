@@ -170,7 +170,6 @@ public class Game : MonoBehaviour
     }
 
     public void DestroyTrees(int treesCount){
-        Debug.Log(treesCount);
         player.treesInRange = new List<GameObject>();
         for (int i = 0; i < treesCount; i++) {
             Destroy(trees[0]);
@@ -225,9 +224,6 @@ public class Game : MonoBehaviour
         string json = JsonUtility.ToJson(save);
 
         System.IO.File.WriteAllText(Application.persistentDataPath + "/SaveData.json", json);
-
-        Debug.Log(Application.persistentDataPath);
-        Debug.Log("Saving as JSON: " + json);
     }
 
     private Save CreateSaveGameObject()
