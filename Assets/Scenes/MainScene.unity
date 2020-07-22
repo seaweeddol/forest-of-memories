@@ -3756,6 +3756,7 @@ MonoBehaviour:
   terrain: {fileID: 813541111}
   ParentTree: {fileID: 1800591664}
   game: {fileID: 729944019}
+  entries: 0
 --- !u!4 &596585523
 Transform:
   m_ObjectHideFlags: 0
@@ -4913,6 +4914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trees: []
   spawnTree: {fileID: 596585521}
+  player: {fileID: 1249167710}
   m_MainMenuUI: {fileID: 1677308998}
   m_NewGameUI: {fileID: 1524512933}
   m_LoadGameUI: {fileID: 1831985878}

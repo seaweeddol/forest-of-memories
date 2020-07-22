@@ -8,8 +8,8 @@ public class SpawnTree : MonoBehaviour
     public Transform terrain;
     public GameObject ParentTree;
     public GameObject game;
+    public int entries = 0;
 
-    private int entries = 0;
     private GameObject angerTree;
     private GameObject joyTree;
     private GameObject sadnessTree;

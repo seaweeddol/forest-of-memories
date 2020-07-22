@@ -14,6 +14,7 @@ public class Game : MonoBehaviour
     [SerializeField]
     public List<GameObject> trees = new List<GameObject>();
     public GameObject spawnTree;
+    public PlayerController player;
     public GameObject m_MainMenuUI;
     public GameObject m_NewGameUI;
     public GameObject m_LoadGameUI;
@@ -125,6 +126,15 @@ public class Game : MonoBehaviour
         // TODO: change the company name in player settings
     }
 
+    public void DestroyTrees(int treesCount){
+        player.treesInRange = new List<GameObject>();
+        for (int i = 0; i < treesCount; i++) {
+            GameObject tree = trees[i];
+            trees.Remove(tree);
+            Destroy(tree);
+        }
+    }
+
     public void LoadGame()
     { 
         // TODO: start player at position they were at (will need to save player position)
@@ -134,15 +144,21 @@ public class Game : MonoBehaviour
 
         if (File.Exists(filePath))
         {
+            spawnTreeScript.entries = 0;
+
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(filePath, FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
 
+            int originalTreeCount = trees.Count;
+
             for (int i = 0; i < save.treePositions.Count; i++)
             {
                 spawnTreeScript.CreateTree(save.treePositions[i], save.treeRotations[i], save.treeScales[i], save.treeStrongestTones[i], save.treeScores[i], save.treeMemories[i], save.treeTones[i].allTones, save.treeTimeStamps[i]);
             }
+
+            DestroyTrees(originalTreeCount);
 
             m_MainMenuUI.GetComponent<CanvasGroup>().alpha = 0;
             m_MainMenuUI.SetActive(false);
