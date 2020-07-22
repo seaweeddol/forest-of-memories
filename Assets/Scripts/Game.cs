@@ -17,6 +17,7 @@ public class Game : MonoBehaviour
     public PlayerController player;
     public GameObject m_MainMenuUI;
     public GameObject m_NewGameUI;
+    public GameObject m_SecondNewGameUI;
     public GameObject m_LoadGameUI;
     public GameObject m_MemoryUI;
     public InputField m_MemoryInputField;
@@ -70,6 +71,32 @@ public class Game : MonoBehaviour
         m_NewGameUI.GetComponent<CanvasGroup>().alpha = 1;
     }
 
+    private IEnumerator FadeInSecondNewGameUI(){
+        m_SecondNewGameUI.SetActive(true);
+        // while time passed is less than 1sec, update menu alpha
+        float ratio = 0f;
+        while (ratio/1f < 1f) {
+            m_SecondNewGameUI.GetComponent<CanvasGroup>().alpha = ratio;
+            ratio += Time.deltaTime;
+            yield return null;
+        }
+
+        m_SecondNewGameUI.GetComponent<CanvasGroup>().alpha = 1;
+    }
+
+    private IEnumerator FadeOutSecondNewGameUI(){
+        // while time passed is less than 1sec, update menu alpha
+        float ratio = 0f;
+        while (ratio/1f < 1f) {
+            m_SecondNewGameUI.GetComponent<CanvasGroup>().alpha = (1 - ratio);
+            ratio += Time.deltaTime;
+            yield return null;
+        }
+
+        m_SecondNewGameUI.GetComponent<CanvasGroup>().alpha = 0;
+        m_SecondNewGameUI.SetActive(false);
+    }
+
     private IEnumerator WaitForSpace(){
         while(!Input.GetKeyDown("space")) {
             yield return null;
@@ -80,6 +107,22 @@ public class Game : MonoBehaviour
 
         m_MemoryUI.SetActive(true);
         m_MemoryInputField.ActivateInputField();
+
+        StartCoroutine(WaitForMove());
+    }
+
+    private IEnumerator WaitForMove(){
+        while(m_MemoryUI.activeInHierarchy) {
+            yield return null;
+        }
+
+        StartCoroutine(FadeInSecondNewGameUI());
+
+        while(!Input.GetKeyDown("up") && !Input.GetKeyDown("down") && !Input.GetKeyDown("left") && !Input.GetKeyDown("right") && !Input.GetKeyDown("w") && !Input.GetKeyDown("a") && !Input.GetKeyDown("s") && !Input.GetKeyDown("d")){
+            yield return null;
+        }
+
+        StartCoroutine(FadeOutSecondNewGameUI());
     }
 
     private IEnumerator FadeOutLoadMenu(){
