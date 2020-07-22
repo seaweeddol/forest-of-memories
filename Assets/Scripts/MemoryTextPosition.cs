@@ -8,6 +8,8 @@ public class MemoryTextPosition : MonoBehaviour
 {
     public GameObject memoryContainer;
     public GameObject tree;
+    public GameObject rotator;
+    public float degreesPerSecond;
     
     private Transform player;
     private TreeInfo treeInfo;
@@ -26,14 +28,17 @@ public class MemoryTextPosition : MonoBehaviour
 
     void OnTriggerEnter (Collider other) {
         if(other.transform == player) {
-            StartCoroutine(FadeInText());
+            m_IsPlayerInRange = true;
+            // StartCoroutine(FadeInText());
+            StartCoroutine(LookAtPlayer());
             player.GetComponent<PlayerController>().treesInRange.Add(tree);
         }
     }
 
     void OnTriggerExit (Collider other) {
         if(other.transform == player) {
-            StartCoroutine(FadeOutText());
+            m_IsPlayerInRange = false;
+            // StartCoroutine(FadeOutText());
             player.GetComponent<PlayerController>().treesInRange.Remove(tree);
         }
     }
@@ -48,6 +53,21 @@ public class MemoryTextPosition : MonoBehaviour
 
         memoryContainer.transform.position = memoryPos + new Vector3(0f, 1.8f, 0f);
         memoryContainer.transform.rotation = playerRotation;
+    }
+
+    private IEnumerator LookAtPlayer(){
+        StartCoroutine(FadeInText());
+        while(m_IsPlayerInRange) {
+            Vector3 dirFromMeToTarget = player.position - rotator.transform.position;
+            dirFromMeToTarget.y = 0.0f;
+
+            Quaternion lookRotation = Quaternion.LookRotation(dirFromMeToTarget);
+
+            rotator.transform.rotation = Quaternion.Lerp(rotator.transform.rotation, lookRotation, Time.deltaTime * (degreesPerSecond/360.0f));
+            yield return null;
+        }
+
+        StartCoroutine(FadeOutText());
     }
 
     private IEnumerator FadeInText(){
