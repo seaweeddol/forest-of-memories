@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     private Transform memory;
 
     void Start(){
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         controller = GetComponent<CharacterController>();
         m_UserInterface = m_UserInterface.transform.GetComponent<UserInterface>();
         m_Camera = transform.Find("Kira/Camera").gameObject;
@@ -48,8 +48,6 @@ public class PlayerController : MonoBehaviour
     }
  
     void Update(){
-        Cursor.lockState = CursorLockMode.Locked;
-
         // if any UI is active, disable mouse look, movement, audio, & animation, and listen for ESC
         if (m_MainMenuUI.activeInHierarchy || m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy || m_GameOptionsUI.activeInHierarchy || m_NewGameUI.activeInHierarchy || m_SaveGameUI.activeInHierarchy || m_LoadGameUI.activeInHierarchy) {
             disableMovement();
@@ -75,6 +73,8 @@ public class PlayerController : MonoBehaviour
                 m_InputField.ActivateInputField();
                 return;
             }
+
+            Cursor.visible = false;
 
             checkTreesInRange();
 
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     void disableMovement() {
         disableMouseLook();
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         controller.Move(new Vector3(0, 0, 0)); // TODO: see if this is causing movement
         m_Animator.SetBool ("isWalking", false);
         m_Animator.SetBool ("isRunning", false);
