@@ -19,6 +19,7 @@ public class Game : MonoBehaviour
     public GameObject m_NewGameUI;
     public GameObject m_SecondNewGameUI;
     public GameObject m_LoadGameUI;
+    public GameObject m_ExploreUI;
     public GameObject m_MemoryUI;
     public InputField m_MemoryInputField;
     public InputField m_SaveFileInputField;
@@ -27,6 +28,7 @@ public class Game : MonoBehaviour
     public GameObject m_SaveSuccessfulMessage;
     public GameObject m_LoadFileDropdown;
     public GameObject m_LoadFileErrorMessage;
+    public GameObject m_ExploreFileDropdown;
 
     private SpawnTree spawnTreeScript;
     private int savedGames = 0;
@@ -60,6 +62,7 @@ public class Game : MonoBehaviour
     }
 
     private IEnumerator FadeInNewGameUI(){
+        m_NewGameUI.SetActive(true);
         // while time passed is less than 1sec, update menu alpha
         float ratio = 0f;
         while (ratio/1f < 1f) {
@@ -138,6 +141,19 @@ public class Game : MonoBehaviour
         m_LoadGameUI.SetActive(false);
     }
 
+    private IEnumerator FadeOutExploreMenu(){
+        // while time passed is less than 1sec, update menu alpha
+        float ratio = 0f;
+        while (ratio/1f < 1f) {
+            m_ExploreUI.GetComponent<CanvasGroup>().alpha = (1 - ratio);
+            ratio += Time.deltaTime;
+            yield return null;
+        }
+
+        m_ExploreUI.GetComponent<CanvasGroup>().alpha = 0;
+        m_ExploreUI.SetActive(false);
+    }
+
     public void SaveGame()
     {
         Save save = CreateSaveGameObject();
@@ -205,12 +221,56 @@ public class Game : MonoBehaviour
             m_MainMenuUI.GetComponent<CanvasGroup>().alpha = 0;
             m_MainMenuUI.SetActive(false);
             m_NewGameUI.SetActive(false);
+            m_SecondNewGameUI.SetActive(false);
 
             StartCoroutine(FadeOutLoadMenu());
         }
         else
         {
             m_LoadFileErrorMessage.SetActive(true);
+        }
+    }
+
+    public void LoadExploreGame()
+    { 
+        var dropdown = m_ExploreFileDropdown.GetComponent<Dropdown>();
+        string selection = dropdown.options[dropdown.value].text;
+        string filePath;
+
+        if (selection == "Alice in Wonderland - Ch. 1") {
+            filePath = "Assets/PremadeForests/aliceinwonderland.save";
+        } else {
+            filePath = "Assets/PremadeForests/dracula.save";
+        }
+
+        if (File.Exists(filePath))
+        {
+            spawnTreeScript.entries = 0;
+
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(filePath, FileMode.Open);
+            Save save = (Save)bf.Deserialize(file);
+            file.Close();
+
+            int originalTreeCount = trees.Count;
+
+            for (int i = 0; i < save.treePositions.Count; i++)
+            {
+                spawnTreeScript.CreateTree(save.treePositions[i], save.treeRotations[i], save.treeScales[i], save.treeStrongestTones[i], save.treeScores[i], save.treeMemories[i], save.treeTones[i].allTones, save.treeTimeStamps[i]);
+            }
+
+            DestroyTrees(originalTreeCount);
+
+            m_MainMenuUI.GetComponent<CanvasGroup>().alpha = 0;
+            m_MainMenuUI.SetActive(false);
+            m_NewGameUI.SetActive(false);
+            m_SecondNewGameUI.SetActive(false);
+
+            StartCoroutine(FadeOutExploreMenu());
+        }
+        else
+        {
+            // m_LoadFileErrorMessage.SetActive(true);
         }
     }
 

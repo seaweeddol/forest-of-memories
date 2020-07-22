@@ -14,6 +14,7 @@ public class UserInterface : MonoBehaviour
     public GameObject m_SaveGameUI;
     public InputField m_SaveFileInputField;
     public GameObject m_LoadGameUI;
+    public GameObject m_ExploreForestUI;
     public GameObject m_MemoryUI;
     public InputField m_MemoryInputField;
     public GameObject m_MemoryJournal;
@@ -24,6 +25,7 @@ public class UserInterface : MonoBehaviour
     private GameObject m_SaveSuccessfulMessage;
     private GameObject m_LoadFileErrorMessage;
     private GameObject m_LoadFileDropdown;
+    private GameObject m_ExploreForestDropdown;
     private string last;
 
     void Start(){
@@ -32,6 +34,7 @@ public class UserInterface : MonoBehaviour
         m_SaveFileErrorMessage = m_SaveGameUI.transform.GetChild(6).gameObject;
         m_SaveSuccessfulMessage = m_SaveGameUI.transform.GetChild(7).gameObject;
         m_LoadFileErrorMessage = m_LoadGameUI.transform.GetChild(6).gameObject;
+        m_ExploreForestDropdown = m_ExploreForestUI.transform.GetChild(4).gameObject;
         last = "main";
     }
 
@@ -41,6 +44,7 @@ public class UserInterface : MonoBehaviour
 
     public void ShowMainMenu() {
         last = "main";
+        m_ExploreForestUI.SetActive(false);
         m_GameOptionsUI.SetActive(false);
         m_MainMenuUI.SetActive(true);
         m_MainMenuUI.GetComponent<CanvasGroup>().alpha = 1;
@@ -118,6 +122,13 @@ public class UserInterface : MonoBehaviour
         {
             dropdown.options.Add(new Dropdown.OptionData(Path.GetFileNameWithoutExtension(file.ToString())));
         }
+    }
+
+    public void ShowExploreForestUI(){
+        m_MainMenuUI.SetActive(false);
+        m_GameOptionsUI.SetActive(false);
+        m_ExploreForestUI.GetComponent<CanvasGroup>().alpha = 1;
+        m_ExploreForestUI.SetActive(true);
     }
 
     public void ShowMemoryInputUI(){

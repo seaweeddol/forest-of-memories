@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject m_NewGameUI;
     public GameObject m_SaveGameUI;
     public GameObject m_LoadGameUI;
+    public GameObject m_ExploreUI;
     public GameObject m_MemoryUI;
     public InputField m_InputField;
     public GameObject m_MemoryJournal;
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
  
     void Update(){
         // if any UI is active, disable mouse look, movement, audio, & animation, and listen for ESC
-        if (m_MainMenuUI.activeInHierarchy || m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy || m_GameOptionsUI.activeInHierarchy || m_NewGameUI.activeInHierarchy || m_SaveGameUI.activeInHierarchy || m_LoadGameUI.activeInHierarchy) {
+        if (m_MainMenuUI.activeInHierarchy || m_MemoryUI.activeInHierarchy || m_MemoryJournal.activeInHierarchy || m_ControlsUI.activeInHierarchy || m_GameOptionsUI.activeInHierarchy || m_NewGameUI.activeInHierarchy || m_SaveGameUI.activeInHierarchy || m_LoadGameUI.activeInHierarchy || m_ExploreUI.activeInHierarchy) {
             disableMovement();
 
             if(!m_MainMenuUI.activeInHierarchy && Input.GetKeyDown("escape")) {
