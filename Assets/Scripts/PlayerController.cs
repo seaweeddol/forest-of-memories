@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
                 m_InputField.text = "";
             }
 
-            if (m_MemoryJournal.activeInHierarchy && Input.GetKeyDown("e")) {
+            if (m_MemoryJournal.activeInHierarchy && (Input.GetKeyDown("e") || Input.GetMouseButtonDown(0))) {
                 m_MemoryJournal.SetActive(false);
             }
         } else { 
