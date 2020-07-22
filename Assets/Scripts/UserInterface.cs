@@ -68,8 +68,10 @@ public class UserInterface : MonoBehaviour
         dropdown.options.Add(new Dropdown.OptionData("Select a file"));
         foreach (FileInfo file in saveFiles)
         {
-            dropdown.options.Add(new Dropdown.OptionData(Path.GetFileName(file.ToString())));
+            dropdown.options.Add(new Dropdown.OptionData(Path.GetFileNameWithoutExtension(file.ToString())));
         }
+
+        StartCoroutine(DetermineSaveFileName());
     }
 
     public void BackFromControls(){
@@ -104,7 +106,7 @@ public class UserInterface : MonoBehaviour
         dropdown.options.Add(new Dropdown.OptionData("Select a file"));
         foreach (FileInfo file in saveFiles)
         {
-            dropdown.options.Add(new Dropdown.OptionData(Path.GetFileName(file.ToString())));
+            dropdown.options.Add(new Dropdown.OptionData(Path.GetFileNameWithoutExtension(file.ToString())));
         }
     }
 
@@ -112,4 +114,22 @@ public class UserInterface : MonoBehaviour
         m_MemoryUI.SetActive(true);
         m_MemoryInputField.ActivateInputField();
     }
+
+    private IEnumerator DetermineSaveFileName(){
+        var dropdown = m_SaveFileDropdown.GetComponent<Dropdown>();
+        while(m_SaveGameUI.activeInHierarchy) {
+            string dropdownSelection = dropdown.options[dropdown.value].text;
+            if(dropdownSelection != "Select a file") {
+                m_SaveFileInputField.text = dropdownSelection;
+                m_SaveFileInputField.GetComponent<InputField>().interactable = false;
+            } else {
+                m_SaveFileInputField.transform.GetComponent<InputField>().interactable = true;
+            }
+            yield return null;
+        }
+
+        m_SaveFileInputField.text = "";
+        dropdown.value = 0;
+    }
+
 }

@@ -97,13 +97,12 @@ public class Game : MonoBehaviour
                 fileName = m_SaveFileInputField.text;
                 fileName = Regex.Replace(fileName, @"[^a-zA-Z0-9 ]", "");
             }
-            
+
             file = File.Create(Application.persistentDataPath + "/" + fileName + ".save");
             
             bf.Serialize(file, save);
             file.Close();
 
-            // TODO: if player overwrites existing save, counter should not tick up
             Debug.Log("Game Saved" + file);
             m_SaveFileErrorMessage.SetActive(false);
         }
@@ -116,11 +115,12 @@ public class Game : MonoBehaviour
         // TODO: start player at position they were at (will need to save player position)
         var dropdown = m_LoadFileDropdown.GetComponent<Dropdown>();
         string fileName = dropdown.options[dropdown.value].text;
+        string filePath = Application.persistentDataPath + "/" + fileName + ".save";
 
-        if (File.Exists(Application.persistentDataPath + "/" + fileName))
+        if (File.Exists(filePath))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/" + fileName, FileMode.Open);
+            FileStream file = File.Open(filePath, FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
 
