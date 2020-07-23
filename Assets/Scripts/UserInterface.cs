@@ -58,7 +58,6 @@ public class UserInterface : MonoBehaviour
 
     public void ShowGameOptionsUI(){
         last = "options";
-        // TODO: maybe split this up into multiple functions
         m_ControlsUI.SetActive(false);
         m_SaveGameUI.SetActive(false);
         m_LoadGameUI.SetActive(false);

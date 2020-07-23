@@ -182,8 +182,6 @@ public class Game : MonoBehaviour
             m_SaveFileErrorMessage.SetActive(false);
             m_SaveSuccessfulMessage.SetActive(true);
         }
-
-        // TODO: change the company name in player settings
     }
 
     public void DestroyTrees(int treesCount){
@@ -196,7 +194,6 @@ public class Game : MonoBehaviour
 
     public void LoadGame()
     { 
-        // TODO: start player at position they were at (will need to save player position)
         var dropdown = m_LoadFileDropdown.GetComponent<Dropdown>();
         string fileName = dropdown.options[dropdown.value].text;
         string filePath = Application.persistentDataPath + "/" + fileName + ".save";

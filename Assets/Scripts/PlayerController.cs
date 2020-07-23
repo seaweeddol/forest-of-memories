@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
     void disableMovement() {
         disableMouseLook();
         Cursor.visible = true;
-        controller.Move(new Vector3(0, 0, 0)); // TODO: see if this is causing movement
+        controller.Move(new Vector3(0, 0, 0));
         m_Animator.SetBool ("isWalking", false);
         m_Animator.SetBool ("isRunning", false);
         walkAudio.Pause();
