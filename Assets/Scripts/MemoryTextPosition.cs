@@ -61,8 +61,6 @@ public class MemoryTextPosition : MonoBehaviour
     private IEnumerator LookAtPlayer(){
         StartCoroutine(FadeInText());
         while(m_IsPlayerInRange) {
-            Debug.Log(player.position);
-            Debug.Log(rotator.position);
             Vector3 dirFromMeToTarget = player.position - rotator.position;
             dirFromMeToTarget.y = 0.0f;
 
