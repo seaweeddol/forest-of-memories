@@ -238,9 +238,9 @@ public class Game : MonoBehaviour
         string filePath;
 
         if (selection == "Alice in Wonderland - Ch. 1") {
-            filePath = "Assets/PremadeForests/aliceinwonderland.save";
+            filePath = Application.streamingAssetsPath + "/PremadeForests/aliceinwonderland.save";
         } else {
-            filePath = "Assets/PremadeForests/dracula.save";
+            filePath = Application.streamingAssetsPath + "/PremadeForests/dracula.save";
         }
 
         if (File.Exists(filePath))
