@@ -10,6 +10,7 @@ public class MemoryTextPosition : MonoBehaviour
     public GameObject tree;
     public Transform rotator;
     public float degreesPerSecond;
+    public Material treeMaterial;
     
     private Transform player;
     private TreeInfo treeInfo;
@@ -40,6 +41,8 @@ public class MemoryTextPosition : MonoBehaviour
             m_IsPlayerInRange = false;
             // StartCoroutine(FadeOutText());
             player.GetComponent<PlayerController>().treesInRange.Remove(tree);
+            tree.GetComponent<Renderer>().material = treeMaterial;
+
         }
     }
 
@@ -58,6 +61,8 @@ public class MemoryTextPosition : MonoBehaviour
     private IEnumerator LookAtPlayer(){
         StartCoroutine(FadeInText());
         while(m_IsPlayerInRange) {
+            Debug.Log(player.position);
+            Debug.Log(rotator.position);
             Vector3 dirFromMeToTarget = player.position - rotator.position;
             dirFromMeToTarget.y = 0.0f;
 

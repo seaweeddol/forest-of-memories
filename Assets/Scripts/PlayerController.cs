@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // activate InteractionUI & tree glow, and listen for "e" key press if tree is in player view
-            if (minAngle >= 0.8) {
+            if (minAngle >= 0.8 && treesInRange.Contains(tree)) {
                 m_InteractionUI.SetActive(true);
                 tree.GetComponent<Renderer>().material = glowMaterial;
 

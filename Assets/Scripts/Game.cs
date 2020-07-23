@@ -238,9 +238,9 @@ public class Game : MonoBehaviour
         string filePath;
 
         if (selection == "Alice in Wonderland - Ch. 1") {
-            filePath = Application.streamingAssetsPath + "/PremadeForests/aliceinwonderland.save";
+            filePath = Path.Combine(Application.streamingAssetsPath, "aliceinwonderland.save");
         } else {
-            filePath = Application.streamingAssetsPath + "/PremadeForests/dracula.save";
+            filePath = Path.Combine(Application.streamingAssetsPath, "dracula.save");
         }
 
         if (File.Exists(filePath))
@@ -270,7 +270,7 @@ public class Game : MonoBehaviour
         }
         else
         {
-            // m_LoadFileErrorMessage.SetActive(true);
+            Application.Quit();
         }
     }
 

@@ -1228,6 +1228,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 326162313797628194, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326162313797628194, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 326162313797628194, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 326162313800468672, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_Mesh
@@ -1261,17 +1276,17 @@ PrefabInstance:
     - target: {fileID: 5710361072706415554, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1008.03516
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5710361072706415554, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 417.0019
+      value: -19
       objectReference: {fileID: 0}
     - target: {fileID: 5710361072706415554, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -50.00876
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5710361072706415554, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
@@ -1312,6 +1327,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304771793813488729, guid: f11026aa4d27241909f236ff704f6496,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 7390618223778896434, guid: f11026aa4d27241909f236ff704f6496,
         type: 3}
