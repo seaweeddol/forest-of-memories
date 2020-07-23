@@ -245,8 +245,6 @@ public class Game : MonoBehaviour
 
         if (File.Exists(filePath))
         {
-            m_ExploreErrorMessage.SetActive(true);
-            m_ExploreErrorMessage.transform.GetComponent<TextMeshProUGUI>().text = "file path: " + filePath;
             spawnTreeScript.entries = 0;
 
             BinaryFormatter bf = new BinaryFormatter();
@@ -255,7 +253,6 @@ public class Game : MonoBehaviour
             file.Close();
 
             int originalTreeCount = trees.Count;
-            m_ExploreErrorMessage.transform.GetComponent<TextMeshProUGUI>().text = "file path: " + filePath + ". Trees count: " + originalTreeCount;
 
             for (int i = 0; i < save.treePositions.Count; i++)
             {
@@ -264,20 +261,16 @@ public class Game : MonoBehaviour
 
             DestroyTrees(originalTreeCount);
 
-            m_ExploreErrorMessage.transform.GetComponent<TextMeshProUGUI>().text = "still working";
-
             m_MainMenuUI.GetComponent<CanvasGroup>().alpha = 0;
             m_MainMenuUI.SetActive(false);
             m_NewGameUI.SetActive(false);
             m_SecondNewGameUI.SetActive(false);
 
-            m_ExploreErrorMessage.transform.GetComponent<TextMeshProUGUI>().text = "end of if block";
-
             StartCoroutine(FadeOutExploreMenu());
         }
         else
         {
-            m_ExploreErrorMessage.transform.GetComponent<TextMeshProUGUI>().text = "else block. file path: " + filePath;
+            m_ExploreErrorMessage.transform.GetComponent<TextMeshProUGUI>().text = "There was an error. Mac Users: Make sure your game is in the Applications folder.";
             m_ExploreErrorMessage.SetActive(true);
         }
     }
