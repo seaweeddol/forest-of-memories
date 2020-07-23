@@ -30,7 +30,6 @@ public class MemoryTextPosition : MonoBehaviour
     void OnTriggerEnter (Collider other) {
         if(other.transform == player) {
             m_IsPlayerInRange = true;
-            // StartCoroutine(FadeInText());
             StartCoroutine(LookAtPlayer());
             player.GetComponent<PlayerController>().treesInRange.Add(tree);
         }
@@ -39,23 +38,10 @@ public class MemoryTextPosition : MonoBehaviour
     void OnTriggerExit (Collider other) {
         if(other.transform == player) {
             m_IsPlayerInRange = false;
-            // StartCoroutine(FadeOutText());
             player.GetComponent<PlayerController>().treesInRange.Remove(tree);
             tree.GetComponent<Renderer>().material = treeMaterial;
 
         }
-    }
-
-    // set position of text in front of player at eye level
-    void memoryPosition(){
-        Vector3 playerDirection = player.forward;
-        Quaternion playerRotation = player.rotation;
-        float memoryDistance = tree.transform.localScale.x * -1.25f;
-
-        Vector3 memoryPos = tree.transform.position + playerDirection * memoryDistance;
-
-        memoryContainer.transform.position = memoryPos + new Vector3(0f, 1.8f, 0f);
-        memoryContainer.transform.rotation = playerRotation;
     }
 
     private IEnumerator LookAtPlayer(){
@@ -74,8 +60,6 @@ public class MemoryTextPosition : MonoBehaviour
     }
 
     private IEnumerator FadeInText(){
-        // memoryPosition();
-
         // while time passed is less than 1sec, update text alpha
         float ratio = 0f;
         while (ratio/1f < 1f) {

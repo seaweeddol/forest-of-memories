@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// MouseLook script taken from this thread: https://forum.unity.com/threads/looking-with-the-mouse.109250/
+// MouseLook script: https://forum.unity.com/threads/looking-with-the-mouse.109250/
 [AddComponentMenu("Camera-Control/Mouse Look")]
 public class MouseLook : MonoBehaviour {
  

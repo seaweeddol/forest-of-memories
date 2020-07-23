@@ -66,7 +66,6 @@ public class PlayerController : MonoBehaviour
             }
         } else { 
             if(Input.GetKeyDown("escape")) {
-                // m_GameOptionsUI.SetActive(true);
                 m_UserInterface.ShowGameOptionsUI();
                 return;
             } else if(Input.GetKeyDown("space")) {

@@ -50,7 +50,6 @@ public class Game : MonoBehaviour
     }
 
     private IEnumerator FadeOutMainMenu(){
-        // while time passed is less than 1sec, update menu alpha
         float ratio = 0f;
         while (ratio/1f < 1f) {
             m_MainMenuUI.GetComponent<CanvasGroup>().alpha = (1 - ratio);
@@ -64,7 +63,6 @@ public class Game : MonoBehaviour
 
     private IEnumerator FadeInNewGameUI(){
         m_NewGameUI.SetActive(true);
-        // while time passed is less than 1sec, update menu alpha
         float ratio = 0f;
         while (ratio/1f < 1f) {
             m_NewGameUI.GetComponent<CanvasGroup>().alpha = ratio;
@@ -77,7 +75,6 @@ public class Game : MonoBehaviour
 
     private IEnumerator FadeInSecondNewGameUI(){
         m_SecondNewGameUI.SetActive(true);
-        // while time passed is less than 1sec, update menu alpha
         float ratio = 0f;
         while (ratio/1f < 1f) {
             m_SecondNewGameUI.GetComponent<CanvasGroup>().alpha = ratio;
@@ -89,7 +86,6 @@ public class Game : MonoBehaviour
     }
 
     private IEnumerator FadeOutSecondNewGameUI(){
-        // while time passed is less than 1sec, update menu alpha
         float ratio = 0f;
         while (ratio/1f < 1f) {
             m_SecondNewGameUI.GetComponent<CanvasGroup>().alpha = (1 - ratio);
@@ -130,7 +126,6 @@ public class Game : MonoBehaviour
     }
 
     private IEnumerator FadeOutLoadMenu(){
-        // while time passed is less than 1sec, update menu alpha
         float ratio = 0f;
         while (ratio/1f < 1f) {
             m_LoadGameUI.GetComponent<CanvasGroup>().alpha = (1 - ratio);
@@ -143,7 +138,6 @@ public class Game : MonoBehaviour
     }
 
     private IEnumerator FadeOutExploreMenu(){
-        // while time passed is less than 1sec, update menu alpha
         float ratio = 0f;
         while (ratio/1f < 1f) {
             m_ExploreUI.GetComponent<CanvasGroup>().alpha = (1 - ratio);

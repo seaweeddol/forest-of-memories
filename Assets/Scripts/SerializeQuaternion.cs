@@ -4,21 +4,13 @@ using System.Collections;
 
 // https://answers.unity.com/questions/956047/serialize-quaternion-or-vector3.html
 // Since unity doesn't flag the Quaternion as serializable, we
-// need to create our own version. This one will automatically convert
-// between Quaternion and SerializableQuaternion
+// need to create our own version
 [System.Serializable]
 public struct SerializableQuaternion
 {
-    // x component
     public float x;
-
-    // y component
     public float y;
-
-    // z component
     public float z;
-
-    // w component
     public float w;
     
     // Constructor
