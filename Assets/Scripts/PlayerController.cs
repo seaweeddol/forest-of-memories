@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
             checkTreesInRange();
 
             // set speed depending on if player is holding down shift
-            speed = Input.GetKey("left shift") ? 6.0f : 2.5f;
+            speed = Input.GetKey("left shift") ? 7.0f : 3.5f;
 
             enableMouseLook();
 
