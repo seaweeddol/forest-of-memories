@@ -2,6 +2,10 @@
 
 An interactive journal experience created in Unity and utilizing IBM Watson’s Tone Analyzer API. Developed over the course of three weeks as my [capstone project](https://github.com/Ada-C13/capstone) during Ada Developer’s Academy.
 
+### Video Demo
+
+[![Forest of Memories screencap](http://img.youtube.com/vi/f00BKiYuwAI/0.jpg)](http://www.youtube.com/watch?v=f00BKiYuwAI "Forest of Memories")
+
 # Installation
 
 If you would like to play Forest of Memories, you can download it for Windows or Mac OS from [itch.io](https://seaweeddol.itch.io/forest-of-memories).
